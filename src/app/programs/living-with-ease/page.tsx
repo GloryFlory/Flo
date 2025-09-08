@@ -24,16 +24,107 @@ export default function LivingWithEase() {
         </div>
       </section>
 
+      {/* What You'll Get */}
+      <section className="py-20 bg-gradient-to-br from-brand/5 to-brand/10">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-4xl font-heading font-bold mb-16 text-center text-ink">
+            Transform Your Relationship with Anxiety
+          </h2>
+          
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            <div>
+              <h3 className="text-2xl font-heading font-bold mb-6 text-ink">
+                What You'll Discover
+              </h3>
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <span className="text-brand mr-3 mt-1 text-xl">✓</span>
+                  <div>
+                    <h4 className="font-semibold text-ink mb-1">Root Cause Understanding</h4>
+                    <p className="text-ink/70">Uncover the deeper patterns and triggers behind your anxiety</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-brand mr-3 mt-1 text-xl">✓</span>
+                  <div>
+                    <h4 className="font-semibold text-ink mb-1">Practical Coping Tools</h4>
+                    <p className="text-ink/70">Evidence-based techniques for immediate relief and long-term management</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-brand mr-3 mt-1 text-xl">✓</span>
+                  <div>
+                    <h4 className="font-semibold text-ink mb-1">Mindful Awareness</h4>
+                    <p className="text-ink/70">Learn to observe your thoughts without being overwhelmed by them</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-brand mr-3 mt-1 text-xl">✓</span>
+                  <div>
+                    <h4 className="font-semibold text-ink mb-1">Confidence Building</h4>
+                    <p className="text-ink/70">Develop unshakeable self-trust and inner peace</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-white rounded-xl p-8 shadow-lg border">
+              <h3 className="text-2xl font-heading font-bold mb-6 text-ink">
+                Your Transformation Journey
+              </h3>
+              <div className="space-y-6">
+                <div className="flex">
+                  <div className="w-8 h-8 bg-brand/20 rounded-full flex items-center justify-center mr-4 mt-1">
+                    <span className="text-sm font-bold text-brand">1</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-ink mb-1">Identify & Understand</h4>
+                    <p className="text-ink/70 text-sm">Map your anxiety patterns and triggers</p>
+                  </div>
+                </div>
+                <div className="flex">
+                  <div className="w-8 h-8 bg-brand/20 rounded-full flex items-center justify-center mr-4 mt-1">
+                    <span className="text-sm font-bold text-brand">2</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-ink mb-1">Build Your Toolkit</h4>
+                    <p className="text-ink/70 text-sm">Learn personalized coping strategies</p>
+                  </div>
+                </div>
+                <div className="flex">
+                  <div className="w-8 h-8 bg-brand/20 rounded-full flex items-center justify-center mr-4 mt-1">
+                    <span className="text-sm font-bold text-brand">3</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-ink mb-1">Practice & Integrate</h4>
+                    <p className="text-ink/70 text-sm">Apply tools in real-life situations</p>
+                  </div>
+                </div>
+                <div className="flex">
+                  <div className="w-8 h-8 bg-brand/20 rounded-full flex items-center justify-center mr-4 mt-1">
+                    <span className="text-sm font-bold text-brand">4</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-ink mb-1">Live with Ease</h4>
+                    <p className="text-ink/70 text-sm">Experience lasting peace and confidence</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Coaching Tiers */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-4xl font-heading font-bold mb-16 text-center text-ink">
-            Choose Your Journey
+            Choose Your Path
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8 mb-20">
             {/* Tier 1: Starter Sessions */}
-            <div className="bg-white rounded-xl shadow-lg border-2 border-brand/20 p-8 text-center">
+            <div className="bg-white rounded-xl shadow-lg border-2 border-brand/20 p-8 text-center flex flex-col">
               <div className="w-16 h-16 bg-brand/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-2xl">🌱</span>
               </div>
@@ -63,7 +154,7 @@ export default function LivingWithEase() {
               </div>
 
               {/* Investment */}
-              <div className="mb-8">
+              <div className="mb-8 flex-grow">
                 <p className="text-brand font-medium mb-2">Entry Level</p>
                 <div className="text-3xl font-bold text-brand mb-4">€120</div>
                 
@@ -81,22 +172,22 @@ export default function LivingWithEase() {
                     <span className="text-ink/70">Personalized coping strategies</span>
                   </div>
                 </div>
+                
+                <p className="text-sm text-ink/60 mt-6 italic">Perfect for first-time coaching experience</p>
               </div>
               
-              <p className="text-sm text-ink/60 mb-6 italic">Perfect for first-time coaching experience</p>
-              
               <a
-                href="https://calendly.com/florian-hohenleitner/how-can-i-help"
+                href="https://meet.brevo.com/florian-hohenleitner/living-with-ease?utm_campaign=living-with-ease&utm_source=website&utm_medium=starter-session"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-brand text-white px-6 py-3 rounded-lg font-medium hover:bg-brand/90 transition-colors duration-200 w-full"
+                className="inline-block bg-brand text-white px-6 py-3 rounded-lg font-medium hover:bg-brand/90 transition-colors duration-200 w-full mt-auto"
               >
                 Book Session
               </a>
             </div>
 
             {/* Tier 2: Growth Journey */}
-            <div className="bg-white rounded-xl shadow-xl border-2 border-brand p-8 text-center relative">
+            <div className="bg-white rounded-xl shadow-xl border-2 border-brand p-8 text-center relative flex flex-col">
               <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <span className="bg-brand text-white px-4 py-1 rounded-full text-sm font-medium">Most Popular</span>
               </div>
@@ -129,9 +220,9 @@ export default function LivingWithEase() {
               </div>
 
               {/* Investment */}
-              <div className="mb-8">
+              <div className="mb-8 flex-grow">
                 <p className="text-brand font-medium mb-2">Core Package</p>
-                <div className="text-3xl font-bold text-brand mb-4">€650-€750</div>
+                <div className="text-3xl font-bold text-brand mb-4">€750</div>
                 
                 <div className="space-y-4 text-left">
                   <div className="flex items-start">
@@ -147,22 +238,22 @@ export default function LivingWithEase() {
                     <span className="text-ink/70">Ongoing support between sessions</span>
                   </div>
                 </div>
+                
+                <p className="text-sm text-ink/60 mt-6 italic">For committed transformation with accountability</p>
               </div>
               
-              <p className="text-sm text-ink/60 mb-6 italic">For committed transformation with accountability</p>
-              
               <a
-                href="https://calendly.com/florian-hohenleitner/how-can-i-help"
+                href="https://meet.brevo.com/florian-hohenleitner/living-with-ease?utm_campaign=living-with-ease&utm_source=website&utm_medium=growth-journey"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-brand text-white px-6 py-3 rounded-lg font-medium hover:bg-brand/90 transition-colors duration-200 w-full"
+                className="inline-block bg-brand text-white px-6 py-3 rounded-lg font-medium hover:bg-brand/90 transition-colors duration-200 w-full mt-auto"
               >
                 Start Journey
               </a>
             </div>
 
             {/* Tier 3: The Immersion */}
-            <div className="bg-white rounded-xl shadow-lg border-2 border-brand/20 p-8 text-center">
+            <div className="bg-white rounded-xl shadow-lg border-2 border-brand/20 p-8 text-center flex flex-col">
               <div className="w-16 h-16 bg-brand/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-2xl">🌳</span>
               </div>
@@ -192,9 +283,9 @@ export default function LivingWithEase() {
               </div>
 
               {/* Investment */}
-              <div className="mb-8">
+              <div className="mb-8 flex-grow">
                 <p className="text-brand font-medium mb-2">Premium Experience</p>
-                <div className="text-3xl font-bold text-brand mb-4">€1,800-€2,000</div>
+                <div className="text-3xl font-bold text-brand mb-4">€2,000</div>
                 
                 <div className="space-y-4 text-left">
                   <div className="flex items-start">
@@ -210,15 +301,15 @@ export default function LivingWithEase() {
                     <span className="text-ink/70">Optional 1-day in-person intensive</span>
                   </div>
                 </div>
+                
+                <p className="text-sm text-ink/60 mt-6 italic">Complete transformation with deep support</p>
               </div>
               
-              <p className="text-sm text-ink/60 mb-6 italic">Complete transformation with deep support</p>
-              
               <a
-                href="https://calendly.com/florian-hohenleitner/how-can-i-help"
+                href="https://meet.brevo.com/florian-hohenleitner/living-with-ease?utm_campaign=living-with-ease&utm_source=website&utm_medium=immersion"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-brand text-white px-6 py-3 rounded-lg font-medium hover:bg-brand/90 transition-colors duration-200 w-full"
+                className="inline-block bg-brand text-white px-6 py-3 rounded-lg font-medium hover:bg-brand/90 transition-colors duration-200 w-full mt-auto"
               >
                 Begin Immersion
               </a>
@@ -235,7 +326,7 @@ export default function LivingWithEase() {
                 Join our next cohort starting soon. Limited spaces available.
               </p>
               <a
-                href="https://calendly.com/florian-hohenleitner/how-can-i-help"
+                href="https://meet.brevo.com/florian-hohenleitner/living-with-ease?utm_campaign=living-with-ease&utm_source=website&utm_medium=discovery-call"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-brand px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/90 transition-colors shadow-lg"

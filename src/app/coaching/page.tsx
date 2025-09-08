@@ -82,7 +82,7 @@ export default function Coaching() {
                   </div>
                 </div>
                 <div className="p-8 flex flex-col flex-1">
-                  <h3 className="text-2xl font-heading font-bold mb-3 text-ink">
+                  <h3 className="text-2xl font-heading font-bold mb-3 text-ink min-h-[2rem]">
                     Living with Ease
                   </h3>
                   <p className="text-ink/80 mb-4 text-base font-medium h-6">
@@ -112,7 +112,7 @@ export default function Coaching() {
                   </div>
                 </div>
                 <div className="p-8 flex flex-col flex-1">
-                  <h3 className="text-2xl font-heading font-bold mb-3 text-ink">
+                  <h3 className="text-2xl font-heading font-bold mb-3 text-ink min-h-[2rem]">
                     Becoming the Authentic Man
                   </h3>
                   <p className="text-ink/80 mb-4 text-base font-medium h-6">
@@ -142,10 +142,10 @@ export default function Coaching() {
                   </div>
                 </div>
                 <div className="p-8 flex flex-col flex-1">
-                  <h3 className="text-2xl font-heading font-bold mb-3 text-ink">
+                  <h3 className="text-2xl font-heading font-bold mb-3 text-ink min-h-[2rem]">
                     Connection & Relationships
                   </h3>
-                  <p className="text-ink/80 mb-4 text-base font-medium h-6" style={{color: '#6b7a40'}}>
+                  <p className="text-ink/80 mb-4 text-base font-medium h-6">
                     Relationship Coaching
                   </p>
                   <p className="text-ink/70 mb-8 text-base leading-relaxed flex-1">
@@ -153,8 +153,7 @@ export default function Coaching() {
                   </p>
                   <a
                     href="/programs/connection-relationships"
-                    className="inline-block px-8 py-3 rounded-lg font-medium transition-colors duration-200 text-base text-center text-white hover:opacity-90"
-                    style={{backgroundColor: '#6b7a40'}}
+                    className="inline-block bg-brand text-white px-8 py-3 rounded-lg font-medium hover:bg-brand/90 transition-colors duration-200 text-base text-center"
                   >
                     Learn More
                   </a>

@@ -84,7 +84,7 @@ export default function Header() {
             
             {/* Book a Call Button */}
             <a
-              href="https://calendly.com/florian-hohenleitner/how-can-i-help"
+              href="https://meet.brevo.com/florian-hohenleitner/intro"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-brand text-white px-6 py-3 rounded-lg font-medium text-lg hover:bg-brand/90 transition-colors shadow-lg ml-6"
@@ -140,7 +140,7 @@ export default function Header() {
                 About
               </a>
               <a
-                href="https://calendly.com/florian-hohenleitner/how-can-i-help"
+                href="https://meet.brevo.com/florian-hohenleitner/intro?utm_campaign=header-cta&utm_source=website&utm_medium=mobile-menu"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-brand text-white px-6 py-3 rounded-lg font-medium text-lg hover:bg-brand/90 transition-colors shadow-lg mt-2 text-center"

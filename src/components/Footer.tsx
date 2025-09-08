@@ -32,7 +32,7 @@ export default function Footer() {
                 Instagram
               </a>
               <a
-                href="https://open.spotify.com/"
+                href="https://open.spotify.com/show/3vRG8eplIkpnBBAUPpih2N"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/80 hover:text-white transition-colors"
@@ -91,7 +91,7 @@ export default function Footer() {
               </li>
               <li>
                 <a 
-                  href="https://calendly.com/florian-hohenleitner/how-can-i-help" 
+                  href="https://meet.brevo.com/florian-hohenleitner/intro" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/80 hover:text-white transition-colors"
