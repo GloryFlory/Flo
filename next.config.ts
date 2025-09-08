@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
     config.resolve.alias['@'] = require('path').resolve(__dirname, 'src');
     return config;
   },
+  // Force fresh deployment
 };
 
 export default nextConfig;
