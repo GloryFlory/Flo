@@ -1,93 +1,47 @@
 'use client';
 
-import { useState } from 'react';
-import EpisodeCard from '../../components/EpisodeCard';
-
-const allEpisodes = [
-  {
-    title: 'Episode 13: Overthinking Is Secretly Protecting You (But From What?)',
-    blurb: 'Overthinking often feels safe—like a waiting room where nothing bad happens, but nothing moves forward either. Flo shares how to reframe overthinking as a signal—not an enemy.',
-    link: 'https://podcasters.spotify.com/pod/show/growwiththeflo/episodes/Episode-13-Overthinking-Is-Secretly-Protecting-You-But-From-What-e37mrgv',
-    imageUrl: 'https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/42855288/42855288-1755784487029-9d8f60e49ea79.jpg',
-  },
-  {
-    title: 'Episode 12: Loneliness - A Curse or a Teacher?',
-    blurb: 'Dark Forest Mini-Series, Part IV. Loneliness is one of the hardest feelings to sit with—but what if it\'s pointing us toward something essential? Exploring how loneliness can guide us back to belonging.',
-    link: 'https://podcasters.spotify.com/pod/show/growwiththeflo/episodes/Episode-12-Loneliness---A-Curse-or-a-Teacher-e370b5t',
-    imageUrl: 'https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/42855288/42855288-1755524745681-c55487d006d71.jpg',
-  },
-  {
-    title: 'Episode 11: When Life Lines Up - Flow & Synchronicity',
-    blurb: 'Dark Forest Mini-Series, Part III. Have you ever felt like everything just… lined up? From chance encounters to uncanny timing, exploring the science and mystery of flow and synchronicity.',
-    link: 'https://podcasters.spotify.com/pod/show/growwiththeflo/episodes/Episode-11-When-Life-Lines-Up---Flow--Synchronicity-e370a5f',
-    imageUrl: 'https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/42855288/42855288-1755524027208-26a3ceefb5f39.jpg',
-  },
-  {
-    title: 'Episode 10: Can Growth be Gentle?',
-    blurb: 'Dark Forest Mini-Series, Part II. We often think growth has to be hard—discipline, hustle, pushing past limits. But can growth also be soft, kind, and gentle? Exploring what it means to grow without force.',
-    link: 'https://podcasters.spotify.com/pod/show/growwiththeflo/episodes/Episode-10-Can-Growth-be-Gentle-e370b3v',
-    imageUrl: 'https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/42855288/42855288-1755524646400-53fc0a42098ec.jpg',
-  },
-  {
-    title: 'Episode 9: The Gift in Discomfort',
-    blurb: 'Dark Forest Mini-Series, Part I. This year has tested me more than any before. Exploring how discomfort, as painful as it is, can be one of life\'s greatest teachers.',
-    link: 'https://podcasters.spotify.com/pod/show/growwiththeflo/episodes/Episode-9-The-Gift-in-Discomfort-e36ubr9',
-    imageUrl: 'https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/42855288/42855288-1755368881668-5906b1a2f5769.jpg',
-  },
-  {
-    title: 'Episode 8: When You\'re No Longer Who You Used to Be',
-    blurb: 'Who remains when you peel off the layers of your personality? Big life events can leave you feeling lost. Diving into identity crisis, reconstructing it, and the impact on mental health.',
-    link: 'https://podcasters.spotify.com/pod/show/growwiththeflo/episodes/Episode-8-When-Youre-No-Longer-Who-You-Used-to-Be-e36kdct',
-    imageUrl: 'https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/42855288/42855288-1755179045739-9764064f80cb9.jpg',
-  },
-  {
-    title: 'Episode 7: How to Find Purpose When You Feel Lost',
-    blurb: 'I never felt more lost in my life than this year. The most important thing? Kindness. Be kind to yourself—that\'s the only way to start on a journey like this. Tools to build purpose together.',
-    link: 'https://podcasters.spotify.com/pod/show/growwiththeflo/episodes/Episode-7-How-to-Find-Purpose-When-You-Feel-Lost-e36iojr',
-    imageUrl: 'https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/42855288/42855288-1755784487029-9d8f60e49ea79.jpg',
-  },
-  {
-    title: 'Episode 6: Why My Calendar Made Me Anxious – and What I\'m Doing Instead',
-    blurb: 'I thought my calendar could become a tool to help, but instead it became a source of stress, anxiety and doubt. Learn about this struggle and what I\'m doing to correct this.',
-    link: 'https://podcasters.spotify.com/pod/show/growwiththeflo/episodes/Episode-6-Why-My-Calendar-Made-Me-Anxious--and-What-Im-Doing-Instead-e36ii1t',
-    imageUrl: 'https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/42855288/42855288-1755784487029-9d8f60e49ea79.jpg',
-  },
-  {
-    title: 'Episode 5: Two Steps forward, One Step Back',
-    blurb: 'After 3 months travelling through South East Asia, I came back full of ambition—but my body had different plans. Learning to deal with setbacks and being forced to slow down.',
-    link: 'https://podcasters.spotify.com/pod/show/growwiththeflo/episodes/Episode-5-Two-Steps-forward--One-Step-Back-e3512sf',
-    imageUrl: 'https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/42855288/42855288-1755784487029-9d8f60e49ea79.jpg',
-  },
-  {
-    title: 'Episode 4: The Return to Bali - Where it all started',
-    blurb: '2 years after I first landed in Bali to face my anxiety, I find myself on this mystical island again. Coming back to the same place has never felt so special—especially realizing I\'m no longer the same.',
-    link: 'https://podcasters.spotify.com/pod/show/growwiththeflo/episodes/Episode-4-The-Return-to-Bali---Where-it-all-started-e34j0nl',
-    imageUrl: 'https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/42855288/42855288-1750611518226-f133f72c6a32e.jpg',
-  },
-  {
-    title: 'Episode 3: The Paradox About Growth',
-    blurb: 'Exploring the paradox of growth—how our focus on future achievements can overshadow the joy of the present. Sharing my experience and ongoing doubts about future projects.',
-    link: 'https://podcasters.spotify.com/pod/show/growwiththeflo/episodes/Episode-3---The-Paradox-About-Growth-e2v9q7o',
-    imageUrl: 'https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/42855288/42855288-1740386662324-322304a77c75.jpg',
-  },
-  {
-    title: 'Episode 2: Managing Toilet Anxiety. The Tools That Help Me Cope.',
-    blurb: 'Toilet anxiety can feel overwhelming, but over time, I\'ve found ways to handle it. Sharing strategies, mindset shifts, and practical tools that have helped me regain control.',
-    link: 'https://podcasters.spotify.com/pod/show/growwiththeflo/episodes/Episode-2-Managing-Toilet-Anxiety--The-Tools-That-Help-Me-Cope-e2udago',
-    imageUrl: 'https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/42855288/42855288-1738671917864-037dea87e6f8.jpg',
-  },
-  {
-    title: 'Episode 1: What is Toilet Anxiety?',
-    blurb: 'In this very first episode, diving into my experience with toilet anxiety, explaining what it is and how it\'s affected my life. Including the story of my panic attack in New York City.',
-    link: 'https://podcasters.spotify.com/pod/show/growwiththeflo/episodes/Episode-1-What-is-Toilet-Anxiety--An-Insight-into-my-Experience-with-Anxiety-and-the-Story-about-my-Panic-Attack-in-New-York-City-e2tvf4f',
-    imageUrl: 'https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/42855288/42855288-1755784487029-9d8f60e49ea79.jpg',
-  },
-];
+import { useState, useEffect, useMemo } from 'react';
+import { PodcastEpisode } from '../../../lib/podcast';
+import PodcastEpisodeCard from '../../../components/PodcastEpisodeCard';
+import SearchBar from '../../../components/SearchBar';
 
 export default function PodcastPage() {
-  const [showMore, setShowMore] = useState(false);
-  const initialEpisodes = 5;
-  const displayedEpisodes = showMore ? allEpisodes : allEpisodes.slice(0, initialEpisodes);
+  const [episodes, setEpisodes] = useState<PodcastEpisode[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    const fetchEpisodes = async () => {
+      try {
+        const response = await fetch('/api/podcast-episodes');
+        if (response.ok) {
+          const data = await response.json();
+          if (data.episodes && data.episodes.length > 0) {
+            setEpisodes(data.episodes);
+          }
+        }
+      } catch (error) {
+        console.error('Failed to fetch episodes:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEpisodes();
+  }, []);
+
+  // Filter episodes based on search query
+  const filteredEpisodes = useMemo(() => {
+    if (!searchQuery.trim()) return episodes;
+    
+    const query = searchQuery.toLowerCase();
+    return episodes.filter(episode => 
+      episode.title.toLowerCase().includes(query) ||
+      episode.description.toLowerCase().includes(query)
+    );
+  }, [episodes, searchQuery]);
+
+  const latestEpisode = episodes[0];
 
   return (
     <main className="min-h-screen bg-sand">
@@ -106,7 +60,7 @@ export default function PodcastPage() {
                 <img
                   src="/podcast-logo.png"
                   alt="Grow with the Flo Podcast"
-                  className="w-64 h-auto shadow-lg"
+                  className="w-80 h-auto shadow-xl rounded-2xl"
                 />
               </div>
               
@@ -117,75 +71,74 @@ export default function PodcastPage() {
                 <p className="text-lg text-ink/70 leading-relaxed">
                   Through solo reflections, insightful interviews and deep dives into themes like personal growth, anxiety, and building meaningful connections, Grow with the Flo invites you to embrace your own truth unapologetically.
                 </p>
+                
+                {/* Platform Links */}
+                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                  <a
+                    href="https://open.spotify.com/show/3vRG8eplIkpnBBAUPpih2N"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center bg-white border-2 border-gray-200 text-gray-800 p-3 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm"
+                  >
+                    <img src="/spotify-icon.png" alt="Spotify" className="w-8 h-8" />
+                  </a>
+                  <a
+                    href="https://podcasts.apple.com/us/podcast/grow-with-the-flo/id1795716394"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center bg-white border-2 border-gray-200 text-gray-800 p-3 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm"
+                  >
+                    <img src="/apple-icon.png" alt="Apple Podcasts" className="w-8 h-8" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
           
-          {/* Featured Episode */}
-          <div className="bg-white rounded-xl shadow-lg p-8 mb-16 max-w-4xl mx-auto">
-            <h2 className="text-3xl font-heading font-bold mb-6 text-center text-ink">
-              Latest Episode
-            </h2>
-            <div className="bg-gradient-to-br from-brand/10 to-accent/10 rounded-xl p-8 text-center">
-              <h3 className="text-2xl font-heading font-bold mb-4 text-ink">
-                Episode 13: Overthinking Is Secretly Protecting You (But From What?)
-              </h3>
-              <p className="text-ink/80 mb-6">
-                Overthinking often feels safe—like a waiting room where nothing bad happens, but nothing moves forward either. In this episode, Flo shares how overthinking has shown up in his own life, why our brains get stuck in loops, and how comparison and guilt keep us paralyzed.
-              </p>
-              <div className="bg-white/80 rounded-lg p-6 mb-4">
-                <p className="text-ink/60 italic">
-                  🎧 Duration: 17:44 | Published: Sept 4, 2025
-                </p>
-              </div>
-              <div className="flex justify-center">
-                <a 
-                  href="https://podcasters.spotify.com/pod/show/growwiththeflo/episodes/Episode-13-Overthinking-Is-Secretly-Protecting-You-But-From-What-e37mrgv" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="bg-brand text-white px-6 py-3 rounded-lg hover:bg-brand/90 transition-colors"
-                >
-                  Listen on Spotify
-                </a>
-              </div>
-            </div>
-          </div>
+          {/* Search Bar */}
+          <SearchBar 
+            onSearch={setSearchQuery}
+            placeholder="Search episodes by title or description..."
+          />
           
           {/* All Episodes */}
           <h2 className="text-4xl font-heading font-bold mb-12 text-center text-ink">
-            All Episodes
+            {searchQuery ? `Search Results (${filteredEpisodes.length})` : 'All Episodes'}
           </h2>
-          <div className="space-y-6 mb-8">
-            {displayedEpisodes.map((episode, index) => (
-              <EpisodeCard 
-                key={index} 
-                {...episode} 
-                fullWidth={true}
-              />
-            ))}
-          </div>
-
-          {/* Load More Button */}
-          {!showMore && allEpisodes.length > initialEpisodes && (
-            <div className="text-center">
-              <button
-                onClick={() => setShowMore(true)}
-                className="bg-brand text-white px-8 py-4 rounded-xl text-lg font-bold shadow-lg hover:bg-brand/90 transition-colors"
-              >
-                Load More Episodes ({allEpisodes.length - initialEpisodes} more)
-              </button>
+          
+          {loading ? (
+            <div className="space-y-6">
+              {[...Array(5)].map((_, i) => (
+                <div key={i} className="bg-white rounded-xl shadow-lg p-6 animate-pulse">
+                  <div className="flex gap-4">
+                    <div className="w-24 h-24 bg-gray-300 rounded-lg"></div>
+                    <div className="flex-1">
+                      <div className="h-4 bg-gray-300 rounded mb-2"></div>
+                      <div className="h-6 bg-gray-300 rounded mb-2"></div>
+                      <div className="h-4 bg-gray-300 rounded w-3/4"></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-          )}
-
-          {/* Show Less Button */}
-          {showMore && (
-            <div className="text-center">
-              <button
-                onClick={() => setShowMore(false)}
-                className="bg-ink/20 text-ink px-8 py-4 rounded-xl text-lg font-bold hover:bg-ink/30 transition-colors"
-              >
-                Show Less
-              </button>
+          ) : filteredEpisodes.length === 0 ? (
+            <div className="text-center py-12">
+              <h3 className="text-xl font-semibold text-ink mb-2">
+                {searchQuery ? 'No episodes found' : 'No episodes available'}
+              </h3>
+              <p className="text-ink/60">
+                {searchQuery ? 'Try adjusting your search terms.' : 'Episodes will appear here once they are published.'}
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-6">
+              {filteredEpisodes.map((episode, index) => (
+                <PodcastEpisodeCard 
+                  key={episode.slug} 
+                  episode={episode} 
+                  isFeatured={index === 0 && !searchQuery}
+                />
+              ))}
             </div>
           )}
         </div>
