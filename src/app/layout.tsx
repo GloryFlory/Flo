@@ -81,7 +81,7 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   verification: {
-    google: 'your-google-verification-code', // You'll need to add this from Google Search Console
+    google: 'tq9fAV4jI1K5rtNWddH1wBJVPh_fuW_yHH6JbCOiGV8',
   },
 };
 
