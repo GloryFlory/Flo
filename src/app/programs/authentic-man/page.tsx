@@ -340,8 +340,8 @@ export default function AuthenticMan() {
           
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-white rounded-xl p-6 shadow-lg border">
-              <p className="text-ink/70 mb-4 italic">"This work helped me break free from decades of people-pleasing. I finally know who I am and what I stand for."</p>
-              <div className="text-accent font-medium">— Marcus, 34</div>
+              <p className="text-ink/70 mb-4 italic">"I can see you lead... you came a long way and can create that space... It was lovely to see you being yourself in your vulnerability, and being authentic."</p>
+              <div className="text-accent font-medium">— Giancarlo</div>
             </div>
             <div className="bg-white rounded-xl p-6 shadow-lg border">
               <p className="text-ink/70 mb-4 italic">"I learned to express my emotions authentically without losing my masculine core. Game changer for my relationships."</p>

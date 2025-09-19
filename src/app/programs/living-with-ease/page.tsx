@@ -315,26 +315,46 @@ export default function LivingWithEase() {
               </a>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* CTA */}
-          <div className="text-center">
-            <div className="bg-gradient-to-br from-brand to-brand/80 rounded-xl p-8 max-w-2xl mx-auto">
-              <h3 className="text-3xl font-heading font-bold text-white mb-4">
-                Ready to Transform Your Relationship with Anxiety?
-              </h3>
-              <p className="text-white/90 mb-8 text-lg">
-                Join our next cohort starting soon. Limited spaces available.
-              </p>
-              <a
-                href="https://meet.brevo.com/florian-hohenleitner/living-with-ease?utm_campaign=living-with-ease&utm_source=website&utm_medium=discovery-call"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-white text-brand px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/90 transition-colors shadow-lg"
-              >
-                Book Discovery Call
-              </a>
+      {/* Testimonials */}
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-4xl font-heading font-bold mb-16 text-center text-ink">
+            What Clients Are Saying
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white rounded-xl p-6 shadow-lg border">
+              <p className="text-ink/70 mb-4 italic">"Your voice is very soothing and motivating... You sound very authentic and you're the kind of leader I'd trust and follow no matter if I know you personally or not."</p>
+              <div className="text-brand font-medium">— Daria</div>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-lg border">
+              <p className="text-ink/70 mb-4 italic">"Working with Flo helped me understand my anxiety patterns and gave me practical tools that actually work in real situations."</p>
+              <div className="text-brand font-medium">— Emma, 29</div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 bg-gradient-to-br from-brand to-brand/80">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-4xl font-heading font-bold text-white mb-6">
+            Ready to Transform Your Relationship with Anxiety?
+          </h2>
+          <p className="text-white/90 mb-8 text-lg">
+            Stop letting anxiety control your life. Start your journey to inner peace and confidence today.
+          </p>
+          <a
+            href="https://meet.brevo.com/florian-hohenleitner/living-with-ease?utm_campaign=living-with-ease&utm_source=website&utm_medium=discovery-call"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-white text-brand px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/90 transition-colors shadow-lg"
+          >
+            Book Your Discovery Call
+          </a>
         </div>
       </section>
     </main>
