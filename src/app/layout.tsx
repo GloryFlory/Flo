@@ -86,6 +86,9 @@ export const metadata: Metadata = {
       'msvalidate.01': 'B469502B9ACAD73712748DDCBE8C1559',
     },
   },
+  other: {
+    'msvalidate.01': 'B469502B9ACAD73712748DDCBE8C1559',
+  },
 };
 
 export default function RootLayout({
@@ -95,6 +98,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="msvalidate.01" content="B469502B9ACAD73712748DDCBE8C1559" />
+      </head>
       <body>
         <Header />
         {children}
