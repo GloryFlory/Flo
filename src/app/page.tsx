@@ -25,8 +25,78 @@ const episodes = [
 ];
 
 export default function HomePage() {
+  // Structured data for SEO
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Person',
+        '@id': 'https://florianhohenleitner.com/#person',
+        name: 'Florian Hohenleitner',
+        jobTitle: 'Life Coach & Podcast Host',
+        description: 'Life coach and host of the Grow with the Flo podcast, helping people live authentically and grow meaningfully.',
+        url: 'https://florianhohenleitner.com',
+        image: 'https://florianhohenleitner.com/profile.jpeg',
+        sameAs: [
+          'https://open.spotify.com/show/3vRG8eplIkpnBBAUPpih2N',
+          'https://podcasts.apple.com/us/podcast/grow-with-the-flo/id1795716394',
+        ],
+        knowsAbout: [
+          'Life Coaching',
+          'Personal Development',
+          'Mental Health',
+          'Anxiety Management',
+          'Authentic Living',
+          'Mindfulness',
+          'Personal Growth'
+        ],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': 'https://florianhohenleitner.com/#website',
+        url: 'https://florianhohenleitner.com',
+        name: 'Florian Hohenleitner - Life Coach & Podcast Host',
+        description: 'Transform your life with authentic coaching and real conversations on the Grow with the Flo podcast.',
+        publisher: {
+          '@id': 'https://florianhohenleitner.com/#person'
+        },
+        potentialAction: [
+          {
+            '@type': 'SearchAction',
+            target: {
+              '@type': 'EntryPoint',
+              urlTemplate: 'https://florianhohenleitner.com/podcast?search={search_term_string}'
+            },
+            'query-input': 'required name=search_term_string'
+          }
+        ]
+      },
+      {
+        '@type': 'PodcastSeries',
+        '@id': 'https://florianhohenleitner.com/podcast/#podcast',
+        name: 'Grow with the Flo',
+        description: 'Open, honest, and real conversations about life. Hosted by Flo, this podcast explores what it truly means to grow, connect, and learn in a world that often prioritizes filters over authenticity.',
+        url: 'https://florianhohenleitner.com/podcast',
+        image: 'https://florianhohenleitner.com/podcast-logo.png',
+        author: {
+          '@id': 'https://florianhohenleitner.com/#person'
+        },
+        publisher: {
+          '@id': 'https://florianhohenleitner.com/#person'
+        },
+        genre: ['Personal Development', 'Mental Health', 'Self-Help'],
+        webFeed: 'https://anchor.fm/s/100089160/podcast/rss'
+      }
+    ]
+  };
+
   return (
-    <main>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <main>
       {/* Hero section */}
       <section className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black/80 overflow-hidden py-20 px-4">
         <img
@@ -268,5 +338,6 @@ export default function HomePage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

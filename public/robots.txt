@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Allow crawling of important pages
+Allow: /podcast
+Allow: /coaching
+Allow: /about
+Allow: /podcast/*
+
+# Block any admin or private areas (if they exist)
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://florianhohenleitner.com/sitemap.xml

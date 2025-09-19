@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getAllEpisodes, getEpisodeBySlug, formatDate, formatDuration } from '../../../../lib/podcast';
+import { getAllEpisodes, getEpisodeBySlug, formatDate, formatDuration, formatShowNotes } from '../../../../lib/podcast';
 import { Metadata } from 'next';
 
 interface PageProps {
@@ -207,12 +207,14 @@ export default async function EpisodeDetailPage({ params }: PageProps) {
             {/* Episode Description / Show Notes */}
             <div className="bg-white rounded-xl shadow-lg overflow-hidden">
               <div className="p-6 sm:p-8">
-                <h2 className="text-xl font-heading font-bold text-ink mb-4">
+                <h2 className="text-xl font-heading font-bold text-ink mb-6">
                   Show Notes
                 </h2>
                 <div 
-                  className="prose prose-lg max-w-none text-ink/80 leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: episode.description }}
+                  className="prose prose-lg max-w-none text-ink/80 leading-relaxed 
+                             prose-headings:text-ink prose-strong:text-ink prose-em:text-ink/90
+                             prose-p:text-ink/80 prose-li:text-ink/80 prose-ul:space-y-1"
+                  dangerouslySetInnerHTML={{ __html: formatShowNotes(episode.description) }}
                 />
               </div>
             </div>

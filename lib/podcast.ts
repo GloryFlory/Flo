@@ -75,7 +75,9 @@ export async function getAllEpisodes(): Promise<PodcastEpisode[]> {
     
     return feed.items.map((item: any) => {
       const episodeNumber = item.episodeNumber || extractEpisodeNumber(item.title || '');
-      const description = item.contentSnippet || item.content || item.summary || '';
+      // Prefer the rich HTML content over plain text
+      const description = item.content || item.summary || item.contentSnippet || '';
+      const shortDescription = createShortDescription(item.contentSnippet || item.content || item.summary || '');
       const audioUrl = item.enclosure?.url || item.link || '';
       const image = item.itunesImage?.href || 
                    item.itunes?.image || 
@@ -141,4 +143,63 @@ export function formatDuration(duration?: string): string {
   const remainingSeconds = seconds % 60;
   
   return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+}
+
+export function formatShowNotes(description: string): string {
+  if (!description) return '';
+  
+  let formatted = description.trim();
+  
+  // If we have HTML content, preserve and enhance it
+  if (formatted.includes('<p>') || formatted.includes('<strong>') || formatted.includes('<ul>')) {
+    // Clean up any malformed HTML structure
+    formatted = formatted.replace(/<\/li><ul>/g, '</li></ul><ul>');
+    formatted = formatted.replace(/<\/ul><li>/g, '</ul><ul><li>');
+    
+    // Enhance the styling of existing HTML elements
+    formatted = formatted.replace(/<p>/g, '<p class="mb-4">');
+    formatted = formatted.replace(/<strong>/g, '<strong class="font-bold text-ink">');
+    formatted = formatted.replace(/<em>/g, '<em class="italic">');
+    formatted = formatted.replace(/<ul>/g, '<ul class="list-disc list-inside space-y-2 my-6 ml-4">');
+    formatted = formatted.replace(/<li><p>/g, '<li class="mb-2"><p class="mb-1">');
+    formatted = formatted.replace(/<li>/g, '<li class="mb-2">');
+    
+    // Handle headers (bold text that appears to be section headers)
+    formatted = formatted.replace(/<p class="mb-4"><strong class="font-bold text-ink">([^<]+)<\/strong><\/p>/g, 
+      '<h3 class="text-lg font-heading font-bold text-ink mt-8 mb-4 border-b border-gray-200 pb-2">$1</h3>');
+    
+    return formatted;
+  } else {
+    // Fallback for plain text descriptions
+    // Convert line breaks to proper HTML
+    formatted = formatted.replace(/\n\n+/g, '</p><p class="mb-4">');
+    formatted = formatted.replace(/\n/g, '<br>');
+    
+    // Convert bullet points (-, *, •) to proper HTML lists
+    const lines = formatted.split('</p><p class="mb-4">');
+    const processedLines = lines.map(line => {
+      const bulletPattern = /^[\s]*[-*•]\s+/gm;
+      if (bulletPattern.test(line)) {
+        const items = line.split('<br>').filter(item => item.trim());
+        const listItems = items.map(item => {
+          const cleaned = item.replace(/^[\s]*[-*•]\s+/, '').trim();
+          return cleaned ? `<li class="mb-2">${cleaned}</li>` : '';
+        }).filter(item => item);
+        
+        if (listItems.length > 0) {
+          return `<ul class="list-disc list-inside space-y-2 my-6 ml-4">${listItems.join('')}</ul>`;
+        }
+      }
+      return line;
+    });
+    
+    formatted = processedLines.join('</p><p class="mb-4">');
+    
+    // Wrap in paragraphs if not already wrapped
+    if (!formatted.startsWith('<p>')) {
+      formatted = `<p class="mb-4">${formatted}</p>`;
+    }
+    
+    return formatted;
+  }
 }
