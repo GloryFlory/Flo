@@ -98,7 +98,7 @@ export default function HomePage() {
       />
       <main>
       {/* Hero section */}
-      <section className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black/80 overflow-hidden py-20 px-4">
+      <section className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black/80 overflow-hidden py-16 sm:py-20 px-4">
         <img
           src="/header.jpg"
           alt="Header"
@@ -106,19 +106,19 @@ export default function HomePage() {
           style={{ zIndex: 0 }}
         />
         <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-4xl mx-auto text-center">
-          <div className="uppercase tracking-widest text-brand text-sm sm:text-lg mb-4 font-bold px-4">
+          <div className="uppercase tracking-widest text-brand text-xs sm:text-sm lg:text-lg mb-4 font-bold px-4">
             Coaching • Podcast • Creative Growth
           </div>
-          <h1 className="text-white font-heading font-extrabold text-center text-4xl sm:text-6xl md:text-7xl leading-none mb-6 drop-shadow-lg px-4">
+          <h1 className="text-white font-heading font-extrabold text-center text-3xl sm:text-4xl md:text-6xl lg:text-7xl leading-none mb-6 drop-shadow-lg px-4">
             Florian Hohenleitner
           </h1>
           <a
             href="/podcast"
-            className="bg-brand text-white font-bold rounded px-6 sm:px-8 py-3 text-base sm:text-lg mb-10 shadow hover:bg-brand/90 transition mx-4"
+            className="bg-brand text-white font-bold rounded px-6 sm:px-8 py-3 text-sm sm:text-base lg:text-lg mb-8 sm:mb-10 shadow hover:bg-brand/90 transition mx-4"
           >
             Listen to Grow with the Flo
           </a>
-          <div className="flex justify-center gap-4 sm:gap-6 mb-10 sm:mb-20 px-4">
+          <div className="flex justify-center gap-4 sm:gap-6 mb-10 sm:mb-16 lg:mb-20 px-4">
             <a
               href="https://www.youtube.com/@GrowWithTheFloPodcast"
               target="_blank"
@@ -126,7 +126,7 @@ export default function HomePage() {
               aria-label="YouTube"
               className="hover:opacity-80"
             >
-              <img src="/youtube.png" alt="YouTube" width={36} height={36} />
+              <img src="/youtube.png" alt="YouTube" width={32} height={32} className="w-8 h-8 sm:w-9 sm:h-9" />
             </a>
             <a
               href="https://www.instagram.com/grow.with_the.flo/"
@@ -135,34 +135,34 @@ export default function HomePage() {
               aria-label="Instagram"
               className="hover:opacity-80"
             >
-              <img src="/instagram.png" alt="Instagram" width={36} height={36} />
+              <img src="/instagram.png" alt="Instagram" width={32} height={32} className="w-8 h-8 sm:w-9 sm:h-9" />
             </a>
           </div>
         </div>
       </section>
 
       {/* About card overlapping hero - moved outside hero section */}
-      <div className="relative z-50 w-full flex justify-center -mt-32 sm:-mt-48 px-4">
-        <div className="bg-white rounded-xl shadow-lg px-6 sm:px-10 py-8 sm:py-10 max-w-3xl w-full">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-6 text-center">
+      <div className="relative z-50 w-full flex justify-center -mt-24 sm:-mt-32 lg:-mt-48 px-4">
+        <div className="bg-white rounded-xl shadow-lg px-6 sm:px-10 py-6 sm:py-8 lg:py-10 max-w-3xl w-full">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-heading font-bold mb-4 sm:mb-6 text-center">
             About Flo
           </h2>
-          <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 lg:gap-8">
             <div className="flex-shrink-0">
               <img
                 src="/profile.jpeg"
                 alt="Florian"
-                className="w-40 h-40 sm:w-56 sm:h-56 rounded-lg object-cover border-4 border-brand shadow-lg mx-auto"
+                className="w-32 h-32 sm:w-40 sm:h-40 lg:w-56 lg:h-56 rounded-lg object-cover border-4 border-brand shadow-lg mx-auto"
               />
             </div>
             <div className="flex-1 text-center sm:text-left">
-              <ul className="list-disc pl-5 mb-4 text-ink text-base sm:text-lg space-y-1">
+              <ul className="list-disc pl-5 mb-3 sm:mb-4 text-ink text-sm sm:text-base lg:text-lg space-y-1">
                 <li>Coach & Podcast Host</li>
                 <li>Personal Growth Specialist</li>
                 <li>Retreat Leader</li>
                 <li>Creative Professional</li>
               </ul>
-              <p className="text-ink text-sm sm:text-base mb-4 leading-relaxed">
+              <p className="text-ink text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed">
                 Florian is a passionate coach and podcast host helping creatives
                 and professionals unlock their flow, resilience, and purpose. He
                 believes growth is best achieved together, and his work is
@@ -170,7 +170,7 @@ export default function HomePage() {
               </p>
               <a
                 href="/about"
-                className="inline-block bg-brand text-white font-bold rounded px-6 py-2 text-base shadow hover:bg-brand/90 transition"
+                className="inline-block bg-brand text-white font-bold rounded px-4 sm:px-6 py-2 text-sm sm:text-base shadow hover:bg-brand/90 transition"
               >
                 Read More
               </a>

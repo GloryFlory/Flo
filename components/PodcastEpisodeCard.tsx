@@ -35,26 +35,38 @@ export default function PodcastEpisodeCard({ episode, isFeatured = false }: Podc
 
             {/* Episode Content */}
             <div className="flex-1 min-w-0">
-              {/* Episode Number & Date */}
-              <div className="flex items-center gap-3 mb-3">
-                {episode.episodeNumber && (
-                  <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
-                    isFeatured ? 'bg-brand text-white' : 'bg-brand/10 text-brand'
-                  }`}>
-                    Episode {episode.episodeNumber}
-                  </span>
-                )}
-                <span className="text-sm text-ink/60">
-                  {formatDate(episode.pubDate)}
-                </span>
-                {episode.duration && (
-                  <>
-                    <span className="text-ink/40">•</span>
-                    <span className="text-sm text-ink/60">
-                      {formatDuration(episode.duration)}
+              {/* Episode Number & Date - Mobile Optimized */}
+              <div className="mb-3">
+                {/* Desktop: Show episode number inline with date */}
+                <div className="hidden sm:flex items-center gap-3">
+                  {episode.episodeNumber && !isFeatured && (
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-brand/10 text-brand">
+                      Episode {episode.episodeNumber}
                     </span>
-                  </>
-                )}
+                  )}
+                  <span className="text-sm text-ink/60">
+                    {formatDate(episode.pubDate)}
+                  </span>
+                  {episode.duration && (
+                    <>
+                      <span className="text-ink/40">•</span>
+                      <span className="text-sm text-ink/60">
+                        {formatDuration(episode.duration)}
+                      </span>
+                    </>
+                  )}
+                </div>
+                
+                {/* Mobile: Simplified date and duration only */}
+                <div className="flex sm:hidden items-center gap-2 text-sm text-ink/60">
+                  <span>{formatDate(episode.pubDate)}</span>
+                  {episode.duration && (
+                    <>
+                      <span className="text-ink/40">•</span>
+                      <span>{formatDuration(episode.duration)}</span>
+                    </>
+                  )}
+                </div>
               </div>
 
               {/* Title */}

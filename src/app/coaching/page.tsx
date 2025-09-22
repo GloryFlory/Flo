@@ -1,19 +1,19 @@
 export default function Coaching() {
   return (
     <main className="min-h-screen bg-white">
-      <section className="section py-32">
+      <section className="section py-16 sm:py-24 lg:py-32">
         <div className="max-w-6xl mx-auto px-4">
-          <h1 className="text-6xl font-heading font-bold mb-8 text-center text-ink">
+          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-heading font-bold mb-6 sm:mb-8 text-center text-ink">
             Coaching
           </h1>
-          <p className="text-xl text-ink/80 text-center mb-16 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-ink/80 text-center mb-12 sm:mb-16 max-w-3xl mx-auto leading-relaxed px-4">
             For thoughtful people navigating change (career, identity, relationships) who want clarity without self-abandonment.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-12 mb-20">
-            <div className="bg-sand rounded-xl shadow-lg p-8">
-              <h2 className="text-3xl font-heading font-bold mb-6 text-ink">Who it's for</h2>
-              <ul className="space-y-4 text-lg text-ink">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 mb-16 sm:mb-20">
+            <div className="bg-sand rounded-xl shadow-lg p-6 sm:p-8">
+              <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4 sm:mb-6 text-ink">Who it's for</h2>
+              <ul className="space-y-3 sm:space-y-4 text-base sm:text-lg text-ink">
                 <li className="flex items-start">
                   <span className="text-brand mr-3 mt-1">•</span>
                   High-functioning overthinkers
@@ -37,9 +37,9 @@ export default function Coaching() {
               </ul>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg border p-8">
-              <h2 className="text-3xl font-heading font-bold mb-6 text-ink">Outcomes</h2>
-              <ul className="space-y-4 text-lg text-ink">
+            <div className="bg-white rounded-xl shadow-lg border p-6 sm:p-8">
+              <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4 sm:mb-6 text-ink">Outcomes</h2>
+              <ul className="space-y-3 sm:space-y-4 text-base sm:text-lg text-ink">
                 <li className="flex items-start">
                   <span className="text-accent mr-3 mt-1">•</span>
                   A clearer, kinder inner voice
