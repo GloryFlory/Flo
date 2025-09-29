@@ -5,9 +5,10 @@ import { PodcastEpisode, formatDate, formatDuration } from '../lib/podcast';
 interface PodcastEpisodeCardProps {
   episode: PodcastEpisode;
   isFeatured?: boolean;
+  locale?: string;
 }
 
-export default function PodcastEpisodeCard({ episode, isFeatured = false }: PodcastEpisodeCardProps) {
+export default function PodcastEpisodeCard({ episode, isFeatured = false, locale = 'en' }: PodcastEpisodeCardProps) {
   const cardClasses = isFeatured 
     ? "bg-gradient-to-br from-brand/10 via-white to-accent/10 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border-2 border-brand/30 ring-2 ring-brand/20"
     : "bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300";
@@ -17,9 +18,26 @@ export default function PodcastEpisodeCard({ episode, isFeatured = false }: Podc
     ? "text-xl sm:text-2xl font-heading font-bold text-ink mb-3"
     : "text-lg sm:text-xl font-heading font-semibold text-ink mb-3";
 
+  // Translation helper
+  const t = (key: string) => {
+    const translations: Record<string, Record<string, string>> = {
+      en: {
+        listenNow: 'Listen Now',
+        latestEpisode: 'Latest Episode'
+      },
+      de: {
+        listenNow: 'Jetzt anhören',
+        latestEpisode: 'Neueste Episode'
+      }
+    };
+    return translations[locale]?.[key] || translations.en[key] || key;
+  };
+
+  const episodeUrl = locale === 'de' ? `/de/podcast/${episode.slug}` : `/podcast/${episode.slug}`;
+
   return (
     <div className={cardClasses}>
-      <Link href={`/podcast/${episode.slug}`} className="block">
+      <Link href={episodeUrl} className="block">
         <div className="p-6 sm:p-8">
           <div className="flex gap-6">
             {/* Episode Image */}
@@ -86,12 +104,12 @@ export default function PodcastEpisodeCard({ episode, isFeatured = false }: Podc
                     ? 'bg-brand text-white shadow-md' 
                     : 'bg-brand/10 text-brand hover:bg-brand/20'
                 }`}>
-                  Listen Now
+                  {t('listenNow')}
                 </div>
 
                 {isFeatured && (
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-accent text-white shadow-sm">
-                    Latest Episode
+                    {t('latestEpisode')}
                   </span>
                 )}
               </div>

@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { PodcastEpisode } from '../../../lib/podcast';
-import PodcastEpisodeCard from '../../../components/PodcastEpisodeCard';
-import SearchBar from '../../../components/SearchBar';
+import { PodcastEpisode } from '../../../../lib/podcast';
+import PodcastEpisodeCard from '../../../../components/PodcastEpisodeCard';
+import SearchBar from '../../../../components/SearchBar';
+import { Metadata } from 'next';
 
 export default function PodcastPage() {
   const [episodes, setEpisodes] = useState<PodcastEpisode[]>([]);
@@ -66,10 +67,10 @@ export default function PodcastPage() {
               
               <div className="space-y-4 sm:space-y-6 order-1 md:order-2">
                 <p className="text-base sm:text-lg lg:text-xl text-ink/80 leading-relaxed">
-                  Grow with the Flo is your space for open, honest, and real conversations about life. Hosted by Flo, this podcast explores what it truly means to grow, connect, and learn in a world that often prioritizes filters over authenticity.
+                  Grow with the Flo ist dein Raum für offene, ehrliche und authentische Gespräche über das Leben. Moderiert von Flo, erforscht dieser Podcast, was es wirklich bedeutet, zu wachsen, sich zu verbinden und zu lernen in einer Welt, die oft Filter über Authentizität stellt.
                 </p>
                 <p className="text-sm sm:text-base lg:text-lg text-ink/70 leading-relaxed">
-                  Through solo reflections, insightful interviews and deep dives into themes like personal growth, anxiety, and building meaningful connections, Grow with the Flo invites you to embrace your own truth unapologetically.
+                  Durch Solo-Reflexionen, aufschlussreiche Interviews und tiefe Einblicke in Themen wie persönliches Wachstum, Angst und den Aufbau bedeutungsvoller Verbindungen lädt dich Grow with the Flo ein, deine eigene Wahrheit kompromisslos zu leben.
                 </p>
                 
                 {/* Platform Links - Logo Only */}
@@ -79,7 +80,7 @@ export default function PodcastPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center bg-white border-2 border-gray-200 p-4 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm"
-                    title="Listen on Spotify"
+                    title="Auf Spotify hören"
                   >
                     <img src="/spotify-icon.png" alt="Spotify" className="w-8 h-8" />
                   </a>
@@ -88,7 +89,7 @@ export default function PodcastPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center bg-white border-2 border-gray-200 p-4 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm"
-                    title="Listen on Apple Podcasts"
+                    title="Auf Apple Podcasts hören"
                   >
                     <img src="/apple-icon.png" alt="Apple Podcasts" className="w-8 h-8" />
                   </a>
@@ -97,7 +98,7 @@ export default function PodcastPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center bg-white border-2 border-gray-200 p-4 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm"
-                    title="Watch on YouTube"
+                    title="Auf YouTube ansehen"
                   >
                     <img src="/youtube-black.png" alt="YouTube" className="w-8 h-8" />
                   </a>
@@ -109,12 +110,12 @@ export default function PodcastPage() {
           {/* Search Bar */}
           <SearchBar 
             onSearch={setSearchQuery}
-            placeholder="Search episodes by title or description..."
+            placeholder="Episoden nach Titel oder Beschreibung suchen..."
           />
           
           {/* All Episodes */}
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold mb-8 sm:mb-12 text-center text-ink">
-            {searchQuery ? `Search Results (${filteredEpisodes.length})` : 'All Episodes'}
+            {searchQuery ? `Suchergebnisse (${filteredEpisodes.length})` : 'Alle Episoden'}
           </h2>
           
           {loading ? (
@@ -135,10 +136,10 @@ export default function PodcastPage() {
           ) : filteredEpisodes.length === 0 ? (
             <div className="text-center py-12">
               <h3 className="text-xl font-semibold text-ink mb-2">
-                {searchQuery ? 'No episodes found' : 'No episodes available'}
+                {searchQuery ? 'Keine Episoden gefunden' : 'Keine Episoden verfügbar'}
               </h3>
               <p className="text-ink/60">
-                {searchQuery ? 'Try adjusting your search terms.' : 'Episodes will appear here once they are published.'}
+                {searchQuery ? 'Versuche deine Suchbegriffe anzupassen.' : 'Episoden werden hier erscheinen, sobald sie veröffentlicht werden.'}
               </p>
             </div>
           ) : (
@@ -148,6 +149,7 @@ export default function PodcastPage() {
                   key={episode.slug} 
                   episode={episode} 
                   isFeatured={index === 0 && !searchQuery}
+                  locale="de"
                 />
               ))}
             </div>

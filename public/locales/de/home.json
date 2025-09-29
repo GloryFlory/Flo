@@ -1,0 +1,47 @@
+{
+  "hero": {
+    "tagline": "Coaching • Podcast • Kreatives Wachstum",
+    "name": "Florian Hohenleitner",
+    "cta": "Höre Grow with the Flo"
+  },
+  "about": {
+    "title": "Über Flo",
+    "roles": [
+      "Coach & Podcast-Moderator",
+      "Spezialist für Persönlichkeitsentwicklung",
+      "Retreat-Leiter", 
+      "Kreativer Profi"
+    ],
+    "description": "Florian ist ein leidenschaftlicher Coach und Podcast-Moderator, der Kreativen und Fachkräften dabei hilft, ihren Flow, ihre Widerstandsfähigkeit und ihren Zweck zu entdecken. Er glaubt, dass Wachstum am besten gemeinsam erreicht wird, und seine Arbeit ist darauf ausgerichtet, Verbindung und Transformation für alle zu schaffen."
+  },
+  "programs": {
+    "title": "Programme",
+    "livingWithEase": {
+      "title": "Leben mit Leichtigkeit",
+      "subtitle": "Angst-Programm",
+      "description": "Verwandle deine Beziehung zur Angst und entdecke Werkzeuge für dauerhaften Frieden und Selbstvertrauen."
+    },
+    "authenticMan": {
+      "title": "Der authentische Mann werden",
+      "subtitle": "Männerentwicklungsprogramm",
+      "description": "Eine Reise der Selbstentdeckung, um deine wahre Männlichkeit zu umarmen und mit Zweck und Integrität zu leben."
+    },
+    "connection": {
+      "title": "Verbindung & Beziehungen",
+      "subtitle": "Beziehungscoaching",
+      "description": "Baue tiefere, bedeutungsvollere Verbindungen auf und verwandle deine Beziehungen zu anderen und zu dir selbst."
+    }
+  },
+  "events": {
+    "title": "Kommende Veranstaltungen",
+    "mac": {
+      "title": "Mediterranean Acro Convention",
+      "description": "Begleite uns für eine unvergessliche Woche voller Acro-Yoga, persönlichem Wachstum und Gemeinschaftsverbindung an der wunderschönen Mittelmeerküste.",
+      "date": "8.-12. Oktober 2025"
+    }
+  },
+  "newsletter": {
+    "title": "Bleib in Verbindung",
+    "description": "Tritt unserer Gemeinschaft wachstumsorientierter Menschen bei und erhalte wöchentliche Einblicke direkt in deinen Posteingang."
+  }
+}

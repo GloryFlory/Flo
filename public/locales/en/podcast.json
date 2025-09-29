@@ -1,0 +1,12 @@
+{
+  "title": "Grow with the Flo",
+  "description": {
+    "intro": "Grow with the Flo is your space for open, honest, and real conversations about life. Hosted by Flo, this podcast explores what it truly means to grow, connect, and learn in a world that often prioritizes filters over authenticity.",
+    "detailed": "Through solo reflections, insightful interviews and deep dives into themes like personal growth, anxiety, and building meaningful connections, Grow with the Flo invites you to embrace your own truth unapologetically."
+  },
+  "allEpisodes": "All Episodes",
+  "latestEpisode": "Latest Episode",
+  "episode": "Episode {{number}}",
+  "noEpisodes": "No episodes available",
+  "episodesWillAppear": "Episodes will appear here once they are published."
+}

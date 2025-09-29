@@ -1,0 +1,47 @@
+{
+  "hero": {
+    "tagline": "Coaching • Podcast • Creative Growth",
+    "name": "Florian Hohenleitner",
+    "cta": "Listen to Grow with the Flo"
+  },
+  "about": {
+    "title": "About Flo",
+    "roles": [
+      "Coach & Podcast Host",
+      "Personal Growth Specialist", 
+      "Retreat Leader",
+      "Creative Professional"
+    ],
+    "description": "Florian is a passionate coach and podcast host helping creatives and professionals unlock their flow, resilience, and purpose. He believes growth is best achieved together, and his work is dedicated to building connection and transformation for all."
+  },
+  "programs": {
+    "title": "Programs",
+    "livingWithEase": {
+      "title": "Living with Ease",
+      "subtitle": "Anxiety Program",
+      "description": "Transform your relationship with anxiety and discover tools for lasting peace and confidence."
+    },
+    "authenticMan": {
+      "title": "Becoming the Authentic Man",
+      "subtitle": "Men's Development Program", 
+      "description": "A journey of self-discovery to embrace your true masculinity and live with purpose and integrity."
+    },
+    "connection": {
+      "title": "Connection & Relationships",
+      "subtitle": "Relationship Coaching",
+      "description": "Build deeper, more meaningful connections and transform your relationships with others and yourself."
+    }
+  },
+  "events": {
+    "title": "Upcoming Events",
+    "mac": {
+      "title": "Mediterranean Acro Convention",
+      "description": "Join us for an unforgettable week of acro yoga, personal growth, and community connection on the beautiful Mediterranean coast.",
+      "date": "October 8-12, 2025"
+    }
+  },
+  "newsletter": {
+    "title": "Stay Connected",
+    "description": "Join our community of growth-minded individuals and get weekly insights delivered to your inbox."
+  }
+}

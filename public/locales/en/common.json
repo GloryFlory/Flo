@@ -1,0 +1,33 @@
+{
+  "navigation": {
+    "home": "Home",
+    "podcast": "Podcast",
+    "coaching": "Coaching",
+    "about": "About",
+    "bookCall": "Book a Call"
+  },
+  "footer": {
+    "copyright": "© {{year}} Florian Hohenleitner. All rights reserved."
+  },
+  "ui": {
+    "listenNow": "Listen Now",
+    "learnMore": "Learn More",
+    "readMore": "Read More",
+    "download": "Download",
+    "search": "Search",
+    "searchPlaceholder": "Search episodes by title or description...",
+    "searchResults": "Search Results ({{count}})",
+    "noResults": "No episodes found",
+    "tryAdjusting": "Try adjusting your search terms.",
+    "backToEpisodes": "Back to all episodes",
+    "showNotes": "Show Notes",
+    "duration": "Duration: {{duration}}",
+    "downloadEpisode": "Download Episode"
+  },
+  "platforms": {
+    "spotify": "Listen on Spotify",
+    "apple": "Listen on Apple Podcasts",
+    "youtube": "YouTube",
+    "instagram": "Instagram"
+  }
+}

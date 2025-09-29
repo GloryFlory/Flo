@@ -34,6 +34,10 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://florianhohenleitner.com'),
   alternates: {
     canonical: '/',
+    languages: {
+      'en': '/',
+      'de': '/de',
+    }
   },
   openGraph: {
     type: 'website',
@@ -100,6 +104,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="msvalidate.01" content="B469502B9ACAD73712748DDCBE8C1559" />
+        <link rel="alternate" hrefLang="en" href="https://florianhohenleitner.com" />
+        <link rel="alternate" hrefLang="de" href="https://florianhohenleitner.com/de" />
+        <link rel="alternate" hrefLang="x-default" href="https://florianhohenleitner.com" />
       </head>
       <body>
         <Header />

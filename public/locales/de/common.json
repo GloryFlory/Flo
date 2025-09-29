@@ -1,0 +1,33 @@
+{
+  "navigation": {
+    "home": "Startseite",
+    "podcast": "Podcast",
+    "coaching": "Coaching",
+    "about": "Über mich",
+    "bookCall": "Termin buchen"
+  },
+  "footer": {
+    "copyright": "© {{year}} Florian Hohenleitner. Alle Rechte vorbehalten."
+  },
+  "ui": {
+    "listenNow": "Jetzt anhören",
+    "learnMore": "Mehr erfahren",
+    "readMore": "Weiterlesen",
+    "download": "Herunterladen",
+    "search": "Suchen",
+    "searchPlaceholder": "Episoden nach Titel oder Beschreibung suchen...",
+    "searchResults": "Suchergebnisse ({{count}})",
+    "noResults": "Keine Episoden gefunden",
+    "tryAdjusting": "Versuche deine Suchbegriffe anzupassen.",
+    "backToEpisodes": "Zurück zu allen Episoden",
+    "showNotes": "Sendungsnotizen",
+    "duration": "Dauer: {{duration}}",
+    "downloadEpisode": "Episode herunterladen"
+  },
+  "platforms": {
+    "spotify": "Auf Spotify anhören",
+    "apple": "Auf Apple Podcasts anhören",
+    "youtube": "YouTube",
+    "instagram": "Instagram"
+  }
+}
