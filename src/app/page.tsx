@@ -285,48 +285,73 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Upcoming Events Section */}
+      {/* Projects Section */}
       <section className="section py-16 sm:py-20 bg-gradient-to-br from-brand/5 to-accent/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <h2 className="text-4xl sm:text-5xl font-heading font-bold mb-12 sm:mb-16 text-center text-ink">
-            Upcoming Events
+            Projects
           </h2>
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              <div className="h-48 sm:h-64 overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
+            <a
+              href="https://www.acrointhesun.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group bg-white rounded-2xl shadow-md p-6 sm:p-8 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-xl overflow-hidden">
                 <img
-                  src="/MAC.png"
+                  src="/mac-logo.webp"
                   alt="Mediterranean Acro Convention"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-6 sm:p-8 text-center">
-                <h3 className="text-xl sm:text-2xl font-heading font-bold mb-4 text-ink">
-                  Mediterranean Acro Convention
-                </h3>
-                <p className="text-ink/70 mb-4 text-base sm:text-lg leading-relaxed px-2">
-                  Join us for an unforgettable week of acro yoga, personal growth, and community connection on the beautiful Mediterranean coast.
-                </p>
-                <p className="text-teal-600 font-bold text-lg sm:text-xl mb-6">
-                  October 8-12, 2025
-                </p>
-                <div className="flex justify-center">
-                  <a
-                    href="https://www.acrointhesun.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block bg-brand text-white px-6 sm:px-8 py-3 rounded-lg font-medium hover:bg-brand/90 transition-colors duration-200 text-sm sm:text-base"
-                  >
-                    Learn More
-                  </a>
-                </div>
+              <h3 className="text-base sm:text-lg font-heading font-bold mb-2 text-ink group-hover:text-brand transition-colors">
+                Mediterranean Acro Convention
+              </h3>
+              <p className="text-ink/60 text-sm">
+                Acro yoga & community on the coast
+              </p>
+            </a>
+            <a
+              href="https://www.tryflowgrid.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group bg-white rounded-2xl shadow-md p-6 sm:p-8 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-xl overflow-hidden">
+                <img
+                  src="/flow-grid.png"
+                  alt="FlowGrid"
+                  className="w-full h-full object-cover"
+                />
               </div>
-            </div>
-            <div className="flex justify-center mt-8 space-x-2">
-              <button className="w-3 h-3 bg-brand rounded-full opacity-50"></button>
-              <button className="w-3 h-3 bg-brand/30 rounded-full"></button>
-              <button className="w-3 h-3 bg-brand/30 rounded-full"></button>
-            </div>
+              <h3 className="text-base sm:text-lg font-heading font-bold mb-2 text-ink group-hover:text-brand transition-colors">
+                FlowGrid
+              </h3>
+              <p className="text-ink/60 text-sm">
+                Tools for flow & productivity
+              </p>
+            </a>
+            <a
+              href="https://lifestories.love"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group bg-white rounded-2xl shadow-md p-6 sm:p-8 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-xl overflow-hidden">
+                <img
+                  src="/life-stories.png"
+                  alt="Life Stories"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-base sm:text-lg font-heading font-bold mb-2 text-ink group-hover:text-brand transition-colors">
+                Life Stories
+              </h3>
+              <p className="text-ink/60 text-sm">
+                Capture & share meaningful memories
+              </p>
+            </a>
           </div>
         </div>
       </section>
