@@ -125,7 +125,7 @@ export default function Footer() {
             <ul className="space-y-2 mb-6">
               <li>
                 <a 
-                  href="mailto:hello@florianhohen.com" 
+                  href="mailto:growwiththeflo.podcast@gmail.com" 
                   className="text-white/80 hover:text-white transition-colors"
                 >
                   {t('email')}
