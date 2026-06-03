@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getAllEpisodes, getEpisodeBySlug, formatDate, formatDuration, formatShowNotes } from '../../../../lib/podcast';
+import { findEpisodeForPodcast } from '../../behind-the-episode/briefs-data';
 import { Metadata } from 'next';
 
 interface PageProps {
@@ -59,6 +60,7 @@ export default async function EpisodeDetailPage({ params }: PageProps) {
 
   const allEpisodes = await getAllEpisodes();
   const otherEpisodes = allEpisodes.filter(ep => ep.slug !== slug).slice(0, 3);
+  const briefEpisode = findEpisodeForPodcast({ slug: episode.slug, spotifyUrl: episode.spotifyUrl });
 
   // Generate JSON-LD schema for SEO
   const jsonLd = {
@@ -130,7 +132,7 @@ export default async function EpisodeDetailPage({ params }: PageProps) {
                     <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3 mb-3 sm:mb-4">
                       {episode.episodeNumber && (
                         <span className="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-brand/10 text-brand">
-                          Episode {episode.episodeNumber}
+                          {episode.seasonNumber ? `S${episode.seasonNumber} · E${episode.episodeNumber}` : `Episode ${episode.episodeNumber}`}
                         </span>
                       )}
                       <span className="text-ink/60 text-xs sm:text-sm">
@@ -152,7 +154,7 @@ export default async function EpisodeDetailPage({ params }: PageProps) {
                     </h1>
 
                     {/* Platform Buttons */}
-                    <div className="flex gap-3">
+                    <div className="flex gap-3 items-center flex-wrap">
                       {episode.spotifyUrl && (
                         <a
                           href={episode.spotifyUrl}
@@ -184,6 +186,20 @@ export default async function EpisodeDetailPage({ params }: PageProps) {
                       >
                         <img src="/youtube-black.png" alt="YouTube" className="w-6 h-6" />
                       </a>
+
+                      {briefEpisode && (
+                        <Link
+                          href={`/behind-the-episode/episode/${briefEpisode.slug}`}
+                          title={briefEpisode.briefs.length > 1 ? `${briefEpisode.briefs.length} briefs` : 'Behind the episode'}
+                          className="inline-flex items-center gap-2 px-4 h-12 rounded-lg text-sm font-medium border-2 border-brand/20 text-brand hover:bg-brand/5 hover:border-brand/40 transition-colors"
+                        >
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                          </svg>
+                          <span>Behind the Episode{briefEpisode.briefs.length > 1 ? ` · ${briefEpisode.briefs.length}` : ''}</span>
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>

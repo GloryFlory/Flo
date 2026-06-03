@@ -3,7 +3,7 @@
 import BuyMeCoffeeButton from './BuyMeCoffeeButton';
 import { useLocale } from '../../lib/i18n/hooks';
 
-type TranslationKey = 'home' | 'podcast' | 'coaching' | 'about' | 'quickLinks' | 'connect' | 'email' | 'bookCall' | 'rightsReserved' | 'description';
+type TranslationKey = 'home' | 'podcast' | 'behindTheEpisode' | 'retreat' | 'about' | 'quickLinks' | 'connect' | 'email' | 'rightsReserved' | 'description';
 
 export default function Footer() {
   const { currentLocale } = useLocale();
@@ -14,26 +14,26 @@ export default function Footer() {
       en: {
         home: 'Home',
         podcast: 'Podcast',
-        coaching: 'Coaching',
+        behindTheEpisode: 'Behind the Episode',
+        retreat: 'Retreat',
         about: 'About',
         quickLinks: 'Quick Links',
         connect: 'Connect',
         email: 'Email',
-        bookCall: 'Book a Call',
         rightsReserved: 'All rights reserved.',
-        description: 'A podcast and coaching practice dedicated to helping creatives and professionals unlock their flow, resilience, and purpose.'
+        description: 'Real conversations about anxiety, identity, connection, and what it means to live a life that actually feels like yours.'
       },
       de: {
         home: 'Startseite',
         podcast: 'Podcast',
-        coaching: 'Coaching',
+        behindTheEpisode: 'Behind the Episode',
+        retreat: 'Retreat',
         about: 'Über mich',
         quickLinks: 'Schnellzugriff',
         connect: 'Verbinden',
         email: 'E-Mail',
-        bookCall: 'Termin buchen',
         rightsReserved: 'Alle Rechte vorbehalten.',
-        description: 'Ein Podcast und Coaching-Praxis, die sich darauf spezialisiert hat, Kreativen und Fachleuten dabei zu helfen, ihren Flow, ihre Widerstandsfähigkeit und ihren Sinn zu entdecken.'
+        description: 'Echte Gespräche über Angst, Identität, Verbindung und was es bedeutet, ein Leben zu führen, das sich wirklich wie deins anfühlt.'
       }
     };
     
@@ -107,8 +107,13 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href={getUrl('/coaching')} className="text-white/80 hover:text-white transition-colors">
-                  {t('coaching')}
+                <a href="/behind-the-episode" className="text-white/80 hover:text-white transition-colors">
+                  {t('behindTheEpisode')}
+                </a>
+              </li>
+              <li>
+                <a href="/retreat" className="text-white/80 hover:text-white transition-colors">
+                  {t('retreat')}
                 </a>
               </li>
               <li>
@@ -129,16 +134,6 @@ export default function Footer() {
                   className="text-white/80 hover:text-white transition-colors"
                 >
                   {t('email')}
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="https://meet.brevo.com/florian-hohenleitner/intro" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  {t('bookCall')}
                 </a>
               </li>
             </ul>

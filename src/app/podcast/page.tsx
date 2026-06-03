@@ -66,10 +66,7 @@ export default function PodcastPage() {
               
               <div className="space-y-4 sm:space-y-6 order-1 md:order-2">
                 <p className="text-base sm:text-lg lg:text-xl text-ink/80 leading-relaxed">
-                  Grow with the Flo is your space for open, honest, and real conversations about life. Hosted by Flo, this podcast explores what it truly means to grow, connect, and learn in a world that often prioritizes filters over authenticity.
-                </p>
-                <p className="text-sm sm:text-base lg:text-lg text-ink/70 leading-relaxed">
-                  Through solo reflections, insightful interviews and deep dives into themes like personal growth, anxiety, and building meaningful connections, Grow with the Flo invites you to embrace your own truth unapologetically.
+                  Real conversations about anxiety, identity, connection, and what it means to live a life that actually feels like yours. No highlight reel. Just the process.
                 </p>
                 
                 {/* Platform Links - Logo Only */}

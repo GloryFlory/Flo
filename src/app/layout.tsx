@@ -5,22 +5,21 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Florian Hohenleitner - Life Coach & Host of Grow with the Flo Podcast',
+    default: 'Florian Hohenleitner — Podcast, Retreats & Honest Conversations About Growth',
     template: '%s | Florian Hohenleitner'
   },
-  description: 'Transform your life with authentic coaching and real conversations. Join Florian Hohenleitner on the Grow with the Flo podcast for honest discussions about personal growth, anxiety, and meaningful connections.',
+  description: 'I quit a well-paying job and have been rebuilding from scratch ever since. This is where I share the process.',
   keywords: [
-    'life coach',
     'personal growth',
     'podcast',
-    'anxiety coaching',
-    'authentic living',
-    'mental health',
-    'personal development',
+    'retreat',
     'Grow with the Flo',
     'Florian Hohenleitner',
-    'life transformation',
-    'mindfulness',
+    'honest conversations',
+    'anxiety',
+    'identity',
+    'connection',
+    'breathwork',
     'self-discovery'
   ],
   authors: [{ name: 'Florian Hohenleitner' }],
@@ -43,22 +42,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://florianhohenleitner.com',
-    title: 'Florian Hohenleitner - Life Coach & Host of Grow with the Flo Podcast',
-    description: 'Transform your life with authentic coaching and real conversations. Join Florian Hohenleitner on the Grow with the Flo podcast for honest discussions about personal growth, anxiety, and meaningful connections.',
+    title: 'Florian Hohenleitner — Podcast, Retreats & Honest Conversations About Growth',
+    description: 'I quit a well-paying job and have been rebuilding from scratch ever since. This is where I share the process.',
     siteName: 'Florian Hohenleitner',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Florian Hohenleitner - Life Coach & Podcast Host',
+        alt: 'Florian Hohenleitner — Podcast Host & Retreat Organiser',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Florian Hohenleitner - Life Coach & Host of Grow with the Flo Podcast',
-    description: 'Transform your life with authentic coaching and real conversations. Join Florian Hohenleitner on the Grow with the Flo podcast for honest discussions about personal growth, anxiety, and meaningful connections.',
+    title: 'Florian Hohenleitner — Podcast, Retreats & Honest Conversations About Growth',
+    description: 'I quit a well-paying job and have been rebuilding from scratch ever since. This is where I share the process.',
     images: ['/og-image.jpg'],
     creator: '@florianhohenleitner',
   },

@@ -13,3 +13,6 @@ out/
 
 # Misc
 .DS_Store
+
+# Local-only backups (already uploaded to R2)
+_local-maria-photos-backup/

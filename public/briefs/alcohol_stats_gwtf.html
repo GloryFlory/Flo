@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alcohol — The Numbers | Grow with the Flo × Danny Rahim</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F9F6F0;
+    --surface: #FFFFFF;
+    --ink: #1A1916;
+    --ink-mid: #5A5750;
+    --ink-light: #9A968F;
+    --border: #E8E3DA;
+    --teal: #0D6E58;
+    --teal-light: #E0F2EC;
+    --amber: #B86A10;
+    --amber-light: #FDF2E3;
+    --red: #A52B2B;
+    --red-light: #FBEAEA;
+    --blue: #1A4F8A;
+    --blue-light: #E8F0FA;
+    --purple: #4A3A8A;
+    --purple-light: #EEEAFA;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+    padding: 0 0 80px;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--ink);
+    color: white;
+    padding: 56px 48px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 200px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+  .header-tag {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 1.15;
+    max-width: 620px;
+    margin-bottom: 16px;
+  }
+  header p {
+    color: rgba(255,255,255,0.55);
+    font-size: 14px;
+    max-width: 500px;
+  }
+
+  /* LAYOUT */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-top: 56px;
+  }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* HERO STATS */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .hero-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    border-radius: 14px 0 0 14px;
+  }
+  .stat-card.teal::before { background: var(--teal); }
+  .stat-card.red::before { background: var(--red); }
+  .stat-card.amber::before { background: var(--amber); }
+  .stat-card.blue::before { background: var(--blue); }
+  .stat-card.purple::before { background: var(--purple); }
+  .stat-card-cat {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .stat-card.teal .stat-card-cat { color: var(--teal); }
+  .stat-card.red .stat-card-cat { color: var(--red); }
+  .stat-card.amber .stat-card-cat { color: var(--amber); }
+  .stat-card.blue .stat-card-cat { color: var(--blue); }
+  .stat-card.purple .stat-card-cat { color: var(--purple); }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.45;
+  }
+  .stat-source {
+    font-size: 11px;
+    color: var(--ink-light);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ROW STATS */
+  .row-stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 10px;
+  }
+  .row-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    min-width: 90px;
+    line-height: 1;
+    padding-top: 2px;
+  }
+  .row-stat.teal .row-stat-num { color: var(--teal); }
+  .row-stat.red .row-stat-num { color: var(--red); }
+  .row-stat.amber .row-stat-num { color: var(--amber); }
+  .row-stat.blue .row-stat-num { color: var(--blue); }
+  .row-stat.purple .row-stat-num { color: var(--purple); }
+  .row-stat-content {}
+  .row-stat-text { font-size: 14px; color: var(--ink); line-height: 1.5; }
+  .row-stat-src { font-size: 11px; color: var(--ink-light); margin-top: 4px; }
+
+  /* PODCAST NOTE */
+  .podcast-note {
+    background: var(--ink);
+    color: rgba(255,255,255,0.85);
+    border-radius: 12px;
+    padding: 18px 22px;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-top: 10px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .podcast-note-icon {
+    font-size: 16px;
+    opacity: 0.6;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .podcast-note strong { color: white; }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); margin: 48px 0; }
+
+  /* TOPIC PILL */
+  .topic-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+    margin-top: -8px;
+  }
+  .topic-pill {
+    font-size: 12px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-weight: 500;
+    border: 1px solid;
+  }
+  .topic-pill.teal { color: var(--teal); border-color: var(--teal); background: var(--teal-light); }
+  .topic-pill.red { color: var(--red); border-color: var(--red); background: var(--red-light); }
+  .topic-pill.amber { color: var(--amber); border-color: var(--amber); background: var(--amber-light); }
+  .topic-pill.blue { color: var(--blue); border-color: var(--blue); background: var(--blue-light); }
+  .topic-pill.purple { color: var(--purple); border-color: var(--purple); background: var(--purple-light); }
+
+  /* QUOTE BLOCK */
+  .quote-block {
+    border-left: 3px solid var(--border);
+    padding: 14px 20px;
+    margin: 10px 0;
+    background: var(--surface);
+    border-radius: 0 10px 10px 0;
+  }
+  .quote-block p { font-size: 14px; color: var(--ink-mid); line-height: 1.6; font-style: italic; }
+  .quote-src { font-size: 11px; color: var(--ink-light); margin-top: 6px; }
+
+  /* FOOTER */
+  footer {
+    margin-top: 72px;
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--ink-light);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 640px) {
+    header { padding: 40px 24px 36px; }
+    header h1 { font-size: 30px; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-grid-2 { grid-template-columns: 1fr; }
+    .container { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-tag">Grow with the Flo · Podcast Research · Danny Rahim Episode</div>
+  <h1>Alcohol — The Numbers Worth Knowing</h1>
+  <p>Key statistics across global health, mental wellbeing, the UK economy, and the ADHD connection. Use these to ground the conversation in real context — not lectures.</p>
+</header>
+
+<div class="container">
+
+  <!-- SECTION 1: GLOBAL IMPACT -->
+  <div class="section">
+    <div class="section-label">Section 01</div>
+    <div class="section-title">The global picture</div>
+
+    <div class="hero-grid">
+      <div class="stat-card teal">
+        <div class="stat-card-cat">Deaths per year</div>
+        <div class="stat-num">2.6M</div>
+        <div class="stat-label">deaths annually are attributable to alcohol consumption — 4.7% of all deaths worldwide</div>
+        <div class="stat-source">WHO Global Status Report on Alcohol & Health, 2024</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-card-cat">Disorders</div>
+        <div class="stat-num">400M</div>
+        <div class="stat-label">people globally are living with alcohol or drug use disorders</div>
+        <div class="stat-source">WHO, 2024</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-card-cat">Conditions caused</div>
+        <div class="stat-num">200+</div>
+        <div class="stat-label">medical conditions are causally linked to alcohol, including liver disease, high blood pressure, and 7 types of cancer</div>
+        <div class="stat-source">Rehm et al. / Cancer Research UK</div>
+      </div>
+    </div>
+    <div class="hero-grid-2">
+      <div class="stat-card blue">
+        <div class="stat-card-cat">Years of life lost</div>
+        <div class="stat-num">116M</div>
+        <div class="stat-label">disability-adjusted life years (DALYs) lost globally due to alcohol in 2019 — 4.6% of all DALYs lost</div>
+        <div class="stat-source">Lancet modelling study, 2025</div>
+      </div>
+      <div class="stat-card purple">
+        <div class="stat-card-cat">Who's drinking</div>
+        <div class="stat-num">2.5Bn</div>
+        <div class="stat-label">people over 15 consumed alcohol in 2019 — yet 56% of adults globally still don't drink at all</div>
+        <div class="stat-source">WHO, 2024</div>
+      </div>
+    </div>
+
+    <div class="podcast-note">
+      <span class="podcast-note-icon">🎙</span>
+      <div><strong>Podcast angle:</strong> These aren't abstract statistics — they're the backdrop to Danny's decision. 400 million people are in this. Sobriety is not the exception; arguably, staying sober in a world built around alcohol is the harder, braver choice.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 2: MENTAL HEALTH -->
+  <div class="section">
+    <div class="section-label">Section 02</div>
+    <div class="section-title">Alcohol & mental health</div>
+    <div class="topic-bar">
+      <span class="topic-pill teal">Anxiety</span>
+      <span class="topic-pill teal">Depression</span>
+      <span class="topic-pill red">Suicide</span>
+      <span class="topic-pill amber">Sleep</span>
+    </div>
+
+    <div class="row-stat red">
+      <div class="row-stat-num">53%</div>
+      <div class="row-stat-content">
+        <div class="row-stat-text">of people who drink did so for a mental health reason — anxiety, stress, boredom, sadness, or trouble sleeping — at least once in the past six months</div>
+        <div class="row-stat-src">Alcohol Change UK survey</div>
+      </div>
+    </div>
+
+    <div class="row-stat amber">
+      <div class="row-stat-num">44%</div>
+      <div class="row-stat-content">
+        <div class="row-stat-text">said alcohol had made their mental wellbeing worse — increased anxiety, sleep problems, sadness, or irritability were the most common effects</div>
+        <div class="row-stat-src">Alcohol Change UK survey</div>
+      </div>
+    </div>
+
+    <div class="row-stat red">
+      <div class="row-stat-num">80%</div>
+      <div class="row-stat-content">
+        <div class="row-stat-text">of people dependent on alcohol experience intense sadness, and 1 in 3 have suffered intense episodes of depression or anxiety attacks</div>
+        <div class="row-stat-src">UK Mental Health Statistics 2024</div>
+      </div>
+    </div>
+
+    <div class="row-stat blue">
+      <div class="row-stat-num">542/yr</div>
+      <div class="row-stat-content">
+        <div class="row-stat-text">average suicides per year in England among mental health patients with a history of alcohol misuse — about 10% of all deaths by suicide in England (2007–2017 data)</div>
+        <div class="row-stat-src">UK Health Security Agency</div>
+      </div>
+    </div>
+
+    <div class="row-stat teal">
+      <div class="row-stat-num">71%</div>
+      <div class="row-stat-content">
+        <div class="row-stat-text">of adults entering alcohol or drug rehab in the UK between 2022–2023 also required additional mental health treatment — nearly 98,000 people in a single year</div>
+        <div class="row-stat-src">UK Government / NHS data, 2024</div>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      <p>"Alcohol is sometimes used to try to manage symptoms of anxiety and depression, but it is likely to make those symptoms worse in the long run."</p>
+      <div class="quote-src">Mental Health Foundation, 2022 — cited by Alcohol Change UK</div>
+    </div>
+
+    <div class="podcast-note">
+      <span class="podcast-note-icon">🎙</span>
+      <div><strong>Podcast angle:</strong> This is the trap Danny lived in. Drinking to cope with anxiety — but the drink is what's feeding it. The hangover anxiety ("hangxiety") is physiological, not just psychological. His journey out of binge drinking is also, in a very real sense, a mental health story.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 3: UK ECONOMY -->
+  <div class="section">
+    <div class="section-label">Section 03</div>
+    <div class="section-title">The UK cost — what nobody talks about</div>
+    <div class="topic-bar">
+      <span class="topic-pill amber">Economy</span>
+      <span class="topic-pill amber">Workplace</span>
+      <span class="topic-pill red">NHS</span>
+    </div>
+
+    <div class="hero-grid">
+      <div class="stat-card red">
+        <div class="stat-card-cat">Annual cost to England</div>
+        <div class="stat-num">£27.4Bn</div>
+        <div class="stat-label">total annual cost of alcohol harm in England alone, including NHS, crime, and productivity losses</div>
+        <div class="stat-source">British Liver Trust / IPPR</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-card-cat">Lost productivity</div>
+        <div class="stat-num">£5.06Bn</div>
+        <div class="stat-label">cost to the wider economy from lost productivity — absenteeism, presenteeism, and long-term health decline</div>
+        <div class="stat-source">British Liver Trust, 2024</div>
+      </div>
+      <div class="stat-card blue">
+        <div class="stat-card-cat">Hangover costs alone</div>
+        <div class="stat-num">£1.4Bn</div>
+        <div class="stat-label">estimated annual cost to the UK economy from workplace hangovers — people showing up impaired</div>
+        <div class="stat-source">Institute of Alcohol Studies</div>
+      </div>
+    </div>
+
+    <div class="row-stat red">
+      <div class="row-stat-num">10,473</div>
+      <div class="row-stat-content">
+        <div class="row-stat-text">people died from alcohol-specific causes in the UK in 2023 — the highest number ever recorded</div>
+        <div class="row-stat-src">IPPR Report, 2025</div>
+      </div>
+    </div>
+
+    <div class="row-stat amber">
+      <div class="row-stat-num">167,000</div>
+      <div class="row-stat-content">
+        <div class="row-stat-text">years of working life were lost in England in a single year due to alcohol — representing 16% of all working years lost</div>
+        <div class="row-stat-src">Public Health England, 2016</div>
+      </div>
+    </div>
+
+    <div class="row-stat teal">
+      <div class="row-stat-num">£485</div>
+      <div class="row-stat-content">
+        <div class="row-stat-text">average cost per person per year of alcohol harm across the UK population — a hidden societal tax paid by everyone</div>
+        <div class="row-stat-src">British Liver Trust</div>
+      </div>
+    </div>
+
+    <div class="podcast-note">
+      <span class="podcast-note-icon">🎙</span>
+      <div><strong>Podcast angle:</strong> Society frames alcohol as a social lubricant. The actual bill it sends — to the NHS, to businesses, to families — never makes it onto the drinks menu. Danny's challenge isn't just personal; he's opting out of a system that profits from the habit.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 4: ADHD LINK -->
+  <div class="section">
+    <div class="section-label">Section 04</div>
+    <div class="section-title">The ADHD connection — Danny's story in data</div>
+    <div class="topic-bar">
+      <span class="topic-pill purple">ADHD</span>
+      <span class="topic-pill purple">Neurodiversity</span>
+      <span class="topic-pill red">Risk</span>
+    </div>
+
+    <div class="hero-grid-2">
+      <div class="stat-card purple">
+        <div class="stat-card-cat">Lifetime AUD risk with ADHD</div>
+        <div class="stat-num">Up to 43%</div>
+        <div class="stat-label">of people with ADHD develop an alcohol use disorder in their lifetime — compared to roughly 7% of the general population</div>
+        <div class="stat-source">ScienceDirect / PubMed, 2021</div>
+      </div>
+      <div class="stat-card blue">
+        <div class="stat-card-cat">Reverse: AUD patients with ADHD</div>
+        <div class="stat-num">~20%</div>
+        <div class="stat-label">of adults being treated for alcohol use disorder also have ADHD — yet it is vastly under-recognised and under-treated in this group</div>
+        <div class="stat-source">PubMed, 2021</div>
+      </div>
+    </div>
+
+    <div class="row-stat purple">
+      <div class="row-stat-num">50%</div>
+      <div class="row-stat-content">
+        <div class="row-stat-text">of adults aged 20–39 with ADHD have had a substance use disorder in their lifetime — more than double the 23.6% rate in adults without ADHD</div>
+        <div class="row-stat-src">EurekAlert / Alcohol and Alcoholism journal, 2021</div>
+      </div>
+    </div>
+
+    <div class="row-stat red">
+      <div class="row-stat-num">36%</div>
+      <div class="row-stat-content">
+        <div class="row-stat-text">of young adults with ADHD had alcohol use disorders specifically — making it the most common substance issue in the ADHD population</div>
+        <div class="row-stat-src">University of Toronto study, 2021</div>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      <p>"Impulsive decisions and a maladaptive reward system make individuals with ADHD vulnerable for alcohol use. ADHD drives risky behaviour and negative experiences throughout the lifespan, which subsequently enhance a genetically increased risk for alcohol use disorder."</p>
+      <div class="quote-src">Alcohol Use Disorders and ADHD — ScienceDirect, 2021</div>
+    </div>
+
+    <div class="podcast-note">
+      <span class="podcast-note-icon">🎙</span>
+      <div><strong>Podcast angle:</strong> Danny's ADHD diagnosis last year reframes his entire drinking history. The impulsivity, the reward-seeking, the emotional regulation difficulty — these aren't character flaws. They're neurological. His Sober 365 journey isn't just habit change; it's working against a genuinely elevated biological risk. That makes what he's doing even more remarkable.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 5: ESCAPE MECHANISM -->
+  <div class="section">
+    <div class="section-label">Section 05</div>
+    <div class="section-title">Alcohol as escape — the social reality</div>
+
+    <div class="row-stat teal">
+      <div class="row-stat-num">39%</div>
+      <div class="row-stat-content">
+        <div class="row-stat-text">of violent incidents in England and Wales in the year ending March 2024 were alcohol-related</div>
+        <div class="row-stat-src">Office for National Statistics, 2025</div>
+      </div>
+    </div>
+
+    <div class="row-stat amber">
+      <div class="row-stat-num">18%</div>
+      <div class="row-stat-content">
+        <div class="row-stat-text">of all road traffic deaths in 2022 involved at least one driver over the drink-drive limit — yet we still call it a "social" habit</div>
+        <div class="row-stat-src">Department for Transport, 2024</div>
+      </div>
+    </div>
+
+    <div class="row-stat blue">
+      <div class="row-stat-num">45.9%</div>
+      <div class="row-stat-content">
+        <div class="row-stat-text">of 15–19 year olds in Europe are currently drinking — the highest rate of any age group globally. We're normalising it from the very start</div>
+        <div class="row-stat-src">WHO, 2024</div>
+      </div>
+    </div>
+
+    <div class="podcast-note">
+      <span class="podcast-note-icon">🎙</span>
+      <div><strong>Podcast angle:</strong> "Happy hours," alcohol in airports, wine at work events, drinking in the sun. We've built a culture where not drinking marks you as the odd one out. These stats show the real cost of that normalisation — and why Danny ordering a soda water takes genuine courage, not just willpower.</div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="container">
+  <p>Sources: WHO Global Status Report on Alcohol & Health (2024) · Alcohol Change UK · British Liver Trust · IPPR · Institute of Alcohol Studies · UK Health Security Agency · NHS / ONS England Mental Health Survey 2023–24 · PubMed / ScienceDirect ADHD studies (2021) · IPPR Taking Stock Report (2025)</p>
+  <p style="margin-top:8px;">Prepared for: Grow with the Flo podcast — Flo × Danny Rahim episode. For research and conversation reference only.</p>
+</footer>
+
+</body>
+</html>

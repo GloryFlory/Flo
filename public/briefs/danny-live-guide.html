@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Guide · Danny Rahim · Grow with the Flo</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0F0E0C;
+  --surface: #181714;
+  --surface2: #1F1D1A;
+  --border: #2A2825;
+  --border2: #333129;
+  --text: #EDE9E2;
+  --text-mid: #8C8880;
+  --text-dim: #4A4844;
+  --gold: #C8A84B;
+  --gold-dim: #7A6528;
+  --sage: #6BAE85;
+  --sage-dim: #2D5040;
+  --clay: #C87B5A;
+  --clay-dim: #5A3020;
+  --sky: #6A9CC0;
+  --sky-dim: #2A4A60;
+  --lavender: #9A88C8;
+  --lavender-dim: #3A2E5A;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Geist', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 17px;
+  line-height: 1.65;
+  min-height: 100vh;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15,14,12,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 54px;
+}
+.topbar-brand {
+  font-family: 'Instrument Serif', serif;
+  font-size: 18px;
+  color: var(--text);
+  margin-right: 28px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.topbar-brand span { color: var(--gold); }
+.topbar-nav {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex: 1;
+}
+.topbar-nav::-webkit-scrollbar { display: none; }
+.nav-btn {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: background 0.12s;
+  color: var(--text-mid);
+}
+.nav-btn:hover { background: var(--surface2); color: var(--text); }
+.nav-btn.gold { color: var(--gold); }
+.nav-btn.sage { color: var(--sage); }
+.nav-btn.clay { color: var(--clay); }
+.nav-btn.sky { color: var(--sky); }
+.nav-btn.lavender { color: var(--lavender); }
+.nav-btn.close-q { color: var(--text-mid); }
+
+/* ── LAYOUT ── */
+.page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 32px 100px;
+}
+
+/* ── HERO ── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: start;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+.hero-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 40px;
+  line-height: 1.15;
+  color: var(--text);
+}
+.hero-title em { font-style: italic; color: var(--gold); }
+.hero-sub {
+  font-size: 15px;
+  color: var(--text-mid);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+.hero-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.hero-tag {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  padding: 5px 12px;
+  border-radius: 7px;
+  display: inline-block;
+}
+.hero-tag.gold { background: rgba(200,168,75,0.12); color: var(--gold); border: 1px solid rgba(200,168,75,0.2); }
+.hero-tag.dim { background: var(--surface2); color: var(--text-mid); border: 1px solid var(--border); }
+
+/* ── ARC STRIP ── */
+.arc {
+  display: flex;
+  gap: 0;
+  margin-bottom: 32px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.arc-step {
+  flex: 1;
+  padding: 10px 14px;
+  border-right: 1px solid var(--border);
+  position: relative;
+  cursor: default;
+}
+.arc-step:last-child { border-right: none; }
+.arc-num {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 2px;
+}
+.arc-label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.arc-step.gold { background: rgba(200,168,75,0.05); }
+.arc-step.gold .arc-label { color: var(--gold); }
+.arc-step.sage { background: rgba(107,174,133,0.05); }
+.arc-step.sage .arc-label { color: var(--sage); }
+.arc-step.clay { background: rgba(200,123,90,0.05); }
+.arc-step.clay .arc-label { color: var(--clay); }
+.arc-step.sky { background: rgba(106,156,192,0.05); }
+.arc-step.sky .arc-label { color: var(--sky); }
+.arc-step.lavender { background: rgba(154,136,200,0.05); }
+.arc-step.lavender .arc-label { color: var(--lavender); }
+.arc-arrow {
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 15px;
+  height: 15px;
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  transform: translateY(-50%) rotate(45deg);
+  z-index: 2;
+}
+
+/* ── SECTIONS ── */
+.section {
+  margin-bottom: 56px;
+  scroll-margin-top: 66px;
+}
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.section-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-bottom: 2px;
+}
+.section-dot.gold { background: var(--gold); }
+.section-dot.sage { background: var(--sage); }
+.section-dot.clay { background: var(--clay); }
+.section-dot.sky { background: var(--sky); }
+.section-dot.lavender { background: var(--lavender); }
+.section-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.section-eyebrow.gold { color: var(--gold); }
+.section-eyebrow.sage { color: var(--sage); }
+.section-eyebrow.clay { color: var(--clay); }
+.section-eyebrow.sky { color: var(--sky); }
+.section-eyebrow.lavender { color: var(--lavender); }
+.section-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 26px;
+  color: var(--text);
+  flex: 1;
+}
+.section-timing {
+  font-size: 13px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+/* ── QUESTION CARDS ── */
+.q-list { display: flex; flex-direction: column; gap: 10px; }
+
+.q-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: start;
+  transition: border-color 0.15s;
+  cursor: pointer;
+  position: relative;
+}
+.q-card:hover { border-color: var(--border2); }
+.q-card.checked {
+  opacity: 0.4;
+}
+.q-card.checked .q-text {
+  text-decoration: line-through;
+  text-decoration-color: var(--text-dim);
+}
+
+.q-check {
+  width: 22px; height: 22px;
+  border-radius: 6px;
+  border: 1.5px solid var(--border2);
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+.q-card:hover .q-check { border-color: var(--text-dim); }
+.q-card.checked .q-check {
+  background: var(--surface2);
+  border-color: var(--border2);
+}
+.q-check-inner {
+  display: none;
+  width: 8px; height: 8px;
+  border-radius: 2px;
+}
+.q-card.checked .q-check-inner { display: block; }
+.gold .q-check-inner { background: var(--gold); }
+.sage .q-check-inner { background: var(--sage); }
+.clay .q-check-inner { background: var(--clay); }
+.sky .q-check-inner { background: var(--sky); }
+.lavender .q-check-inner { background: var(--lavender); }
+
+.q-body { flex: 1; }
+.q-text {
+  font-size: 17px;
+  color: var(--text);
+  line-height: 1.6;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+.q-text strong {
+  font-style: italic;
+  font-family: 'Instrument Serif', serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+.q-note {
+  font-size: 13px;
+  color: var(--text-mid);
+  line-height: 1.55;
+}
+
+.q-badge {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.badge-anchor { background: rgba(200,168,75,0.1); color: var(--gold); }
+.badge-deep { background: rgba(154,136,200,0.1); color: var(--lavender); }
+.badge-share { background: rgba(107,174,133,0.1); color: var(--sage); }
+.badge-promo { background: rgba(200,123,90,0.1); color: var(--clay); }
+.badge-close { background: rgba(106,156,192,0.1); color: var(--sky); }
+
+/* ── AVOID BAR ── */
+.avoid-bar {
+  background: rgba(200,123,90,0.07);
+  border: 1px solid rgba(200,123,90,0.2);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 44px;
+}
+.avoid-icon { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
+.avoid-text { font-size: 15px; color: var(--clay); line-height: 1.55; }
+.avoid-text strong { font-weight: 600; }
+
+/* ── PROMO SECTION ── */
+.promo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+.promo-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+}
+.promo-icon { font-size: 26px; margin-bottom: 8px; }
+.promo-name { font-size: 16px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+.promo-desc { font-size: 14px; color: var(--text-mid); line-height: 1.5; }
+
+/* ── CLOSING ── */
+.closing-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.closing-card::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  right: 24px;
+  font-family: 'Instrument Serif', serif;
+  font-size: 150px;
+  color: var(--border);
+  line-height: 1;
+  pointer-events: none;
+}
+.closing-q {
+  font-family: 'Instrument Serif', serif;
+  font-size: 26px;
+  font-style: italic;
+  color: var(--sky);
+  line-height: 1.45;
+  margin-bottom: 14px;
+  max-width: 620px;
+}
+.closing-note {
+  font-size: 14px;
+  color: var(--text-mid);
+}
+
+/* ── RESET BTN ── */
+.reset-wrap {
+  text-align: center;
+  margin-top: 56px;
+}
+.reset-btn {
+  font-family: 'Geist', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dim);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.04em;
+}
+.reset-btn:hover { color: var(--text-mid); border-color: var(--border2); }
+
+/* ── APPRECIATION ── */
+.appreciation {
+  margin-top: 80px;
+  border-top: 1px solid var(--border);
+  padding-top: 60px;
+}
+.appreciation-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-align: center;
+  margin-bottom: 10px;
+}
+.appreciation-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 36px;
+  font-style: italic;
+  color: var(--gold);
+  text-align: center;
+  line-height: 1.25;
+  margin-bottom: 40px;
+}
+.appreciation-body {
+  max-width: 640px;
+  margin: 0 auto 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.appreciation-p {
+  font-family: 'Instrument Serif', serif;
+  font-size: 19px;
+  color: var(--text);
+  line-height: 1.75;
+  text-align: center;
+}
+.appreciation-p em { color: var(--gold); font-style: normal; }
+.topics-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 8px 0 16px;
+}
+.topic-chip {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--text-mid);
+  background: var(--surface);
+}
+.topic-chip.gold { border-color: rgba(200,168,75,0.3); color: var(--gold); background: rgba(200,168,75,0.06); }
+.topic-chip.sage { border-color: rgba(107,174,133,0.3); color: var(--sage); background: rgba(107,174,133,0.06); }
+.topic-chip.clay { border-color: rgba(200,123,90,0.3); color: var(--clay); background: rgba(200,123,90,0.06); }
+.topic-chip.sky { border-color: rgba(106,156,192,0.3); color: var(--sky); background: rgba(106,156,192,0.06); }
+.topic-chip.lavender { border-color: rgba(154,136,200,0.3); color: var(--lavender); background: rgba(154,136,200,0.06); }
+.appreciation-sign {
+  text-align: center;
+  margin-top: 8px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.appreciation-sign-name {
+  font-family: 'Instrument Serif', serif;
+  font-size: 22px;
+  font-style: italic;
+  color: var(--text-mid);
+}
+.appreciation-sign-sub {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+
+.intro-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 28px 24px;
+  margin-bottom: 40px;
+  scroll-margin-top: 66px;
+}
+.intro-card-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.intro-card-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.intro-script {
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
+.intro-script em {
+  color: var(--gold);
+  font-style: normal;
+}
+.intro-note {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 1.6;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+
+  .hero { grid-template-columns: 1fr; }
+  .hero-meta { text-align: left; flex-direction: row; flex-wrap: wrap; }
+  .arc { flex-direction: row; }
+  .arc-step { border-right: 1px solid var(--border); border-bottom: none; padding: 8px 8px; }
+  .arc-step:last-child { border-right: none; }
+  .arc-label { font-size: 10px; }
+  .arc-num { font-size: 8px; }
+  .arc-arrow { display: none; }
+  .promo-grid { grid-template-columns: 1fr; }
+  .q-card { grid-template-columns: auto 1fr; }
+  .q-badge { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-brand">Grow with the Flo <span>×</span> Danny</div>
+  <div class="topbar-nav">
+    <a class="nav-btn" href="#intro" style="color:#C8A84B; opacity:0.7;">Intro</a>
+    <a class="nav-btn gold" href="#his-story">His story</a>
+    <a class="nav-btn sage" href="#sober365">Sober 365</a>
+    <a class="nav-btn clay" href="#habits">Habits & change</a>
+    <a class="nav-btn sky" href="#coaching">Coaching & purpose</a>
+    <a class="nav-btn lavender" href="#adhd">ADHD</a>
+    <a class="nav-btn close-q" href="#close">Close + promo</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <div class="hero-title">Live conversation guide<br><em>Danny Rahim</em></div>
+      <div class="hero-sub">Tick questions as you go. Follow the arc loosely — let Danny lead, use this to catch what matters.</div>
+    </div>
+    <div class="hero-meta">
+      <span class="hero-tag gold">~60 min</span>
+      <span class="hero-tag dim">Avoid: politics</span>
+      <span class="hero-tag dim">Remote recording</span>
+    </div>
+  </div>
+
+  <!-- INTRO SCRIPT -->
+  <div class="intro-card" id="intro">
+    <div class="intro-card-label">Opening intro — read aloud</div>
+    <div class="intro-script">
+      "Today's guest is someone I've had the privilege of knowing for years — and honestly, someone I'd call one of the most inspiring people in my life. We met working together — and although we worked in very different departments and you'd think we'd be clashing heads, we were instead completely aligned on what actually mattered. Since then, we've been catching up on growth, mental health, and self-development — and at one point, I even brought him in as a coach for a company I was working with. So I've watched this man's journey up close. My guest today is <em>Danny Rahim</em> — Award Winning Mindset &amp; Performance Coach and Founder of <em>Elev8 Human Performance</em>. Danny, welcome to Grow with the Flo."
+    </div>
+    <div class="intro-note">💡 After the welcome, pause — let him settle. Then move straight into: <em>"Tell me your growth story — where does it begin for you?"</em></div>
+  </div>
+
+  <!-- ARC STRIP -->
+  <div class="arc">
+    <div class="arc-step gold">
+      <div class="arc-num">01</div>
+      <div class="arc-label">His story &<br>adversity</div>
+    </div>
+    <div class="arc-step sage">
+      <div class="arc-num">02</div>
+      <div class="arc-label">Sober 365<br>journey</div>
+    </div>
+    <div class="arc-step clay">
+      <div class="arc-num">03</div>
+      <div class="arc-label">Habits &<br>change</div>
+    </div>
+    <div class="arc-step sky">
+      <div class="arc-num">04</div>
+      <div class="arc-label">Coaching &<br>purpose</div>
+    </div>
+    <div class="arc-step lavender">
+      <div class="arc-num">05</div>
+      <div class="arc-label">Promo &<br>close</div>
+    </div>
+  </div>
+
+  <!-- AVOID -->
+  <div class="avoid-bar">
+    <div class="avoid-icon">⚠</div>
+    <div class="avoid-text"><strong>Steer clear of:</strong> politics (Danny's request) · referencing specific book titles (Atomic Habits etc.) · overwhelming the sobriety thread — it's one chapter, not the whole story</div>
+  </div>
+
+  <!-- ── SECTION 1: HIS STORY ── -->
+  <div class="section" id="his-story">
+    <div class="section-header">
+      <div class="section-dot gold"></div>
+      <span class="section-eyebrow gold">01 · Opening</span>
+      <div class="section-title">His story & the growth origin</div>
+      <div class="section-timing">~10 min</div>
+    </div>
+    <div class="q-list">
+
+      <div class="q-card gold" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"Tell me your growth story — where does it begin for you?"</strong></div>
+          <div class="q-note">Pure open door. Let him set the frame — he'll likely go to his mum's mental illness and losing his dad. Don't rush it.</div>
+        </div>
+        <div class="q-badge badge-anchor">Anchor</div>
+      </div>
+
+      <div class="q-card gold" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"When did that adversity shift from something happening to you, to something shaping you?"</strong></div>
+          <div class="q-note">The turning point question — every growth story has one. This is it.</div>
+        </div>
+        <div class="q-badge badge-deep">Deep</div>
+      </div>
+
+      <div class="q-card gold" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"You've since built a coaching business and an acting career. Looking back — which parts of who you are came directly from what you went through?"</strong></div>
+          <div class="q-note">Links adversity directly to his professional identity. Turns biography into insight.</div>
+        </div>
+        <div class="q-badge badge-deep">Deep</div>
+      </div>
+
+      <div class="q-card gold" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"Growth often means letting things go — jobs, friendships, environments that no longer fit. Has your journey meant drawing a line under anything or anyone significant?"</strong></div>
+          <div class="q-note">Connects his sobriety story (triggering people/places) with the broader growth theme. Very relatable.</div>
+        </div>
+        <div class="q-badge badge-deep">Deep</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── SECTION 2: SOBER 365 ── -->
+  <div class="section" id="sober365">
+    <div class="section-header">
+      <div class="section-dot sage"></div>
+      <span class="section-eyebrow sage">02 · Sober 365</span>
+      <div class="section-title">The journey, the triggers, the identity shift</div>
+      <div class="section-timing">~15 min</div>
+    </div>
+    <div class="q-list">
+
+      <div class="q-card sage" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"Take me back to day one. What was the moment you decided this was the year?"</strong></div>
+          <div class="q-note">Simple, story-first. Binge drinking, anxiety, hangovers — let him bring it. Don't front-load the context.</div>
+        </div>
+        <div class="q-badge badge-anchor">Anchor</div>
+      </div>
+
+      <div class="q-card sage" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"One thing I noticed early on was how deliberately you set yourself up — recognising the obstacles, removing what needed to go, then thinking about reintegrating. Was that instinctive, or a strategy you'd used before?"</strong></div>
+          <div class="q-note">Reference to his early Sober 365 content. Great coaching insight — remove the alcohol from the cabinet, then figure out the pub.</div>
+        </div>
+        <div class="q-badge badge-deep">Deep</div>
+      </div>
+
+      <div class="q-card sage" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"Alcohol is everywhere — airports, beer gardens, every event. When you ordered a soda water and everyone else had a pint — what did that actually feel like? Did you get the look?"</strong></div>
+          <div class="q-note">Light, warm entry into the social pressure thread. Best moments come from specific scenes — invite him to be concrete. Happy hours, society normalising drinking.</div>
+        </div>
+        <div class="q-badge badge-deep">Deep</div>
+      </div>
+
+      <div class="q-card sage" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"You went to a Taco & Tequila night on day 21, and didn't miss the drink. What did that feel like — when did it stop being an effort and start being just… you?"</strong></div>
+          <div class="q-note">The identity shift moment. This is when habit becomes character. A beautiful question to sit in.</div>
+        </div>
+        <div class="q-badge badge-deep">Deep</div>
+      </div>
+
+      <div class="q-card sage" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"You talked about sitting with difficult news — the moment where before, you'd have called a friend, found a pub, had a drink. What does it feel like now to just sit with it, without the escape hatch?"</strong></div>
+          <div class="q-note">Emotionally honest. Universally relatable — everyone has an escape mechanism. Connects alcohol to the broader topic of coping.</div>
+        </div>
+        <div class="q-badge badge-deep">Deep</div>
+      </div>
+
+      <div class="q-card sage" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"We tell ourselves 'once I sort this, everything will be better.' But I've learned that's not always how it goes. What's been harder than you expected?"</strong></div>
+          <div class="q-note">Invites nuance and honesty. The real podcast gold lives here. Don't rush past silence.</div>
+        </div>
+        <div class="q-badge badge-deep">Deep</div>
+      </div>
+
+      <div class="q-card sage" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text">💬 <em>Share your own story here if it feels right — mostly sober 3 years, anxiety as the turning point, lifestyle reset. Invite him to reflect on whether he'd drink again.</em></div>
+        </div>
+        <div class="q-badge badge-share">Your share</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── SECTION 3: HABITS & CHANGE ── -->
+  <div class="section" id="habits">
+    <div class="section-header">
+      <div class="section-dot clay"></div>
+      <span class="section-eyebrow clay">03 · Habits & Change</span>
+      <div class="section-title">The psychology of doing the hard thing consistently</div>
+      <div class="section-timing">~10 min</div>
+    </div>
+    <div class="q-list">
+
+      <div class="q-card clay" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"You're posting daily videos and staying sober — is that giving you energy, or at some point does that level of public accountability start becoming its own pressure?"</strong></div>
+          <div class="q-note">Honest, slightly uncomfortable. Great for showing Danny as a real person navigating this, not a guru with all the answers.</div>
+        </div>
+        <div class="q-badge badge-deep">Deep</div>
+      </div>
+
+      <div class="q-card clay" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"We rarely reach for a vice for the sensation — we reach for the feeling it gives us. Can you walk me through what that actually looks like? The cue, the craving, the response, the reward?"</strong></div>
+          <div class="q-note">The habit loop in his own words — without naming the book. The insight, not the reference.</div>
+        </div>
+        <div class="q-badge badge-deep">Deep</div>
+      </div>
+
+      <div class="q-card clay" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"Most people believe you form a new habit in 21 days. Research actually puts it closer to 66. You're past day 30 — what has genuinely shifted, and what still takes effort?"</strong></div>
+          <div class="q-note">The 66-day fact is the one stat worth dropping on air — most people quit at week three and think they failed, when biologically they weren't even halfway.</div>
+        </div>
+        <div class="q-badge badge-deep">Deep</div>
+      </div>
+
+      <div class="q-card clay" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"It's easy to hold a new habit in your normal environment. But then you travel, the routine breaks, everything shifts. How do you handle that?"</strong></div>
+          <div class="q-note">Relevant to both of you. Also opens the question of how his daily video habit survives disruption — interesting meta layer.</div>
+        </div>
+        <div class="q-badge badge-deep">Deep</div>
+      </div>
+
+      <div class="q-card clay" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"You talked about compounding progress — on day 19, noticing how the efforts were stacking. Can you feel that from the inside, or do you only see it looking back?"</strong></div>
+          <div class="q-note">Connects to his own content and your shared experience with consistent growth work.</div>
+        </div>
+        <div class="q-badge badge-deep">Deep</div>
+      </div>
+
+      <div class="q-card clay" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"How do you handle a bad day on a long journey? Not a relapse — just the days where the voice says 'what's the point?'"</strong></div>
+          <div class="q-note">Universal. One of the most shareable moments of the episode. Don't fill the silence after this one.</div>
+        </div>
+        <div class="q-badge badge-deep">Deep</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── SECTION 4: COACHING & PURPOSE ── -->
+  <div class="section" id="coaching">
+    <div class="section-header">
+      <div class="section-dot sky"></div>
+      <span class="section-eyebrow sky">04 · Coaching & Purpose</span>
+      <div class="section-title">What he does, why it works, where he's going</div>
+      <div class="section-timing">~10 min</div>
+    </div>
+    <div class="q-list">
+
+      <div class="q-card sky" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"You mentioned that reconnecting with your own meaning and purpose made the business grow. What actually changed — and how do you know the difference between purpose-driven work and just staying busy?"</strong></div>
+          <div class="q-note">One of the richest questions in the episode. Links his personal journey directly to his professional success.</div>
+        </div>
+        <div class="q-badge badge-anchor">Anchor</div>
+      </div>
+
+      <div class="q-card sky" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"You've supported over 2,000 people. What do most people get wrong about what coaching actually is — and what it can genuinely do?"</strong></div>
+          <div class="q-note">His moment to define his craft without it feeling like an elevator pitch. Let him own it.</div>
+        </div>
+        <div class="q-badge badge-deep">Deep</div>
+      </div>
+
+      <div class="q-card sky" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"I hired you as a coach for a company I worked with. I want to be honest about what that was like for me — and ask you: what do you see in people when they first show up?"</strong></div>
+          <div class="q-note">Personal moment. Uses your shared history as an anchor. Good place for you to share your experience of being coached.</div>
+        </div>
+        <div class="q-badge badge-share">Your share</div>
+      </div>
+
+      <div class="q-card sky" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"You went to a World Meaning and Purpose Summit in Madrid. What drew you there — and what did you take away?"</strong></div>
+          <div class="q-note">Optional — use if the conversation is flowing in that direction. Good for showing Danny's investment in the ideas behind his work.</div>
+        </div>
+        <div class="q-badge badge-deep">Deep</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── SECTION 5: ADHD ── -->
+  <div class="section" id="adhd">
+    <div class="section-header">
+      <div class="section-dot lavender"></div>
+      <span class="section-eyebrow lavender">05 · ADHD</span>
+      <div class="section-title">The diagnosis that reframed everything</div>
+      <div class="section-timing">~5 min · weave in naturally</div>
+    </div>
+    <div class="q-list">
+
+      <div class="q-card lavender" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"You were diagnosed with ADHD last year. Has that felt like a revelation, a challenge, or something else entirely — and how has it changed how you see your own story?"</strong></div>
+          <div class="q-note">The obstacle vs superpower question. ADHD brains are wired for novelty and reward-seeking — that's the drinking link, but also possibly the drive behind his coaching career and the Sober 365 challenge itself.</div>
+        </div>
+        <div class="q-badge badge-deep">Deep</div>
+      </div>
+
+      <div class="q-card lavender" onclick="toggle(this)">
+        <div class="q-check"><div class="q-check-inner"></div></div>
+        <div class="q-body">
+          <div class="q-text"><strong>"Looking back at the binge drinking through the lens of the ADHD diagnosis — does it make more sense now? Does it change how you feel about it?"</strong></div>
+          <div class="q-note">Reframes it neurologically, not morally. Biology, not weakness. Powerful moment of self-compassion in the story.</div>
+        </div>
+        <div class="q-badge badge-deep">Deep</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── CLOSE & PROMO ── -->
+  <div class="section" id="close">
+    <div class="section-header">
+      <div class="section-dot sky"></div>
+      <span class="section-eyebrow sky">06 · Promo + Close</span>
+      <div class="section-title">Give Danny his space, then land it</div>
+      <div class="section-timing">~5 min</div>
+    </div>
+
+    <div class="promo-grid">
+      <div class="promo-card">
+        <div class="promo-icon">📱</div>
+        <div class="promo-name">Elev8 Human Performance App</div>
+        <div class="promo-desc">App Store · Ask him what it does that nothing else does</div>
+      </div>
+      <div class="promo-card">
+        <div class="promo-icon">🧭</div>
+        <div class="promo-name">Sober 365</div>
+        <div class="promo-desc">dannyrahimcoaching.com · His journey as a coaching framework</div>
+      </div>
+      <div class="promo-card">
+        <div class="promo-icon">🤝</div>
+        <div class="promo-name">1:1 Coaching</div>
+        <div class="promo-desc">Direct booking via Calendly · Mention you hired him yourself</div>
+      </div>
+    </div>
+
+    <div style="height: 20px;"></div>
+
+    <div class="closing-card">
+      <div class="closing-q">"When you think about growth — everything you've been through, everything you're building — what's the one message you'd leave behind for someone on that journey right now?"</div>
+      <div class="closing-note">The GwtF signature close. Ask it, then stop. Don't fill the silence. His answer ends the episode.</div>
+    </div>
+  </div>
+
+  <div class="reset-wrap">
+    <button class="reset-btn" onclick="resetAll()">↺ Reset all ticks</button>
+  </div>
+
+  <!-- ── APPRECIATION FOR DANNY ── -->
+  <div class="appreciation">
+    <div class="appreciation-eyebrow">For Danny</div>
+    <div class="appreciation-title">Thank you for growing with me.</div>
+
+    <div class="appreciation-body">
+
+      <div class="appreciation-p">
+        We met in an unlikely place — two people from very different worlds who turned out to be completely aligned on the things that actually matter. Growth. Honesty. The willingness to do the hard work.
+      </div>
+
+      <div class="appreciation-p">
+        I've watched your journey up close — and what strikes me most isn't the coaching business, the app, the acting career, or the Sober 365 challenge. It's the <em>consistency</em> with which you show up for yourself, and the generosity with which you show up for others.
+      </div>
+
+      <div class="appreciation-p">
+        In this conversation, I hope we get to explore the things that make your story worth telling —
+      </div>
+
+      <div class="topics-row">
+        <span class="topic-chip gold">Turning adversity into advantage</span>
+        <span class="topic-chip sage">365 days of showing up</span>
+        <span class="topic-chip clay">The psychology of lasting change</span>
+        <span class="topic-chip sky">Finding meaning in the work</span>
+        <span class="topic-chip lavender">Understanding your own mind</span>
+      </div>
+
+      <div class="appreciation-p">
+        — and the quiet truth behind all of them: that growth is rarely linear, rarely comfortable, and almost always worth it.
+      </div>
+
+      <div class="appreciation-p">
+        Thank you for being someone I can learn from. Thank you for trusting me with your story. And thank you for reminding me — just by doing what you do — that it's always possible to <em>grow with the Flo</em>.
+      </div>
+
+    </div>
+
+    <div class="appreciation-sign">
+      <div class="appreciation-sign-name">— Flo</div>
+      <div class="appreciation-sign-sub">Grow with the Flo · 2025</div>
+    </div>
+  </div>
+
+  <div style="height: 60px;"></div>
+
+</div>
+
+<script>
+function toggle(card) {
+  card.classList.toggle('checked');
+}
+function resetAll() {
+  document.querySelectorAll('.q-card.checked').forEach(c => c.classList.remove('checked'));
+}
+</script>
+</body>
+</html>

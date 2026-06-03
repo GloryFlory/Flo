@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Behind the Episode — Daniel Wang | Grow with the Flo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0E0C0A;
+    --bg-card: #1C1915;
+    --border: #2E2923;
+    --border-light: #3A342C;
+    --gold: #C9A96E;
+    --gold-dim: #8A7048;
+    --gold-pale: #F5EDD8;
+    --cream: #EDE4D3;
+    --muted: #7A7060;
+    --muted-mid: #9A9080;
+    --sage: #5E8C75;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Jost', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  .page {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 1.5rem 8rem;
+  }
+
+  /* ── Nav ── */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(14,12,10,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 1.5rem;
+    margin: 0 -1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 44px;
+  }
+
+  .nav-show {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .nav-label {
+    font-family: var(--serif);
+    font-size: 12px;
+    font-style: italic;
+    color: var(--muted-mid);
+  }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 5rem 0 3.5rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -1.5rem; right: -1.5rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    opacity: 0.4;
+  }
+
+  .hero-tag {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.4rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--gold-dim);
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--gold-pale);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--muted-mid);
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-meta {
+    display: flex; flex-wrap: wrap; gap: 2rem;
+  }
+
+  .meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .meta-label { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .meta-value { font-size: 13px; color: var(--cream); }
+
+  /* ── Body text ── */
+  .section {
+    padding: 2.8rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section:last-of-type { border-bottom: none; }
+
+  .section-label {
+    font-size: 9px; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 1.4rem;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--gold-pale);
+    margin-bottom: 1.1rem;
+    line-height: 1.3;
+  }
+
+  p {
+    color: var(--muted-mid);
+    margin-bottom: 1rem;
+    font-size: 15px;
+    line-height: 1.85;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  p em { color: var(--cream); font-style: italic; }
+  p strong { color: var(--cream); font-weight: 400; }
+
+  /* ── Pull quote ── */
+  .pull-quote {
+    border-left: 2px solid var(--gold-dim);
+    padding: 0.9rem 1.4rem;
+    margin: 2rem 0;
+    background: rgba(201,169,110,0.04);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .pull-quote p {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold-pale);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .pull-quote cite {
+    font-size: 11px;
+    font-style: normal;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  /* ── Letter to Dan ── */
+  .letter {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 2rem 2.2rem;
+    margin-top: 1rem;
+    position: relative;
+  }
+
+  .letter::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 2rem; right: 2rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    opacity: 0.5;
+  }
+
+  .letter-salutation {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold-pale);
+    margin-bottom: 1.2rem;
+  }
+
+  .letter p {
+    font-size: 15px;
+    color: var(--muted-mid);
+    line-height: 1.9;
+  }
+
+  .letter-sign {
+    margin-top: 1.8rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .letter-sign-name {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--gold-pale);
+  }
+
+  .letter-sign-show {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* ── Signoff ── */
+  .signoff-box {
+    text-align: center;
+    padding: 3rem 0 1rem;
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+  }
+
+  .signoff-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--gold);
+    line-height: 1.7;
+  }
+
+  .signoff-show {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 1rem;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    padding: 2rem 0 1rem;
+    text-align: center;
+  }
+
+  .footer p {
+    font-size: 11px;
+    color: var(--muted);
+    font-style: italic;
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <span class="nav-show">Grow with the Flo</span>
+  <span class="nav-label">Behind the Episode — Daniel Wang</span>
+</div>
+
+<div class="page">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-tag">Behind the Episode</div>
+    <h1 class="hero-title">There Was More <em>Life</em><br>in Those Five Years</h1>
+    <div class="hero-subtitle">A reflection on recording with Daniel Wang — and on Sherry</div>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">Guest</span>
+        <span class="meta-value">Daniel Wang</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Recorded</span>
+        <span class="meta-value">May 2026 · Hội An</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Show</span>
+        <span class="meta-value">Grow with the Flo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- How we met -->
+  <div class="section">
+    <div class="section-label">How it began</div>
+    <div class="section-title">Two strangers on a plane</div>
+    <p>Some conversations find you. I wasn't looking for a guest when I boarded a flight from Bangkok. I wasn't expecting anything beyond a few hours in the air. And then Daniel sat down next to me, and within the space of that flight — somewhere over the Gulf of Thailand — something opened up between us that I didn't expect and won't forget.</p>
+    <p>He told me about Sherry. About losing her to breast cancer. About what came after. About the dream. By the time we landed, I knew this story had to be shared — not because it was dramatic, but because it was <em>true</em> in the way that very few things are. Raw, honest, and ultimately full of something that felt, remarkably, like hope.</p>
+    <p>I asked him to come on the podcast. He said yes. And when we sat down together in Hội An, what happened in that studio was something I will carry with me for a long time.</p>
+  </div>
+
+  <!-- Sherry -->
+  <div class="section">
+    <div class="section-label">On Sherry</div>
+    <div class="section-title">She put more life into five years than most people have in a lifetime</div>
+    <p>There is something that Daniel said — or maybe it was something in the way he spoke about her — that has stayed with me since we finished recording. Sherry knew, after her diagnosis, that time was limited. And rather than contracting around that truth, she expanded into it. She chose presence. She chose joy. She chose to pour herself into the people and the moments she loved.</p>
+    <p>Five years after a breast cancer diagnosis. Five years in which, by the account of the man who loved her most, there was <em>more life</em> than many people experience across an entire lifetime. That's not a consolation. That's not a silver lining. That's a way of being in the world that most of us never fully reach — and Sherry lived it, not in spite of what she was facing, but perhaps because of it.</p>
+
+    <div class="pull-quote">
+      <p>"There was more life in those five years than many people have in their whole lifetime."</p>
+    </div>
+
+    <p>She gave something to Daniel that he is still, three years later, unwrapping. And through him, she gave something to me. And now — through this episode — she gives something to you.</p>
+    <p>That is what it means to leave a mark. Not monuments or memorials, but the quiet, ongoing ripple of who you were in the people who loved you. Sherry is still moving through the world. I heard it clearly in every word Daniel said about her.</p>
+  </div>
+
+  <!-- What moved me -->
+  <div class="section">
+    <div class="section-label">Host reflection</div>
+    <div class="section-title">What this conversation did to me</div>
+    <p>I've had many conversations on this podcast. Some have been fascinating, some have been fun, some have challenged me intellectually. But every now and then, one lands differently — somewhere quieter, somewhere closer to the centre of things. This was one of those.</p>
+    <p>What struck me most was not the grief — though the grief was present and real and Daniel didn't shy away from any of it. What struck me was the <em>love</em>. It was everywhere. In the way he described Sherry's laugh, her generosity, her determination to live fully inside whatever time she had. In the dream — the one in which she appeared, calm and free, looking for her clothes so she could picture her friends wearing them — and then turned to Daniel and asked, simply: <em>are you looking after yourself?</em> That question undid me. It still does.</p>
+    <p>And in Daniel himself — in the person he has become on the other side of loss. Not despite it, but through it. The vigilant mouse, as he calls himself. Someone who watches carefully now, who stays grounded, who gives priority to presence. Sherry asked him to look after himself. He is doing exactly that. And watching it happen — sitting across from it in a studio in Hội An — felt like a privilege I didn't quite deserve.</p>
+    <p>This is what Grow with the Flo is for. Not the performance of growth, but its actual texture — messy and slow and sometimes only visible in retrospect. Daniel's story has all of that. And at the centre of it, holding everything together even now, is Sherry.</p>
+  </div>
+
+  <!-- Why this episode matters -->
+  <div class="section">
+    <div class="section-label">Why this episode exists</div>
+    <div class="section-title">For anyone who is still in the middle of it</div>
+    <p>Daniel said something in his prep notes that I keep returning to. He wrote: <em>"Without our loved ones physically here, I find myself getting lost much more often. It is undeniably uncomfortable. But in the middle of that discomfort, I am learning so much more. Growth often happens exactly when we are forced to find our own way."</em></p>
+    <p>If you are listening to this and you are in the middle of something — grief, loss, depression, addiction, the slow and disorienting work of rebuilding a self that no longer quite fits — this episode is for you. Not as a manual, not as a fix, but as a hand in the dark from someone who has been there and come back with something worth saying.</p>
+    <p>And if you are not in the middle of anything difficult right now — listen anyway. Because Sherry's story is a reminder of what it looks like to choose life, fully, while you still have it. That is not a lesson reserved for people facing death. It is an invitation for all of us.</p>
+  </div>
+
+  <!-- Letter to Dan -->
+  <div class="section">
+    <div class="section-label">A personal note</div>
+    <div class="section-title">To Daniel, and to Sherry</div>
+
+    <div class="letter">
+      <div class="letter-salutation">Dear Daniel,</div>
+
+      <p>Thank you for saying yes on that plane. Thank you for trusting a stranger with something so sacred, and then trusting that stranger again when he asked if he could share it with the world.</p>
+      <p>What you gave to this podcast — and to everyone who will listen — is not just a story. It is a window into what love looks like when it refuses to be diminished by loss. Sherry loved you fully, and that love didn't end. It changed shape. It found its way into a dream, into a question, into the way you now move through the world as a man who has learned — slowly, painfully, beautifully — to look after himself.</p>
+      <p>She would be proud. I have no doubt about that. Not because you survived, but because of who you are becoming on the other side of it. The vigilant mouse. The man who watches, who stays present, who chooses grounding over noise. That is not a small thing. That is the work of a lifetime.</p>
+      <p>And to Sherry — though I never had the honour of meeting her — thank you. For the life you poured into every year you had. For the love you gave so generously that it is still radiating outward, years later, through the people you touched. You gave Daniel something he is still unwrapping. And now, through him, you have given something to me too, and to everyone who hears his voice telling your story.</p>
+      <p>You are still here. I heard it clearly.</p>
+      <p>With deep gratitude and love —</p>
+
+      <div class="letter-sign">
+        <div class="letter-sign-name">Your host</div>
+        <div class="letter-sign-show">Grow with the Flo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign off -->
+  <div class="signoff-box">
+    <div class="signoff-text">
+      Follow your intuition.<br>
+      Do everything with love.<br>
+      And just see where it takes you.
+    </div>
+    <div class="signoff-show">Grow with the Flo</div>
+  </div>
+
+  <div class="footer">
+    <p>Behind the Episode · Daniel Wang · May 2026</p>
+  </div>
+
+</div>
+</body>
+</html>

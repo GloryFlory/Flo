@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flo & Maria — A Journey Across Southeast Asia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel+Decorative:wght@400&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --clay:    #C4896A;
+    --terracotta: #B5603A;
+    --sand:    #F2E8D9;
+    --warm-white: #FAF6F0;
+    --moss:    #4A6741;
+    --deep:    #1A0F0A;
+    --gold:    #C9A96E;
+    --blush:   #E8C4B0;
+    --smoke:   #8B7355;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--deep);
+    color: var(--sand);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 2rem;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%,   rgba(196,137,106,0.18) 0%, transparent 65%),
+      radial-gradient(ellipse 60% 50% at 20% 80%,  rgba(74,103,65,0.14)  0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 80% 70%,  rgba(181,96,58,0.12)  0%, transparent 55%),
+      radial-gradient(ellipse 100% 100% at 50% 50%, rgba(26,15,10,0.95)   0%, #0D0906 100%);
+    z-index: 0;
+  }
+
+  /* Noise grain overlay */
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.35;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-eyebrow {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    font-size: 0.72rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+
+  .hero-names {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 11vw, 9rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 0.9;
+    color: var(--warm-white);
+    margin: 1.5rem 0;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.6s forwards;
+  }
+
+  .hero-names span { color: var(--clay); }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--blush);
+    letter-spacing: 0.06em;
+    opacity: 0;
+    animation: fadeUp 1s ease 1s forwards;
+  }
+
+  .hero-divider {
+    width: 120px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 2.5rem auto;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.4s forwards;
+  }
+
+  .hero-dates {
+    font-size: 0.78rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--smoke);
+    opacity: 0;
+    animation: fadeUp 1s ease 1.6s forwards;
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 3rem; left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    opacity: 0;
+    animation: fadeIn 1s ease 2.2s forwards;
+  }
+  .scroll-cue span {
+    font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--smoke);
+  }
+  .scroll-cue::after {
+    content: '';
+    width: 1px; height: 48px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  /* ── DESTINATION SECTIONS ── */
+  .destination {
+    position: relative;
+    padding: 7rem 2rem;
+    overflow: hidden;
+  }
+
+  .dest-number {
+    position: absolute;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(8rem, 18vw, 16rem);
+    color: rgba(196,137,106,0.06);
+    font-weight: 400;
+    line-height: 1;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .dest-number.left  { left: -2rem; top: 3rem; }
+  .dest-number.right { right: -2rem; top: 3rem; }
+
+  .dest-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+
+  .dest-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex; align-items: center; gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+  .dest-tag::before {
+    content: ''; flex: 0 0 36px; height: 1px;
+    background: var(--gold);
+  }
+
+  .dest-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.0;
+    color: var(--warm-white);
+    margin-bottom: 0.5rem;
+  }
+
+  .dest-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--clay);
+    margin-bottom: 3rem;
+  }
+
+  /* ── ACTIVITY CARDS ── */
+  .activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .activity-card {
+    background: rgba(242,232,217,0.04);
+    border: 1px solid rgba(201,169,110,0.15);
+    border-radius: 2px;
+    padding: 2rem 1.6rem;
+    position: relative;
+    transition: background 0.4s ease, border-color 0.4s ease, transform 0.4s ease;
+    overflow: hidden;
+  }
+
+  .activity-card:hover {
+    background: rgba(196,137,106,0.08);
+    border-color: rgba(201,169,110,0.4);
+    transform: translateY(-3px);
+  }
+
+  .activity-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--clay);
+    transition: height 0.4s ease;
+  }
+  .activity-card:hover::before { height: 100%; }
+
+  .card-icon {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    display: block;
+    filter: drop-shadow(0 0 8px rgba(196,137,106,0.3));
+  }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--warm-white);
+    margin-bottom: 0.6rem;
+  }
+
+  .card-desc {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--smoke);
+    line-height: 1.7;
+  }
+
+  /* ── BLINDFOLD DAY SPECIAL SECTION ── */
+  .blindfold-section {
+    background: linear-gradient(135deg, rgba(74,103,65,0.08) 0%, rgba(26,15,10,0) 50%);
+    border: 1px solid rgba(74,103,65,0.2);
+    border-radius: 2px;
+    padding: 3rem 2.5rem;
+    margin-top: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .blindfold-section::after {
+    content: '✦';
+    position: absolute; top: 1.5rem; right: 2rem;
+    color: rgba(74,103,65,0.2); font-size: 3rem;
+  }
+
+  .blindfold-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-style: italic;
+    color: var(--moss);
+    filter: brightness(1.8);
+    margin-bottom: 1rem;
+  }
+
+  .blindfold-intro {
+    font-size: 0.88rem;
+    color: var(--smoke);
+    line-height: 1.8;
+    max-width: 600px;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .journey-steps {
+    counter-reset: step;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    gap: 1.5rem;
+    position: relative;
+    padding-bottom: 2rem;
+  }
+
+  .step:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 1.75rem; top: 2.8rem;
+    width: 1px; bottom: 0;
+    background: linear-gradient(to bottom, rgba(201,169,110,0.3), transparent);
+  }
+
+  .step-num {
+    width: 2.8rem; height: 2.8rem;
+    border-radius: 50%;
+    border: 1px solid rgba(201,169,110,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.65rem;
+    color: var(--gold);
+    flex-shrink: 0;
+    background: rgba(201,169,110,0.05);
+    margin-top: 0.15rem;
+  }
+
+  .step-content h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--warm-white);
+    margin-bottom: 0.35rem;
+  }
+
+  .step-content p {
+    font-size: 0.82rem;
+    color: var(--smoke);
+    line-height: 1.7;
+  }
+
+  /* ── SEPARATOR ── */
+  .separator {
+    display: flex; align-items: center; gap: 2rem;
+    padding: 2rem 2rem;
+    max-width: 860px; margin: 0 auto;
+  }
+  .separator::before, .separator::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,169,110,0.25), transparent);
+  }
+  .separator-ornament {
+    font-size: 0.9rem; color: var(--gold); letter-spacing: 0.4em; white-space: nowrap;
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+  }
+
+  /* ── PLAYFULNESS DAY ── */
+  .playful-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    border: 1px solid rgba(201,169,110,0.1);
+    margin-top: 2.5rem;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .playful-item {
+    padding: 2rem 1.5rem;
+    background: rgba(255,255,255,0.02);
+    border-right: 1px solid rgba(201,169,110,0.08);
+    border-bottom: 1px solid rgba(201,169,110,0.08);
+    transition: background 0.3s ease;
+  }
+
+  .playful-item:hover { background: rgba(196,137,106,0.07); }
+  .playful-item:nth-child(3n) { border-right: none; }
+
+  .playful-emoji { font-size: 1.8rem; display: block; margin-bottom: 0.8rem; }
+
+  .playful-item h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--warm-white);
+    margin-bottom: 0.4rem;
+  }
+
+  .playful-item p {
+    font-size: 0.78rem;
+    color: var(--smoke);
+    line-height: 1.65;
+  }
+
+  /* ── SUMBA ── */
+  .sumba-section {
+    padding: 5rem 2rem;
+    position: relative;
+  }
+
+  .sumba-inner {
+    max-width: 860px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+
+  .sumba-text {}
+  .sumba-promise {
+    background: rgba(196,137,106,0.06);
+    border-left: 2px solid var(--clay);
+    padding: 2rem 2rem;
+  }
+
+  .promise-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-style: italic;
+    color: var(--clay); margin-bottom: 1rem;
+  }
+
+  .promise-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.8rem;
+  }
+
+  .promise-list li {
+    font-size: 0.83rem;
+    color: var(--smoke);
+    line-height: 1.6;
+    display: flex; align-items: flex-start; gap: 0.7rem;
+  }
+
+  .promise-list li::before {
+    content: '✦';
+    color: var(--gold); font-size: 0.5rem;
+    flex-shrink: 0; margin-top: 0.4rem;
+  }
+
+  /* ── LOVE NOTE FOOTER ── */
+  .love-footer {
+    padding: 8rem 2rem 6rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .love-footer::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(181,96,58,0.12) 0%, transparent 70%);
+  }
+
+  .love-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--warm-white);
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    line-height: 1.4;
+    position: relative; z-index: 1;
+  }
+
+  .love-signature {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--clay);
+    letter-spacing: 0.1em;
+    position: relative; z-index: 1;
+  }
+
+  .big-heart {
+    font-size: 5rem;
+    display: block;
+    margin: 2rem auto;
+    animation: pulse 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 24px rgba(196,137,106,0.5));
+    position: relative; z-index: 1;
+  }
+
+  /* ── TIMELINE BAR ── */
+  .timeline {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    max-width: 760px;
+    margin: 4rem auto 0;
+    border: 1px solid rgba(201,169,110,0.15);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .tl-segment {
+    flex: 1;
+    padding: 1.5rem 1.2rem;
+    text-align: center;
+    border-right: 1px solid rgba(201,169,110,0.15);
+    position: relative;
+    transition: background 0.3s ease;
+  }
+
+  .tl-segment:last-child { border-right: none; }
+  .tl-segment:hover { background: rgba(196,137,106,0.06); }
+
+  .tl-city {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; color: var(--warm-white);
+    margin-bottom: 0.2rem;
+  }
+
+  .tl-days {
+    font-size: 0.65rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .tl-vibe {
+    font-size: 0.75rem; color: var(--smoke); font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes scrollLine {
+    0%,100% { transform: scaleY(1); opacity: 1; }
+    50%      { transform: scaleY(0.5); opacity: 0.4; }
+  }
+
+  @keyframes pulse {
+    0%,100% { transform: scale(1); }
+    50%      { transform: scale(1.07); }
+  }
+
+  /* Scroll-reveal */
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* ── COUNTDOWN TIMER ── */
+  .timer-section {
+    width: 100%;
+    padding: 5rem 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .timer-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 50% 50%, rgba(181,96,58,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .timer-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.55em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .timer-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.5vw, 1.55rem);
+    color: var(--blush);
+    max-width: 580px;
+    text-align: center;
+    line-height: 1.55;
+    margin-bottom: 3rem;
+    min-height: 3.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.7s ease;
+  }
+
+  .timer-quote.fading { opacity: 0; }
+
+  .countdown-grid {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin-bottom: 2.5rem;
+  }
+
+  .count-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .count-box {
+    background: rgba(242,232,217,0.04);
+    border: 1px solid rgba(201,169,110,0.2);
+    border-radius: 2px;
+    width: clamp(72px, 14vw, 110px);
+    height: clamp(72px, 14vw, 110px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.4s ease;
+  }
+
+  .count-box::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(196,137,106,0.07) 0%, transparent 60%);
+  }
+
+  .count-box:hover { border-color: rgba(201,169,110,0.5); }
+
+  .count-number {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+    color: var(--warm-white);
+    line-height: 1;
+    position: relative; z-index: 1;
+    transition: transform 0.2s ease;
+  }
+
+  .count-number.tick {
+    animation: countTick 0.25s ease;
+  }
+
+  .count-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--smoke);
+    font-weight: 300;
+  }
+
+  .count-sep {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    color: rgba(201,169,110,0.35);
+    padding-top: clamp(18px, 3.5vw, 34px);
+    line-height: 1;
+  }
+
+  .timer-date {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--smoke);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .timer-date::before, .timer-date::after {
+    content: ''; flex: 0 0 40px; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,169,110,0.3), transparent);
+  }
+
+  .timer-arrived {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-style: italic;
+    color: var(--clay);
+    text-align: center;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes countTick {
+    0%   { transform: translateY(-6px); opacity: 0.5; }
+    100% { transform: translateY(0);    opacity: 1; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .playful-grid { grid-template-columns: repeat(2, 1fr); }
+    .playful-item:nth-child(3n) { border-right: 1px solid rgba(201,169,110,0.08); }
+    .playful-item:nth-child(2n) { border-right: none; }
+    .sumba-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .timeline { flex-direction: column; }
+    .tl-segment { border-right: none; border-bottom: 1px solid rgba(201,169,110,0.15); }
+    .tl-segment:last-child { border-bottom: none; }
+  }
+
+  @media (max-width: 480px) {
+    .playful-grid { grid-template-columns: 1fr; }
+    .playful-item { border-right: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─────────── HERO ─────────── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">A reunion across Southeast Asia</p>
+    <h1 class="hero-names">Flo<br><span>&</span><br>Maria</h1>
+    <p class="hero-subtitle">Ten days of presence, passion, and play</p>
+    <div class="hero-divider"></div>
+    <p class="hero-dates">Kuala Lumpur · Bali · Sumba</p>
+
+    <!-- Timeline overview -->
+    <div class="timeline" style="opacity:0; animation: fadeUp 1s ease 2s forwards;">
+      <div class="tl-segment">
+        <div class="tl-city">Kuala Lumpur</div>
+        <div class="tl-days">Jun 8 – 11</div>
+        <div class="tl-vibe">The first embrace</div>
+      </div>
+      <div class="tl-segment">
+        <div class="tl-city">Bali</div>
+        <div class="tl-days">Jun 11 – 18</div>
+        <div class="tl-vibe">The heart of it all</div>
+      </div>
+      <div class="tl-segment">
+        <div class="tl-city">Sumba</div>
+        <div class="tl-days">Open</div>
+        <div class="tl-vibe">Wild & unhurried</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>unfold</span></div>
+</section>
+
+
+<!-- ─────────── COUNTDOWN TIMER ─────────── -->
+<section class="timer-section">
+  <p class="timer-eyebrow">time until we meet</p>
+  <div class="timer-quote" id="timerQuote">"&nbsp;"</div>
+
+  <div class="countdown-grid" id="countdownGrid">
+    <div class="count-unit">
+      <div class="count-box"><span class="count-number" id="cd-days">--</span></div>
+      <span class="count-label">Days</span>
+    </div>
+    <div class="count-sep">·</div>
+    <div class="count-unit">
+      <div class="count-box"><span class="count-number" id="cd-hours">--</span></div>
+      <span class="count-label">Hours</span>
+    </div>
+    <div class="count-sep">·</div>
+    <div class="count-unit">
+      <div class="count-box"><span class="count-number" id="cd-mins">--</span></div>
+      <span class="count-label">Minutes</span>
+    </div>
+    <div class="count-sep">·</div>
+    <div class="count-unit">
+      <div class="count-box"><span class="count-number" id="cd-secs">--</span></div>
+      <span class="count-label">Seconds</span>
+    </div>
+  </div>
+
+  <p class="timer-date">June 8th, 2026 · 2:30 PM · Kuala Lumpur</p>
+</section>
+
+
+<!-- ─────────── KL ─────────── -->
+<section class="destination">
+  <div class="dest-number left">I</div>
+  <div class="dest-inner">
+
+    <div class="dest-tag reveal">Chapter One</div>
+    <h2 class="dest-title reveal">Kuala<br>Lumpur</h2>
+    <p class="dest-subtitle reveal">Three days to find each other again</p>
+
+    <p class="reveal" style="font-size:0.9rem; color:var(--smoke); line-height:1.85; max-width:560px; margin-bottom:2.5rem; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.1rem;">
+      After months apart, every sense comes alive at once — the humidity on your skin, the scent of street food, and her. The city becomes a backdrop for rediscovery.
+    </p>
+
+    <div class="activities-grid reveal">
+      <div class="activity-card">
+        <span class="card-icon">🤗</span>
+        <div class="card-title">The 33-Hour Hug</div>
+        <p class="card-desc">World record attempt or not — hold each other at the airport and don't let go. Let time dissolve. No words needed yet.</p>
+      </div>
+      <div class="activity-card">
+        <span class="card-icon">🌃</span>
+        <div class="card-title">City Wander</div>
+        <p class="card-desc">Get lost in KL's layered streets. Chinatown lanterns, street art, rooftop bars above the chaos. Hands intertwined the whole time.</p>
+      </div>
+      <div class="activity-card">
+        <span class="card-icon">🍜</span>
+        <div class="card-title">Eat Everything</div>
+        <p class="card-desc">Hawker stalls, roti canai at 2am, laksa on plastic stools. Feed each other bites, argue about favourites. Let the food be intimacy.</p>
+      </div>
+      <div class="activity-card">
+        <span class="card-icon">🛁</span>
+        <div class="card-title">Slow Mornings</div>
+        <p class="card-desc">Nowhere to be. Coffee in bed, sunlight through curtains, stories from the months apart. Let the pace be dictated by nothing but desire.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<div class="separator"><span class="separator-ornament">✦ ✦ ✦</span></div>
+
+
+<!-- ─────────── BALI ─────────── -->
+<section class="destination">
+  <div class="dest-number right">II</div>
+  <div class="dest-inner">
+
+    <div class="dest-tag reveal">Chapter Two</div>
+    <h2 class="dest-title reveal">Bali</h2>
+    <p class="dest-subtitle reveal">Seven days of depth, delight, and devotion</p>
+
+    <p class="reveal" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.05rem; color:var(--smoke); line-height:1.85; max-width:560px; margin-bottom:3rem;">
+      The island holds its own magic — rice terraces at dawn, incense smoke, the sound of the ocean never far away. Here you go deeper.
+    </p>
+
+    <!-- BLINDFOLD DAY -->
+    <div class="blindfold-section reveal">
+      <h3 class="blindfold-title">The Blindfold Day</h3>
+      <p class="blindfold-intro">
+        A full day surrendered to the other senses. Sight removed, everything else sharpens — touch, sound, scent, taste, presence. A tantric journey built in layers, each one asking more trust than the last.
+      </p>
+
+      <div class="journey-steps">
+        <div class="step">
+          <div class="step-num">I</div>
+          <div class="step-content">
+            <h4>Opening — Breathwork Together</h4>
+            <p>Begin seated, facing each other, blindfolds on. A shared breathwork practice to arrive — connected breathing, synchronising rhythms, dissolving the busyness of the mind. Let this be the threshold.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">II</div>
+          <div class="step-content">
+            <h4>Trust Walk — Leading Through Space</h4>
+            <p>One leads, one follows. Move through your space together — hands guiding, no words. Then swap. Feel how differently you navigate the world when you cannot see. This is the beginning of profound trust.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">III</div>
+          <div class="step-content">
+            <h4>Free Wander — Solitary Drift</h4>
+            <p>Each of you wanders alone in the same space, blindfolded. Feel the edges, the textures, the air. Occasionally you'll find each other — fingertips brushing, a quiet collision, a moment of recognition.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">IV</div>
+          <div class="step-content">
+            <h4>Blindfold Dance — Moving Without Watching</h4>
+            <p>Music on. Let your bodies move together without choreography, without self-consciousness. No one is watching. Feel where the music takes you, feel where she takes you.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">V</div>
+          <div class="step-content">
+            <h4>Sensory Feast — Feeding Each Other</h4>
+            <p>A spread of fruits, textures, flavours — mango, salt, honey, something unexpected. Take turns feeding each other, slowly. Each bite is offered with intention. Taste becomes the whole world.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">VI</div>
+          <div class="step-content">
+            <h4>Stillness — Time Apart, Together</h4>
+            <p>Each of you retreats into quiet. Meditation, journalling, simply lying down. The same space, two inner worlds. No agenda. Let whatever is present, be present.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">VII</div>
+          <div class="step-content">
+            <h4>Closing — Into Each Other</h4>
+            <p>The day has been building toward this. Fully present. Fully awake in the body. Blindfolds finally lifted or kept on — your choice. Explore each other with the devotion the day has cultivated.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLAYFUL DAY -->
+    <h3 class="reveal" style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.8rem,4vw,2.8rem); color:var(--warm-white); margin-top:4rem; margin-bottom:0.5rem;">The Playful Day</h3>
+    <p class="reveal" style="font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--clay); margin-bottom:0.5rem;">Because love that can't laugh together is only half-love.</p>
+
+    <div class="playful-grid reveal">
+      <div class="playful-item">
+        <span class="playful-emoji">🏖️</span>
+        <h4>Dig a Hole</h4>
+        <p>Find a beach. Dig an absolutely pointless, ambitious hole. Bury each other up to the neck. Take photos. Be children.</p>
+      </div>
+      <div class="playful-item">
+        <span class="playful-emoji">🤸</span>
+        <h4>Acro Together</h4>
+        <p>Your shared language. Build flows on the beach or in a park. Bird, stardust, whatever comes. The trust is already there.</p>
+      </div>
+      <div class="playful-item">
+        <span class="playful-emoji">💃</span>
+        <h4>Spontaneous Dance</h4>
+        <p>Put on a playlist and dance wherever you are — a market, a rice field, your kitchen. No stage needed.</p>
+      </div>
+      <div class="playful-item">
+        <span class="playful-emoji">🌊</span>
+        <h4>Ocean Play</h4>
+        <p>Waves, jumping, body surfing, pretending to be sea creatures. Laugh until your stomach hurts.</p>
+      </div>
+      <div class="playful-item">
+        <span class="playful-emoji">🎭</span>
+        <h4>Invent a Game</h4>
+        <p>Make up the rules as you go. Some kind of chase, a challenge, a dare. Whatever emerges from the mood.</p>
+      </div>
+      <div class="playful-item">
+        <span class="playful-emoji">🌅</span>
+        <h4>Sunset Ritual</h4>
+        <p>End each Bali day watching the sun go down. Pick a new spot each time. Mark the moment together.</p>
+      </div>
+    </div>
+
+    <!-- REST OF BALI -->
+    <div class="activities-grid reveal" style="margin-top: 3rem;">
+      <div class="activity-card">
+        <span class="card-icon">🧘</span>
+        <div class="card-title">Yoga for Two</div>
+        <p class="card-desc">Partner yoga at sunrise. Ubud's morning air, a shared mat, the kind of practice that becomes conversation.</p>
+      </div>
+      <div class="activity-card">
+        <span class="card-icon">🌿</span>
+        <div class="card-title">Rice Terrace Mornings</div>
+        <p class="card-desc">Tegallalang at first light before the crowds. Walk the paths. Let the green silence do its work.</p>
+      </div>
+      <div class="activity-card">
+        <span class="card-icon">🛕</span>
+        <div class="card-title">Temple Offerings</div>
+        <p class="card-desc">Tanah Lot at dusk. Uluwatu at sunset. Place an offering together. Bali asks for reverence — give it.</p>
+      </div>
+      <div class="activity-card">
+        <span class="card-icon">🔥</span>
+        <div class="card-title">Evening Fires</div>
+        <p class="card-desc">A warung, cold Bintang, candle between you. Conversations that stretch past midnight. The ones that matter.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<div class="separator"><span class="separator-ornament">✦ ✦ ✦</span></div>
+
+
+<!-- ─────────── SUMBA ─────────── -->
+<section class="sumba-section">
+  <div class="sumba-inner">
+
+    <div class="sumba-text reveal">
+      <div class="dest-tag">Maybe Chapter Three</div>
+      <h2 class="dest-title">Sumba</h2>
+      <p class="dest-subtitle">Wild, unhurried, unknown</p>
+      <p style="font-size:0.88rem; color:var(--smoke); line-height:1.85; margin-top:1.5rem;">
+        If Bali is magic, Sumba is myth. Rugged coastlines, megalithic villages, horses on open savannah, waves that feel discovered for the first time. Come here when you want the world to shrink to just the two of you and a horizon.
+      </p>
+      <p style="font-size:0.88rem; color:var(--smoke); line-height:1.85; margin-top:1rem;">
+        No schedule. No itinerary. Just arrive and see what the island offers.
+      </p>
+    </div>
+
+    <div class="sumba-promise reveal">
+      <p class="promise-title">What you carry into it</p>
+      <ul class="promise-list">
+        <li>The ease that comes after weeks together</li>
+        <li>Bodies that remember each other fully</li>
+        <li>The conversations that only come with time</li>
+        <li>An appetite for rawness and beauty</li>
+        <li>Nothing to prove, nowhere else to be</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ─────────── LOVE FOOTER ─────────── -->
+<section class="love-footer">
+  <p class="love-quote reveal">
+    "After months of distance, what you're really planning isn't a trip —<br>it's a homecoming."
+  </p>
+  <span class="big-heart reveal">🧡</span>
+  <p class="love-signature reveal">Flo & Maria — 2026</p>
+</section>
+
+
+<script>
+  // ── COUNTDOWN TIMER ──
+  // Target: June 8 2026, 14:30 local KL time (UTC+8)
+  const TARGET = new Date('2026-06-08T14:30:00+08:00').getTime();
+
+  const QUOTES = [
+    // 35+ days out
+    { minDays: 35, quotes: [
+      "Distance is just the universe's way of making the reunion sweeter.",
+      "Every sunrise is one less between you and her arms.",
+      "The heart keeps its own countdown — louder than any clock.",
+      "Missing someone is proof that something real is waiting.",
+      "Even the ocean between you is just water. You've crossed harder things.",
+    ]},
+    // 21-34 days
+    { minDays: 21, quotes: [
+      "Less than five weeks. The anticipation is already a kind of closeness.",
+      "This month still belongs to the waiting. The next one belongs to her.",
+      "Start packing your patience. The best things take time to arrive.",
+      "You can feel it now, can't you? The way time is bending toward June.",
+      "Twenty-something days. Count the sunsets — each one is a gift given back.",
+    ]},
+    // 14-20 days
+    { minDays: 14, quotes: [
+      "Two weeks. The light at the end of the distance is getting warmer.",
+      "She's thinking about this too. Right now, probably.",
+      "Two weeks from now you'll be laughing about something you can't predict yet.",
+      "The last stretch is always the longest. And always worth it.",
+      "Fourteen days. Start dreaming in detail.",
+    ]},
+    // 7-13 days
+    { minDays: 7, quotes: [
+      "One week. Your whole body knows something is coming.",
+      "Seven sunsets stand between you and her.",
+      "This time next week, the waiting will be a memory.",
+      "You're in the final week. Let that land.",
+      "The last seven days always feel both endless and instant.",
+    ]},
+    // 3-6 days
+    { minDays: 3, quotes: [
+      "Days, not weeks. The distance is almost done with you.",
+      "Pack slowly. Let your hands anticipate what they're about to hold.",
+      "She's so close now you can almost feel the humidity of the same city.",
+      "A few more sleeps. That's all.",
+      "The last few days before a reunion are sacred. Savour them.",
+    ]},
+    // 1-2 days
+    { minDays: 1, quotes: [
+      "Tomorrow. Everything changes tomorrow.",
+      "Sleep well tonight — tomorrow you wake up to the last day of distance.",
+      "One more sunrise to go. Just one.",
+      "The countdown is almost over. The love story is just beginning again.",
+    ]},
+    // <1 day / hours
+    { minDays: 0, quotes: [
+      "Today is the day. Today is actually the day.",
+      "Hours. She is hours away.",
+      "The last few hours of distance. Breathe through them.",
+      "By the time this day is done, you'll be holding her.",
+      "Whatever you're doing right now — you're doing it for the last time alone.",
+    ]},
+  ];
+
+  function getQuote(daysLeft) {
+    const tier = QUOTES.slice().reverse().find(t => daysLeft >= t.minDays) || QUOTES[QUOTES.length - 1];
+    const arr = tier.quotes;
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function pad(n) { return String(Math.max(0, n)).padStart(2, '0'); }
+
+  let lastQuote = '';
+  let prevDay = -1;
+
+  function tick() {
+    const now = Date.now();
+    const diff = TARGET - now;
+
+    if (diff <= 0) {
+      document.getElementById('countdownGrid').innerHTML =
+        '<p class="timer-arrived">She\'s here. ✦ This is it. 🧡</p>';
+      document.getElementById('timerQuote').textContent = 'The wait is over. Hold her tight.';
+      return;
+    }
+
+    const totalSecs = Math.floor(diff / 1000);
+    const days  = Math.floor(totalSecs / 86400);
+    const hours = Math.floor((totalSecs % 86400) / 3600);
+    const mins  = Math.floor((totalSecs % 3600) / 60);
+    const secs  = totalSecs % 60;
+
+    function setUnit(id, val) {
+      const el = document.getElementById(id);
+      if (el && el.textContent !== pad(val)) {
+        el.textContent = pad(val);
+        el.classList.remove('tick');
+        void el.offsetWidth; // reflow
+        el.classList.add('tick');
+      }
+    }
+
+    setUnit('cd-days',  days);
+    setUnit('cd-hours', hours);
+    setUnit('cd-mins',  mins);
+    setUnit('cd-secs',  secs);
+
+    // Rotate quote daily (or on first load)
+    const today = new Date().getDate();
+    if (today !== prevDay) {
+      prevDay = today;
+      const q = getQuote(days);
+      const quoteEl = document.getElementById('timerQuote');
+      if (q !== lastQuote) {
+        quoteEl.classList.add('fading');
+        setTimeout(() => {
+          quoteEl.textContent = '\u201C' + q + '\u201D';
+          quoteEl.classList.remove('fading');
+          lastQuote = q;
+        }, 700);
+      }
+    }
+  }
+
+  tick();
+  setInterval(tick, 1000);
+
+  // ── SCROLL REVEAL ──
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>

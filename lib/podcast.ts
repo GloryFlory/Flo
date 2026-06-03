@@ -9,6 +9,7 @@ export interface PodcastEpisode {
   audioUrl: string;
   image: string;
   episodeNumber?: number;
+  seasonNumber?: number;
   duration?: string;
   spotifyUrl?: string;
   appleUrl?: string;
@@ -19,6 +20,7 @@ const parser = new Parser({
   customFields: {
     item: [
       ['itunes:episode', 'episodeNumber'],
+      ['itunes:season', 'seasonNumber'],
       ['itunes:duration', 'duration'],
       ['itunes:image', 'itunesImage'],
       ['itunes:summary', 'summary'],
@@ -74,7 +76,12 @@ export async function getAllEpisodes(): Promise<PodcastEpisode[]> {
     const feed = await parser.parseURL(RSS_URL);
     
     return feed.items.map((item: any) => {
-      const episodeNumber = item.episodeNumber || extractEpisodeNumber(item.title || '');
+      const episodeNumber = item.episodeNumber
+        ? parseInt(String(item.episodeNumber), 10)
+        : extractEpisodeNumber(item.title || '');
+      const seasonNumber = item.seasonNumber
+        ? parseInt(String(item.seasonNumber), 10)
+        : undefined;
       // Prefer the rich HTML content over plain text
       const description = item.content || item.summary || item.contentSnippet || '';
       const shortDescription = createShortDescription(item.contentSnippet || item.content || item.summary || '');
@@ -93,6 +100,7 @@ export async function getAllEpisodes(): Promise<PodcastEpisode[]> {
         audioUrl: audioUrl,
         image: image,
         episodeNumber: episodeNumber,
+        seasonNumber: seasonNumber,
         duration: item.duration,
         spotifyUrl: extractSpotifyUrl(item.link || ''),
         appleUrl: APPLE_PODCAST_BASE,
