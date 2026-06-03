@@ -24,6 +24,12 @@ export default function ParallaxHero({ children }: { children: ReactNode }) {
         className="absolute inset-0 w-full h-[115%] object-cover object-top opacity-60 pointer-events-none"
         style={{ y, zIndex: 0 }}
       />
+      {/* Slow drifting gradient wash — adds life behind the hero without distraction */}
+      <div
+        aria-hidden
+        className="hero-drift absolute inset-0 pointer-events-none mix-blend-soft-light opacity-70"
+        style={{ zIndex: 1 }}
+      />
       {children}
     </section>
   );

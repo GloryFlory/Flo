@@ -55,25 +55,25 @@ export default function Header() {
             <nav className="flex space-x-10">
               <a 
                 href={getUrl('/')} 
-                className="text-ink hover:text-brand transition-colors font-medium text-lg"
+                className="link-underline text-ink hover:text-brand transition-colors font-medium text-lg"
               >
                 {t('home')}
               </a>
               <a 
                 href={getUrl('/podcast')} 
-                className="text-ink hover:text-brand transition-colors font-medium text-lg"
+                className="link-underline text-ink hover:text-brand transition-colors font-medium text-lg"
               >
                 {t('podcast')}
               </a>
               <a 
                 href={getUrl('/retreat')} 
-                className="text-ink hover:text-brand transition-colors font-medium text-lg"
+                className="link-underline text-ink hover:text-brand transition-colors font-medium text-lg"
               >
                 {t('retreat')}
               </a>
               <a 
                 href={getUrl('/about')} 
-                className="text-ink hover:text-brand transition-colors font-medium text-lg"
+                className="link-underline text-ink hover:text-brand transition-colors font-medium text-lg"
               >
                 {t('about')}
               </a>

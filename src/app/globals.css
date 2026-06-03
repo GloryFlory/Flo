@@ -50,3 +50,100 @@ body {
 .btn-dark { @apply bg-ink text-white hover:bg-ink/90; }
 .card { @apply bg-white rounded-2xl shadow-lg p-6; }
 .badge { @apply inline-block text-xs px-3 py-1 rounded-full bg-brand/10 text-brand; }
+
+/* === Micro-interactions ============================================== */
+
+/* Brand buttons: subtle lift on hover, soft press on click. Scoped to
+   <a>/<button> so badges/pills with .bg-brand aren't affected. */
+a.bg-brand,
+button.bg-brand {
+  transition: background-color 200ms ease, transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 200ms ease;
+  will-change: transform;
+}
+a.bg-brand:hover,
+button.bg-brand:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px -10px rgba(54, 138, 138, 0.45);
+}
+a.bg-brand:active,
+button.bg-brand:active {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 80ms;
+}
+
+/* Inline arrows that slide on parent hover. Use:
+     <a>… <span class="arrow">→</span></a> */
+.arrow {
+  display: inline-block;
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+a:hover > .arrow,
+button:hover > .arrow,
+*:hover > .arrow {
+  transform: translateX(4px);
+}
+
+/* Animated underline sweep for inline text links. Use:
+     <a class="link-underline">Read more</a> */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.bg-brand,
+  button.bg-brand,
+  .arrow,
+  .link-underline::after {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* === Hero background drift ============================================ */
+/* Two radial colour blobs slowly orbit, creating a living gradient wash
+   behind the parallax photo. mix-blend-soft-light keeps it subtle. */
+.hero-drift {
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 30%, rgba(54, 138, 138, 0.55), transparent 60%),
+    radial-gradient(ellipse 55% 45% at 80% 70%, rgba(244, 114, 182, 0.45), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 50% 90%, rgba(251, 191, 36, 0.35), transparent 65%);
+  background-size: 200% 200%, 200% 200%, 200% 200%;
+  animation: heroDrift 22s ease-in-out infinite alternate;
+  filter: blur(40px);
+}
+
+@keyframes heroDrift {
+  0% {
+    background-position: 0% 0%, 100% 100%, 50% 100%;
+  }
+  50% {
+    background-position: 30% 20%, 70% 80%, 60% 60%;
+  }
+  100% {
+    background-position: 60% 40%, 40% 60%, 30% 80%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-drift {
+    animation: none;
+  }
+}

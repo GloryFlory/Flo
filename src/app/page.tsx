@@ -178,7 +178,7 @@ export default function HomePage() {
             href="/retreat"
             className="inline-block bg-brand text-white font-bold rounded px-6 sm:px-8 py-3 text-sm sm:text-base shadow hover:bg-brand/90 transition"
           >
-            Stay in the loop &rarr;
+            Stay in the loop <span className="arrow">&rarr;</span>
           </a>
         </AnimatedSection>
       </section>

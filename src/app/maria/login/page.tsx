@@ -3,6 +3,7 @@
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import PawPrint from '../../../components/PawPrint';
 
 export default function MariaLoginPage() {
   const [password, setPassword] = useState('');
@@ -37,7 +38,7 @@ export default function MariaLoginPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
       >
-        <div className="mb-8 text-4xl">🌸</div>
+        <PawPrint />
         <h1 className="text-white text-2xl font-light tracking-widest uppercase mb-2">
           For Maria
         </h1>

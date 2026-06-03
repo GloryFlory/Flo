@@ -234,7 +234,7 @@ export default async function EpisodeDetailPage({ params }: PageProps) {
                   href="/de/podcast" 
                   className="text-brand hover:text-brand/80 font-medium"
                 >
-                  {t('viewAllEpisodes')} →
+                  {t('viewAllEpisodes')} <span className="arrow">→</span>
                 </Link>
               </div>
               

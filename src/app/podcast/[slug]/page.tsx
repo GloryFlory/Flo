@@ -277,7 +277,7 @@ export default async function EpisodeDetailPage({ params }: PageProps) {
                 href="/podcast" 
                 className="text-brand hover:text-brand/80 font-medium"
               >
-                View All Episodes →
+                View All Episodes <span className="arrow">→</span>
               </Link>
             </div>
             

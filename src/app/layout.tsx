@@ -1,6 +1,8 @@
 import './globals.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import PageTransition from '../components/PageTransition';
+import Analytics from '../components/Analytics';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -109,8 +111,9 @@ export default function RootLayout({
       </head>
       <body>
         <Header />
-        {children}
+        <PageTransition>{children}</PageTransition>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

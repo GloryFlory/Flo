@@ -107,11 +107,6 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/behind-the-episode" className="text-white/80 hover:text-white transition-colors">
-                  {t('behindTheEpisode')}
-                </a>
-              </li>
-              <li>
                 <a href="/retreat" className="text-white/80 hover:text-white transition-colors">
                   {t('retreat')}
                 </a>

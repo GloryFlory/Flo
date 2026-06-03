@@ -27,7 +27,7 @@ export default function BehindTheEpisodePage() {
                 href="/podcast"
                 className="inline-block mt-6 bg-brand text-white font-bold rounded px-6 py-2.5 text-sm shadow hover:bg-brand/90 transition"
               >
-                Listen to the podcast &rarr;
+                Listen to the podcast <span className="arrow">&rarr;</span>
               </a>
             </div>
           ) : (

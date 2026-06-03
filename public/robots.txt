@@ -3,14 +3,18 @@ Allow: /
 
 # Allow crawling of important pages
 Allow: /podcast
-Allow: /coaching
 Allow: /about
 Allow: /podcast/*
 
-# Block any admin or private areas (if they exist)
+# Block any admin or private areas
 Disallow: /api/
 Disallow: /_next/
 Disallow: /admin/
+Disallow: /maria/
+Disallow: /coaching
+Disallow: /programs/
+Disallow: /de/coaching
+Disallow: /de/programs/
 
 # Sitemap location
 Sitemap: https://florianhohenleitner.com/sitemap.xml

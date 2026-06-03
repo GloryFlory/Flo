@@ -11,8 +11,8 @@ interface PodcastEpisodeCardProps {
 
 export default function PodcastEpisodeCard({ episode, isFeatured = false, locale = 'en' }: PodcastEpisodeCardProps) {
   const cardClasses = isFeatured 
-    ? "bg-gradient-to-br from-brand/10 via-white to-accent/10 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border-2 border-brand/30 ring-2 ring-brand/20"
-    : "bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300";
+    ? "group/card bg-gradient-to-br from-brand/10 via-white to-accent/10 rounded-xl shadow-lg overflow-hidden border-2 border-brand/30 ring-2 ring-brand/20 transition-[transform,box-shadow,border-color] duration-500 ease-out hover:-translate-y-1 hover:shadow-2xl hover:border-brand/50"
+    : "group/card bg-white rounded-xl shadow-md overflow-hidden transition-[transform,box-shadow] duration-500 ease-out hover:-translate-y-1 hover:shadow-2xl";
 
   const imageSize = isFeatured ? "w-32 h-32 sm:w-40 sm:h-40" : "w-24 h-24 sm:w-32 sm:h-32";
   const titleClasses = isFeatured 
@@ -48,13 +48,13 @@ export default function PodcastEpisodeCard({ episode, isFeatured = false, locale
               alt={episode.title}
               width={isFeatured ? 160 : 128}
               height={isFeatured ? 160 : 128}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-[1.06]"
             />
           </Link>
 
           {/* Episode Content */}
           <div className="flex-1 min-w-0">
-            <Link href={episodeUrl} className="block group">
+            <Link href={episodeUrl} className="block group/title">
               {/* Episode Number & Date - Mobile Optimized */}
               <div className="mb-3">
                 {/* Desktop: Show episode number inline with date */}
@@ -90,7 +90,7 @@ export default function PodcastEpisodeCard({ episode, isFeatured = false, locale
               </div>
 
               {/* Title */}
-              <h3 className={titleClasses}>
+              <h3 className={`${titleClasses} transition-colors duration-300 group-hover/title:text-brand`}>
                 {episode.title}
               </h3>
 

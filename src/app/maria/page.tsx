@@ -141,7 +141,7 @@ export default function MariaPage() {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group block bg-white/5 hover:bg-white/8 border border-white/8 hover:border-white/20 rounded-2xl p-6 transition-all duration-500"
+                    className="group/card block bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-rose-300/30 rounded-2xl p-6 transition-[background-color,border-color,transform,box-shadow] duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_20px_60px_-15px_rgba(244,114,182,0.25)]"
                   >
                     <SurpriseCard item={item} linked />
                   </a>
@@ -217,9 +217,9 @@ function SurpriseCard({ item, linked }: { item: typeof surprises[0]; linked: boo
   return (
     <div>
       <div className="flex items-center gap-2 mb-1">
-        <h3 className="text-white font-light text-lg">{item.title}</h3>
+        <h3 className="text-white font-light text-lg transition-colors duration-300 group-hover/card:text-rose-200">{item.title}</h3>
         {linked && (
-          <span className="text-white/30 text-xs tracking-widest group-hover:text-white/60 transition-colors">↗</span>
+          <span className="text-white/30 text-xs tracking-widest transition-all duration-300 group-hover/card:text-rose-300/80 group-hover/card:translate-x-0.5 inline-block">↗</span>
         )}
       </div>
       <p className="text-white/40 text-sm leading-relaxed">{item.description}</p>
