@@ -18,14 +18,14 @@ export default function Header() {
         podcast: 'Podcast',
         behindTheEpisode: 'Behind the Episode',
         retreat: 'Retreat',
-        about: 'About',
+        about: 'My story',
       },
       de: {
         home: 'Startseite',
         podcast: 'Podcast',
         behindTheEpisode: 'Hinter der Episode',
         retreat: 'Retreat',
-        about: 'Über mich',
+        about: 'Meine Geschichte',
       }
     };
     

@@ -4,7 +4,6 @@ import HeroContent from '../components/HeroContent';
 import AnimatedSection from '../components/AnimatedSection';
 import AnimatedOnLoad from '../components/AnimatedOnLoad';
 import ParallaxHero from '../components/ParallaxHero';
-import ProjectCards from '../components/ProjectCards';
 
 const episodes = [
   {
@@ -181,18 +180,6 @@ export default function HomePage() {
             Stay in the loop <span className="arrow">&rarr;</span>
           </a>
         </AnimatedSection>
-      </section>
-
-      {/* Projects Section */}
-      <section className="section py-16 sm:py-20 bg-gradient-to-br from-brand/5 to-accent/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8">
-          <AnimatedSection>
-            <h2 className="text-4xl sm:text-5xl font-heading font-bold mb-12 sm:mb-16 text-center text-ink">
-              Projects
-            </h2>
-          </AnimatedSection>
-          <ProjectCards />
-        </div>
       </section>
 
       {/* Newsletter Section */}

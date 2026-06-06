@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import ProjectCards from '../../components/ProjectCards';
 
 export const metadata: Metadata = {
   title: 'Florian Hohenleitner — About',
@@ -71,6 +72,17 @@ export default function About() {
                 And because I love experimenting, I&apos;ve dipped my toes into climbing, padel, improv comedy, Acroyoga, and more &mdash; embracing the idea of being a curious jack of all trades.
               </p>
             </div>
+          </div>
+
+          {/* Things I'm building */}
+          <div className="mb-8">
+            <h2 className="text-3xl font-heading font-bold mb-3 text-ink text-center">
+              Other things I&apos;m building
+            </h2>
+            <p className="text-ink/70 text-center max-w-2xl mx-auto mb-10">
+              A few projects that take up my time when I&apos;m not recording or facilitating.
+            </p>
+            <ProjectCards />
           </div>
         </div>
       </section>

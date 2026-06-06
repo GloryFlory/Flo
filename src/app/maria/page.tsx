@@ -22,6 +22,7 @@ const memories = [
   { date: 'March 2024', title: 'Koh Phangan', description: 'Three weeks of fiery, open, unrestrained love.' },
   { date: 'March 2024', title: 'Zouk Island & Samma Karuna', description: 'A week at the Zouk Island Festival, followed by a Tantra retreat at Samma Karuna. We went deeper into each other than ever.' },
   { date: 'March 2024', title: 'The board game era (brief)', description: 'Our first and last serious board game session. From then on: Monopoly Deal only.' },
+  { date: 'April 1, 2024', title: 'Stay Fit and Sexy Challenge', description: 'Born on April Fool\'s — but very much not a joke. Daily videos to each other ever since: workouts on your end, occasional shower clips on mine.' },
   { date: 'September 2024', title: 'Cinque Terre & Summerdream 2', description: 'You worked remotely to make it happen. A trip through Cinque Terre, a hotel with mirrors on the ceiling, and a fest we couldn\'t resist sneaking off from.' },
   { date: 'September 2024', title: 'Bologna', description: 'A very sexy hotel room. The perfect ending to that trip.' },
   { date: 'October 2024', title: 'The first MAC', description: 'We hosted it together. The dream became real.' },
