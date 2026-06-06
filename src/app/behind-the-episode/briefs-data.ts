@@ -50,6 +50,7 @@ export interface Episode {
   spotifyUrl?: string;
   youtubeUrl?: string;
   podcastSlugs?: string[]; // slugs from the RSS feed (e.g. 'episode-10-...')
+  primaryBriefSlug?: string; // if set, link directly to this brief page
   briefs: BriefTab[];
 }
 
@@ -60,6 +61,7 @@ export const episodes: Episode[] = [
     description: 'A deep, honest conversation with Danny about getting sober, what alcohol really does, and what comes after.',
     spotifyUrl: 'https://open.spotify.com/episode/3uGG5mCKcgCCx4ksDJTkss',
     youtubeUrl: 'https://www.youtube.com/watch?v=X08GuDSp2Kk&t=16s',
+    primaryBriefSlug: 'danny-live-guide',
     podcastSlugs: [
       'episode-11-the-person-youre-still-becoming-danny-rahim-on-purpose-growth-sobriety',
     ],
@@ -123,6 +125,11 @@ export function findEpisodeForPodcast(podcast: { slug?: string; spotifyUrl?: str
     return episodes.find((ep) => ep.podcastSlugs?.includes(podcast.slug!));
   }
   return undefined;
+}
+
+export function getEpisodeBriefHref(ep: Episode): string {
+  if (ep.primaryBriefSlug) return `/behind-the-episode/${ep.primaryBriefSlug}`;
+  return `/behind-the-episode/episode/${ep.slug}`;
 }
 
 // Human-readable display list (kept for the individual-brief flow)

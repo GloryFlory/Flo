@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { PodcastEpisode, formatDate, formatDuration } from '../lib/podcast';
-import { findEpisodeForPodcast } from '../src/app/behind-the-episode/briefs-data';
+import { findEpisodeForPodcast, getEpisodeBriefHref } from '../src/app/behind-the-episode/briefs-data';
 
 interface PodcastEpisodeCardProps {
   episode: PodcastEpisode;
@@ -116,7 +116,7 @@ export default function PodcastEpisodeCard({ episode, isFeatured = false, locale
 
                 {briefEpisode && (
                   <Link
-                    href={`/behind-the-episode/episode/${briefEpisode.slug}`}
+                    href={getEpisodeBriefHref(briefEpisode)}
                     title={briefEpisode.briefs.length > 1 ? `${briefEpisode.briefs.length} briefs` : 'Behind the episode'}
                     className="inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium border border-brand/20 text-brand/80 hover:bg-brand/5 hover:border-brand/40 hover:text-brand transition-colors"
                   >

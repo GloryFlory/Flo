@@ -30,7 +30,17 @@ const parser = new Parser({
 
 const RSS_URL = 'https://anchor.fm/s/100089160/podcast/rss';
 const APPLE_PODCAST_BASE = 'https://podcasts.apple.com/us/podcast/grow-with-the-flo/id1795716394';
+const APPLE_LOOKUP_URL = 'https://itunes.apple.com/lookup?id=1795716394&entity=podcastEpisode&limit=200';
 const SPOTIFY_SHOW_BASE = 'https://podcasters.spotify.com/pod/show/growwiththeflo';
+
+type AppleLookupCache = {
+  byGuid: Map<string, string>;
+  byTitle: Map<string, string>;
+  fetchedAt: number;
+};
+
+let appleLookupCache: AppleLookupCache | null = null;
+const APPLE_LOOKUP_TTL_MS = 1000 * 60 * 60; // 1 hour
 
 function createSlug(title: string, episodeNumber?: number): string {
   const cleanTitle = title
@@ -71,9 +81,59 @@ function extractSpotifyUrl(link: string): string {
   return SPOTIFY_SHOW_BASE;
 }
 
+function normalizeGuid(value: string): string {
+  return value.trim().toLowerCase();
+}
+
+function normalizeTitle(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+async function getAppleEpisodeUrlMaps(): Promise<{ byGuid: Map<string, string>; byTitle: Map<string, string> }> {
+  const now = Date.now();
+  if (appleLookupCache && now - appleLookupCache.fetchedAt < APPLE_LOOKUP_TTL_MS) {
+    return { byGuid: appleLookupCache.byGuid, byTitle: appleLookupCache.byTitle };
+  }
+
+  try {
+    const res = await fetch(APPLE_LOOKUP_URL, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`Apple lookup failed: ${res.status}`);
+
+    const data = await res.json() as { results?: any[] };
+    const byGuid = new Map<string, string>();
+    const byTitle = new Map<string, string>();
+
+    for (const row of data.results || []) {
+      if (row?.kind !== 'podcast-episode') continue;
+      const url = typeof row.trackViewUrl === 'string' ? row.trackViewUrl : '';
+      if (!url) continue;
+
+      if (typeof row.episodeGuid === 'string' && row.episodeGuid.trim()) {
+        byGuid.set(normalizeGuid(row.episodeGuid), url);
+      }
+      if (typeof row.trackName === 'string' && row.trackName.trim()) {
+        byTitle.set(normalizeTitle(row.trackName), url);
+      }
+    }
+
+    appleLookupCache = { byGuid, byTitle, fetchedAt: now };
+    return { byGuid, byTitle };
+  } catch (error) {
+    console.warn('Apple episode lookup failed; falling back to show URL', error);
+    return { byGuid: new Map<string, string>(), byTitle: new Map<string, string>() };
+  }
+}
+
 export async function getAllEpisodes(): Promise<PodcastEpisode[]> {
   try {
-    const feed = await parser.parseURL(RSS_URL);
+    const [feed, appleMaps] = await Promise.all([
+      parser.parseURL(RSS_URL),
+      getAppleEpisodeUrlMaps(),
+    ]);
     
     return feed.items.map((item: any) => {
       const episodeNumber = item.episodeNumber
@@ -91,6 +151,11 @@ export async function getAllEpisodes(): Promise<PodcastEpisode[]> {
                    feed.image?.url || 
                    'https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/42855288/42855288-1755784487029-9d8f60e49ea79.jpg';
 
+      const guid = String(item.guid || item.link || '');
+      const appleUrl = appleMaps.byGuid.get(normalizeGuid(guid))
+        || appleMaps.byTitle.get(normalizeTitle(item.title || ''))
+        || APPLE_PODCAST_BASE;
+
       return {
         slug: createSlug(item.title || '', episodeNumber),
         title: item.title || '',
@@ -103,8 +168,8 @@ export async function getAllEpisodes(): Promise<PodcastEpisode[]> {
         seasonNumber: seasonNumber,
         duration: item.duration,
         spotifyUrl: extractSpotifyUrl(item.link || ''),
-        appleUrl: APPLE_PODCAST_BASE,
-        guid: item.guid || item.link || '',
+        appleUrl,
+        guid,
       };
     }).sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
   } catch (error) {

@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getAllEpisodes, getEpisodeBySlug, formatDate, formatDuration, formatShowNotes } from '../../../../lib/podcast';
-import { findEpisodeForPodcast } from '../../behind-the-episode/briefs-data';
+import { findEpisodeForPodcast, getEpisodeBriefHref } from '../../behind-the-episode/briefs-data';
 import { Metadata } from 'next';
 
 interface PageProps {
@@ -189,7 +189,7 @@ export default async function EpisodeDetailPage({ params }: PageProps) {
 
                       {briefEpisode && (
                         <Link
-                          href={`/behind-the-episode/episode/${briefEpisode.slug}`}
+                          href={getEpisodeBriefHref(briefEpisode)}
                           title={briefEpisode.briefs.length > 1 ? `${briefEpisode.briefs.length} briefs` : 'Behind the episode'}
                           className="inline-flex items-center gap-2 px-4 h-12 rounded-lg text-sm font-medium border-2 border-brand/20 text-brand hover:bg-brand/5 hover:border-brand/40 transition-colors"
                         >
