@@ -18,17 +18,17 @@ export const briefRegistry: Record<string, BriefMeta> = {
   'danny-live-guide': {
     title: 'Behind the Episode — Danny Rahim: Live Guide',
     description: 'The live guide for the Danny Rahim episode. Conversation flow, key topics, and what to draw out.',
-    episodeUrl: 'https://open.spotify.com/episode/3uGG5mCKcgCCx4ksDJTkss',
+    episodeUrl: 'https://www.youtube.com/watch?v=X08GuDSp2Kk&t=16s',
   },
   'danny-alcohol-stats': {
     title: 'Behind the Episode — Alcohol: The Numbers',
     description: 'Key statistics on alcohol, mental health, the UK economy, and the ADHD connection — context for the Danny Rahim episode.',
-    episodeUrl: 'https://open.spotify.com/episode/3uGG5mCKcgCCx4ksDJTkss',
+    episodeUrl: 'https://www.youtube.com/watch?v=X08GuDSp2Kk&t=16s',
   },
   'danny-stats': {
     title: 'Behind the Episode — The Numbers Behind the Story',
     description: 'Stats to ground the Danny Rahim conversation — not to lecture with. Use them as context, not content.',
-    episodeUrl: 'https://open.spotify.com/episode/3uGG5mCKcgCCx4ksDJTkss',
+    episodeUrl: 'https://www.youtube.com/watch?v=X08GuDSp2Kk&t=16s',
   },
   'daniel-wang': {
     title: 'Behind the Episode — Daniel Wang',
@@ -59,6 +59,7 @@ export const episodes: Episode[] = [
     title: 'Danny Rahim — On Sobriety, Identity & ADHD',
     description: 'A deep, honest conversation with Danny about getting sober, what alcohol really does, and what comes after.',
     spotifyUrl: 'https://open.spotify.com/episode/3uGG5mCKcgCCx4ksDJTkss',
+    youtubeUrl: 'https://www.youtube.com/watch?v=X08GuDSp2Kk&t=16s',
     podcastSlugs: [
       'episode-11-the-person-youre-still-becoming-danny-rahim-on-purpose-growth-sobriety',
     ],
@@ -142,18 +143,18 @@ export const briefList = [
     slug: 'danny-live-guide',
     title: 'Danny Rahim — Live Guide',
     description: 'The live guide for the Danny Rahim episode.',
-    episodeUrl: 'https://open.spotify.com/episode/3uGG5mCKcgCCx4ksDJTkss',
+    episodeUrl: 'https://www.youtube.com/watch?v=X08GuDSp2Kk&t=16s',
   },
   {
     slug: 'danny-alcohol-stats',
     title: 'Alcohol — The Numbers (Danny Rahim)',
     description: 'Key statistics on alcohol, mental health, and the ADHD connection.',
-    episodeUrl: 'https://open.spotify.com/episode/3uGG5mCKcgCCx4ksDJTkss',
+    episodeUrl: 'https://www.youtube.com/watch?v=X08GuDSp2Kk&t=16s',
   },
   {
     slug: 'danny-stats',
     title: 'The Numbers Behind the Story (Danny Rahim)',
     description: 'Stats to ground the Danny Rahim conversation — not to lecture with.',
-    episodeUrl: 'https://open.spotify.com/episode/3uGG5mCKcgCCx4ksDJTkss',
+    episodeUrl: 'https://www.youtube.com/watch?v=X08GuDSp2Kk&t=16s',
   },
 ];

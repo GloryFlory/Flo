@@ -38,10 +38,10 @@ export default async function EpisodePage({ params }: Props) {
         <div className="max-w-3xl mx-auto px-4 sm:px-8">
           {/* Header */}
           <a
-            href="/behind-the-episode"
+            href="/podcast"
             className="inline-block text-sm text-ink/60 hover:text-ink mb-6"
           >
-            ← All episodes
+            ← Back to podcast
           </a>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-4 text-ink">
             {ep.title}
