@@ -59,6 +59,9 @@ export const episodes: Episode[] = [
     title: 'Danny Rahim — On Sobriety, Identity & ADHD',
     description: 'A deep, honest conversation with Danny about getting sober, what alcohol really does, and what comes after.',
     spotifyUrl: 'https://open.spotify.com/episode/3uGG5mCKcgCCx4ksDJTkss',
+    podcastSlugs: [
+      'episode-11-the-person-youre-still-becoming-danny-rahim-on-purpose-growth-sobriety',
+    ],
     briefs: [
       { slug: 'danny-live-guide', label: 'Live Guide' },
       { slug: 'danny-alcohol-stats', label: 'Alcohol — The Numbers' },
