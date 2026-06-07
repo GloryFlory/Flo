@@ -399,6 +399,35 @@ body {
   color: var(--ink);
   font-weight: 500;
 }
+.deep-dive-link {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(58,154,150,0.35);
+  background: rgba(58,154,150,0.08);
+}
+.deep-dive-link:hover {
+  background: rgba(58,154,150,0.14);
+}
+.inline-seo-link {
+  color: var(--teal);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(58,154,150,0.45);
+  text-underline-offset: 2px;
+}
+.inline-seo-link:hover {
+  text-decoration-color: var(--teal);
+}
 
 /* ── DIVIDER ── */
 .divider {
@@ -478,6 +507,32 @@ footer {
   color: rgba(255,255,255,0.25);
   letter-spacing: 0.04em;
 }
+.footer-links-group { display: grid; gap: 8px; }
+.footer-links-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  font-weight: 600;
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.footer-links a {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.88);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.footer-links a:hover { background: rgba(255,255,255,0.1); }
 
 /* ANIMATIONS */
 @keyframes fadeUp {
@@ -652,6 +707,16 @@ footer {
         Danny shared the story of a close friend — publicly — who had just reached 100 days of sobriety after a difficult separation. <strong>"He won't see it now because he's in it."</strong> But Danny sees it. A transformation born from adversity, happening in real time. He shared it not to illustrate sobriety, but to show what adversity to advantage looks like from the outside — and how sometimes the people around us can see our growth before we can.
       </div>
     </div>
+
+    <div class="theme-block">
+      <div class="theme-block-title">
+        <div class="theme-block-icon" style="background:#E8F5F0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3A9A96" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="3"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        The triangle of support
+      </div>
+      <div class="theme-block-text">
+        A practical insight from the transcript: Danny's family stopped treating care as a one-person burden and built a clear support triangle around his mother. He handles clinicians and financial structure, one sister anchors day-to-day home support, and the other covers logistics like transport and appointments. The shift reduced guilt, reduced burnout, and increased consistency. The key idea: <strong>accept what you cannot switch off, then distribute support so no one collapses under it.</strong>
+      </div>
+    </div>
   </div>
 
   <div class="divider"></div>
@@ -693,6 +758,16 @@ footer {
       </div>
       <div class="theme-block-text">
         The US contract that ended his corporate coaching chapter led directly to the creation of the Elev8 Human Performance app. <strong>"I don't want an intermediary between me and the individual."</strong> When organizations constrained what he could say, he felt the misalignment between what he knew was needed and what he was permitted to deliver. The app removes that constraint entirely — direct to the person, with complete autonomy over the content.
+      </div>
+    </div>
+
+    <div class="theme-block">
+      <div class="theme-block-title">
+        <div class="theme-block-icon" style="background:#FDF2E0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22"/><path d="M17 5H9a4 4 0 0 0 0 8h6a4 4 0 0 1 0 8H7"/></svg></div>
+        Redefining success (without demonizing money)
+      </div>
+      <div class="theme-block-text">
+        One nuanced point you both landed on: this is not anti-money. It's anti-misalignment. Danny described repeatedly stepping into high-income environments, learning from them, then stepping out when values and purpose diverged. That distinction matters for listeners with real responsibilities. The question isn't "money or meaning". The question is whether your current path is funding your life while also preserving your identity.
       </div>
     </div>
   </div>
@@ -744,7 +819,7 @@ footer {
       <span class="section-tag-label" style="color:#5BB5B0;">Sober 365</span>
     </div>
     <h2 class="section-title">34 days in. Already asking if he'll ever drink again.</h2>
-    <p class="section-intro">Danny's sobriety journey began on his 40th birthday — a deliberate choice, grounded in congruence. He coaches people through sobriety. He sat in an AA meeting with a client. And then he'd go out and binge drink. The misalignment became impossible to ignore.</p>
+    <p class="section-intro">Danny's sobriety journey began on his 40th birthday — a deliberate choice, grounded in congruence. He coaches people through sobriety. He sat in an AA meeting with a client. And then he'd go out and binge drink. The misalignment became impossible to ignore. He is also documenting this work through his <a class="inline-seo-link" href="https://www.dannyrahimcoaching.com/sober-365" target="_blank" rel="noopener noreferrer">Sober 365 program</a>.</p>
 
     <div class="quote">
       <div class="quote-mark">"</div>
@@ -769,6 +844,17 @@ footer {
       </div>
       <div class="theme-block-text">
         One of the sharpest observations in the episode — raised by Flo — about how social circles can enable vices not out of malice, but out of shared identity. <strong>"How many of us have carried a hangover like a trophy into the office?"</strong> When one person stops drinking, it holds up a mirror to everyone else. Some friends shift. Some quietly stop calling. And that, Danny said, tells you something worth knowing.
+      </div>
+    </div>
+
+    <div class="theme-block">
+      <div class="theme-block-title">
+        <div class="theme-block-icon" style="background:#FDEEEE;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C25A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86l-8.2 14.2A2 2 0 0 0 3.82 21h16.36a2 2 0 0 0 1.73-2.94l-8.2-14.2a2 2 0 0 0-3.42 0z"/></svg></div>
+        Alcohol risk: normalized, but not harmless
+      </div>
+      <div class="theme-block-text">
+        A key thread from your conversation was simple but hard to ignore: alcohol is culturally normal, yet the downstream harm is massive. Danny called out that in major harm analyses, alcohol ranks as the most harmful drug overall when you include impact on other people, not just the individual. That reframes sobriety from a personal preference into a health and responsibility decision.
+        <a class="deep-dive-link" href="/behind-the-episode/danny-alcohol-stats" target="_blank" rel="noopener noreferrer">See full alcohol risk stats →</a>
       </div>
     </div>
   </div>
@@ -800,6 +886,17 @@ footer {
       </div>
     </div>
 
+    <div class="theme-block">
+      <div class="theme-block-title">
+        <div class="theme-block-icon" style="background:#E8F0FA;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A7EB8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-6"/></svg></div>
+        Relationship clarity framework
+      </div>
+      <div class="theme-block-text">
+        A strong practical model from your exchange: every relationship contains three journeys — <strong>my path, your path, and our shared path</strong>. Friction rises when one grows and the other resists, but that friction can still become useful data. Before dramatic decisions, you framed a better first move: treat conflict as a learning window, not a courtroom. Start with facts, language, and values, then evaluate alignment.
+        <a class="deep-dive-link" href="/behind-the-episode/danny-stats" target="_blank" rel="noopener noreferrer">See broader context notes →</a>
+      </div>
+    </div>
+
     <div class="quote sage">
       <div class="quote-mark">"</div>
       <p class="quote-text">She said "Congratulations." I said "What?" She said — it takes incredible courage to choose yourself. And I was like: wow. It completely changed my mindset into the situation.</p>
@@ -825,8 +922,20 @@ footer {
 <footer>
   <div class="footer-brand">Grow with the <strong>Flo</strong></div>
   <div class="footer-note">Episode companion · Danny Rahim · Elev8 Human Performance</div>
-  <div class="footer-note">
-    Connect with Danny: <a href="https://dannyrahimcoaching.com/" target="_blank" rel="noopener noreferrer" style="color: rgba(255,255,255,0.6);">dannyrahimcoaching.com</a> · <a href="https://www.instagram.com/dannyrahimcoaching/" target="_blank" rel="noopener noreferrer" style="color: rgba(255,255,255,0.6);">@dannyrahimcoaching</a>
+  <div class="footer-links-group">
+    <div class="footer-links-label">More from Danny</div>
+    <div class="footer-links">
+      <a href="https://dannyrahimcoaching.com/" target="_blank" rel="noopener noreferrer">Website</a>
+      <a href="https://www.instagram.com/dannyrahimcoaching/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+  </div>
+  <div class="footer-links-group">
+    <div class="footer-links-label">Explore further</div>
+    <div class="footer-links">
+      <a href="https://www.dannyrahimcoaching.com/sober-365" target="_blank" rel="noopener noreferrer">Sober 365</a>
+      <a href="https://www.dannyrahimcoaching.com/1-1-coaching" target="_blank" rel="noopener noreferrer">1:1 Coaching</a>
+      <a href="https://www.dannyrahimcoaching.com/programmes" target="_blank" rel="noopener noreferrer">Programmes</a>
+    </div>
   </div>
 </footer>
 

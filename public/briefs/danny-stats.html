@@ -270,6 +270,38 @@
     color: var(--ink-light);
     line-height: 1.7;
   }
+  .footer-links-group {
+    margin-top: 10px;
+    display: grid;
+    gap: 8px;
+  }
+  .footer-links-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    font-weight: 600;
+  }
+  .danny-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .danny-links a {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border: 1px solid var(--plum);
+    border-radius: 999px;
+    background: var(--plum-light);
+    color: var(--plum);
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+  }
+  .danny-links a:hover { background: #e9def2; }
 
   @media (max-width: 660px) {
     header { padding: 36px 20px 30px; }
@@ -543,7 +575,22 @@
 <footer>
   Sources: Mental Health UK Burnout Report 2025 · MHFA England 2024 · NHS England · Priory Group 2025 · Alcohol Change UK · Mental Health Foundation · MYNDUP Mental Health Report 2023 · British Journal of General Practice · Phillippa Lally / UCL habit formation study · PubMed / ScienceDirect ADHD & AUD studies 2021 · IE University behavioural science review 2025<br><br>
   Prepared for Grow with the Flo — Danny Rahim episode. Reference use only.<br><br>
-  Connect with Danny: <a href="https://dannyrahimcoaching.com/" target="_blank" rel="noopener noreferrer">dannyrahimcoaching.com</a> · <a href="https://www.instagram.com/dannyrahimcoaching/" target="_blank" rel="noopener noreferrer">@dannyrahimcoaching</a>
+  <div class="footer-links-group">
+    <div class="footer-links-label">More from Danny</div>
+    <div class="danny-links">
+      <a href="https://dannyrahimcoaching.com/" target="_blank" rel="noopener noreferrer">Website</a>
+      <a href="https://www.instagram.com/dannyrahimcoaching/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+  </div>
+  <div class="footer-links-group">
+    <div class="footer-links-label">Explore further</div>
+    <div class="danny-links">
+      <a href="https://www.dannyrahimcoaching.com/sober-365" target="_blank" rel="noopener noreferrer">Sober 365</a>
+      <a href="https://www.dannyrahimcoaching.com/1-1-coaching" target="_blank" rel="noopener noreferrer">1:1 Coaching</a>
+      <a href="https://www.dannyrahimcoaching.com/programmes" target="_blank" rel="noopener noreferrer">Programmes</a>
+      <a href="https://www.dannyrahimcoaching.com/testimonials" target="_blank" rel="noopener noreferrer">Testimonials</a>
+    </div>
+  </div>
 </footer>
 
 </body>
