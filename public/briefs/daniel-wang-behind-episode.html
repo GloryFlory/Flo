@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Behind the Episode — Daniel Wang | Grow with the Flo</title>
+  <meta name="description" content="He lost his wife. This is what came after. Daniel Wang on grief, love, addiction and finding your way back."/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:       #FFFFFF;
+      --bg:          #FAFAF8;
+      --bg-warm:     #F5F2EC;
+      --border:      #E8E3DB;
+      --border-soft: #EEE9E0;
+      --text:        #1A1A18;
+      --text-mid:    #5A564F;
+      --text-light:  #9A9488;
+      --teal:        #3AAFA9;
+      --teal-light:  #EAF6F5;
+      --teal-mid:    #2D9992;
+      --sage:        #7DAF8C;
+      --sage-light:  #EFF5F1;
+      --gold:        #B8822E;
+      --gold-light:  #FBF5EA;
+      --gold-border: #E8D4A8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* — NAV — */
+    nav {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo img {
+      height: 32px;
+      display: block;
+    }
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .nav-logo-text span { color: var(--teal); }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--text-mid);
+      text-decoration: none;
+    }
+    .nav-links a:hover { color: var(--teal); }
+
+    /* — EYEBROW BAND — */
+    .eyebrow-band {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 48px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .eyebrow-band span {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+    .eyebrow-band .dot {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--text-light);
+    }
+    .eyebrow-band .highlight { color: var(--teal); }
+
+    /* — HERO — */
+    .hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 80px 48px 64px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 24px;
+      display: block;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 600;
+      line-height: 1.14;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--teal);
+    }
+    .hero-guest {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      margin-bottom: 36px;
+    }
+    .hero-guest strong { color: var(--text); font-weight: 600; }
+    .hero-intro {
+      font-size: 1.08rem;
+      line-height: 1.78;
+      color: var(--text-mid);
+      max-width: 620px;
+      margin: 0 auto 48px;
+    }
+
+    /* — SECTION NAV — */
+    .section-nav {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .section-nav::-webkit-scrollbar { display: none; }
+    .section-nav a {
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      color: var(--text-mid);
+      padding: 14px 24px;
+      white-space: nowrap;
+      border-right: 1px solid var(--border);
+      transition: all 0.15s;
+    }
+    .section-nav a:hover { color: var(--teal); background: var(--teal-light); }
+
+    /* — LAYOUT — */
+    .page-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    /* — SECTION — */
+    .section {
+      padding: 72px 0 56px;
+      border-top: 1px solid var(--border);
+    }
+    .section:first-child { border-top: none; }
+
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.3rem);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+    .section-title em { font-style: italic; color: var(--teal); }
+    .section-body {
+      font-size: 1rem;
+      line-height: 1.82;
+      color: var(--text-mid);
+    }
+    .section-body p + p { margin-top: 18px; }
+
+    /* — ACTS — */
+    .act {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 32px 36px;
+      margin-top: 24px;
+    }
+    .act-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .act-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+    .act-body {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    /* — PULL QUOTE — */
+    .pull-quote {
+      margin: 48px 0;
+      padding: 36px 44px;
+      border-left: 3px solid var(--teal);
+      background: var(--teal-light);
+    }
+    .pull-quote p {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .pull-quote cite {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      font-style: normal;
+    }
+
+    /* — SHERRY BLOCK — */
+    .sherry-block {
+      margin: 40px 0;
+      background: var(--gold-light);
+      border: 1px solid var(--gold-border);
+      padding: 44px 48px;
+      position: relative;
+    }
+    .sherry-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), #D4A855, var(--gold));
+    }
+    .sherry-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .sherry-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.85rem);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 24px;
+      line-height: 1.25;
+    }
+    .sherry-title em { font-style: italic; color: var(--gold); }
+    .sherry-body {
+      font-size: 0.97rem;
+      color: var(--text-mid);
+      line-height: 1.82;
+    }
+    .sherry-body p + p { margin-top: 16px; }
+    .sherry-qualities {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .sherry-q {
+      background: var(--white);
+      border: 1px solid var(--gold-border);
+      padding: 20px 24px;
+    }
+    .sherry-q-word {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.98rem;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .sherry-q-note {
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      line-height: 1.55;
+    }
+    .sherry-dedication {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--gold-border);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+
+    /* — INSIGHT CARDS — */
+    .insight {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 32px 36px;
+      margin-top: 24px;
+    }
+    .insight-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+    .insight-body {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.72;
+    }
+
+    /* — STATS ROW — */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin: 40px 0;
+    }
+    .stat-cell {
+      background: var(--white);
+      padding: 32px 28px;
+    }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--teal);
+      display: block;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+
+    /* — CLOSING WISDOM — */
+    .closing-block {
+      background: var(--bg-warm);
+      border: 1px solid var(--border);
+      padding: 48px 52px;
+      margin-top: 24px;
+    }
+    .closing-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .closing-body {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      font-style: italic;
+      line-height: 1.65;
+      color: var(--text);
+      white-space: pre-line;
+    }
+    .closing-attr {
+      margin-top: 20px;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      font-family: 'Jost', sans-serif;
+      font-style: normal;
+    }
+
+    /* — SIGNOFF — */
+    .signoff-band {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      padding: 48px 48px;
+      text-align: center;
+      margin-top: 64px;
+    }
+    .signoff-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .signoff-brand span { color: var(--teal); }
+    .signoff-tagline {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      margin-bottom: 28px;
+    }
+    .signoff-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.98rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .signoff-for {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--gold);
+    }
+
+    /* — GUEST + LINKS — */
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 48px;
+      padding: 56px 48px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .footer-col h4 {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 16px;
+    }
+    .footer-col p {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 0.88rem;
+      color: var(--teal);
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+    .footer-col a:hover { color: var(--teal-mid); }
+
+    /* — FOOTER BAR — */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    footer span {
+      font-size: 0.75rem;
+      color: var(--text-light);
+    }
+
+    /* — RESPONSIVE — */
+    @media (max-width: 680px) {
+      nav, .eyebrow-band, footer { padding-left: 20px; padding-right: 20px; }
+      .hero, .page-body { padding-left: 20px; padding-right: 20px; }
+      .hero { padding-top: 48px; }
+      .sherry-block, .closing-block { padding: 28px 24px; }
+      .sherry-qualities { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: 1fr; }
+      .pull-quote { padding: 24px 24px; }
+      .act, .insight { padding: 24px 24px; }
+      .footer-grid { grid-template-columns: 1fr; padding: 40px 20px; gap: 32px; }
+      .signoff-band { padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo-text" href="https://www.florianhohenleitner.com/">Grow with the <span>Flo</span></a>
+  <ul class="nav-links">
+    <li><a href="https://www.florianhohenleitner.com/">Home</a></li>
+    <li><a href="https://www.florianhohenleitner.com/podcast">Podcast</a></li>
+    <li><a href="https://www.florianhohenleitner.com/retreat">Retreat</a></li>
+    <li><a href="https://www.florianhohenleitner.com/about">My story</a></li>
+  </ul>
+</nav>
+
+<!-- EYEBROW -->
+<div class="eyebrow-band">
+  <span>Grow with the Flo</span>
+  <div class="dot"></div>
+  <span>Behind the Episode</span>
+  <div class="dot"></div>
+  <span class="highlight">A conversation about grief, love &amp; what it means to really live</span>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <span class="hero-eyebrow">Behind the Episode</span>
+  <h1 class="hero-title">There Was More Life in<br/><em>Those Five Years</em></h1>
+  <p class="hero-guest">with <strong>Daniel Wang</strong> — Husband, traveller &amp; member of The Men's Circle</p>
+  <p class="hero-intro">He found me on a plane over the Gulf of Thailand. We were strangers. Within an hour, we weren't. Daniel lost his wife Sherry to cancer three years ago. What followed was grief, depression, and addiction. What turned it was a dream — Sherry, calm and happy, asking one question: <em>"Are you looking after yourself?"</em></p>
+</header>
+
+<!-- SECTION NAV -->
+<nav class="section-nav" aria-label="Jump to section">
+  <a href="#story">His story</a>
+  <a href="#sherry">About Sherry</a>
+  <a href="#grief">Grief &amp; darkness</a>
+  <a href="#turn">The turn</a>
+  <a href="#recovery">What recovery looked like</a>
+  <a href="#closing">Closing wisdom</a>
+</nav>
+
+<!-- BODY -->
+<main class="page-body">
+
+  <!-- HIS STORY -->
+  <section class="section" id="story">
+    <span class="section-label">His story</span>
+    <h2 class="section-title">A man who had everything — and then watched it leave slowly.</h2>
+    <div class="section-body">
+      <p>Daniel Wang met Sherry on a group hike in his twenties. Three of his friends had already tried and failed to get her number. He walked up wearing five-toe shoes, being a goofball, not trying to impress anyone. She thought he was weird. He thought she was strange. Two hours later they were talking under a full moon with the Golden Gate Bridge in the background and neither of them wanted to leave.</p>
+      <p>They married in May 2017. One year later, Daniel found a lump during a shower. Within weeks they had a diagnosis: stage 3, possibly stage 4, breast cancer.</p>
+    </div>
+
+    <div class="act">
+      <span class="act-label">Act 01</span>
+      <p class="act-title">The diagnosis — and the decision not to go straight to chemo</p>
+      <p class="act-body">Rather than accept the oncologist's immediate recommendation, Daniel and Sherry flew to Hawaii to think. Sherry was a pharmacist — she understood medicine, and understood that treatment often addresses symptoms rather than root cause. They reached out to every friend in the medical field they had. They wanted to know: what do we actually have control over here? What they landed on was Gerson therapy — an intensive two-year holistic protocol involving cold-pressed juices eight times daily, a strict organic vegan diet, and coffee enemas. They used their wedding gift money to buy a $2,000 commercial juicer.</p>
+    </div>
+
+    <div class="act">
+      <span class="act-label">Act 02</span>
+      <p class="act-title">Living anyway — road trips, kayaks, and a camper van through the national parks</p>
+      <p class="act-body">Most Gerson patients stay home. Daniel and Sherry refused. They converted a van, got a trailer, loaded in the juicer, and drove from San Francisco to Montana and back — stopping wherever they wanted, inflating a kayak whenever they found water, bringing their dog Aura. At one point they're juicing on the side of a Nevada highway, Sherry's father holding a camping table steady next to an open bonnet, an inverter converting the engine battery to run the press. You can laugh at it now, Daniel says. At the time, it was just fire.</p>
+    </div>
+
+    <div class="act">
+      <span class="act-label">Act 03</span>
+      <p class="act-title">The final week — and the moment of letting go</p>
+      <p class="act-body">In her last days, Sherry was in a wheelchair, on pain medication, barely able to hold her toothbrush. Daniel had moved them to an Airbnb in Palo Alto — near a rose garden, with spare rooms for the friends and family who flew in from Thailand and Taiwan to be near her. He made protein ice cubes shaped like hearts — the only thing she could still eat. He says he panicked toward the end; he felt the mission slipping. He'd been so certain she'd recover. Late one night, checking on her, he realised she wasn't breathing. He asked someone else to confirm it. He wasn't ready. He says he was nowhere near ready.</p>
+    </div>
+
+    <div class="pull-quote">
+      <p>"Before the diagnosis, we felt invincible. Like we were just taking on the world together. And then all of a sudden — whoa. What is this?"</p>
+      <cite>— Daniel Wang</cite>
+    </div>
+  </section>
+
+  <!-- ABOUT SHERRY -->
+  <section class="section" id="sherry">
+    <span class="section-label">About Sherry</span>
+    <h2 class="section-title">She was his compass. She still is.</h2>
+    <div class="section-body">
+      <p>Sherry outlived her prognosis by three years. The doctors said two years, maybe less. She lived for nearly five after the diagnosis. And she didn't just survive those years — she enrolled at City College, joined the women's tennis team, took Spanish classes, learned flower arranging, and performed in two dance recitals on stage. When she could no longer play tennis herself, she showed up to cheer her teammates anyway.</p>
+    </div>
+
+    <div class="sherry-block">
+      <span class="sherry-label">In memory of</span>
+      <h3 class="sherry-title">Sherry Lee Wang<br/><em>— bountiful sunshine, always</em></h3>
+      <div class="sherry-body">
+        <p>She honeymooned in the Danakil Depression — the hottest inhabited place on earth — because it looked like another planet and they wanted to see it. She went to Ethiopian food on a first date and ate with her hands without hesitating. She had a closet floor to ceiling with costumes: pirate festivals, parrot festivals, Dickens fairs. She wore joy like it was the only outfit that fit.</p>
+        <p>When Daniel talked about her in this conversation, he kept pausing — not because he was sad, but because the feelings were so layered he needed a moment to locate the right ones. Sadness and joy at the same time, he said. Gratefulness and grief together, inseparable.</p>
+        <p>Her growth, he says, hasn't stopped. It continues in him. She appears sometimes as a dragonfly that lingers a little longer than it should. He notices. He thinks: <em>yeah, that's probably her.</em></p>
+      </div>
+      <div class="sherry-qualities">
+        <div class="sherry-q">
+          <span class="sherry-q-word">Adventurous</span>
+          <span class="sherry-q-note">She had an endless supply of sunshine. You gravitated toward it without trying.</span>
+        </div>
+        <div class="sherry-q">
+          <span class="sherry-q-word">Generous</span>
+          <span class="sherry-q-note">When she saw the empty closet in Daniel's dream, her first thought was how good her clothes must look on their friends.</span>
+        </div>
+        <div class="sherry-q">
+          <span class="sherry-q-word">Present</span>
+          <span class="sherry-q-note">After the diagnosis, she lived on fast forward — not from fear, but from love of being alive right now.</span>
+        </div>
+        <div class="sherry-q">
+          <span class="sherry-q-word">Steady</span>
+          <span class="sherry-q-note">Even when she could no longer play, she showed up to the tennis courts to cheer her teammates from the sideline.</span>
+        </div>
+      </div>
+      <p class="sherry-dedication">for Sherry</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-cell">
+        <span class="stat-number">5</span>
+        <span class="stat-label">Years Sherry lived after a stage 3–4 diagnosis — three more than the doctors predicted</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-number">8×</span>
+        <span class="stat-label">Cold-pressed juices per day during Gerson therapy, for two full years</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-number">2</span>
+        <span class="stat-label">Dance performances Sherry completed on stage during her illness — she had two left feet until she didn't</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRIEF & DARKNESS -->
+  <section class="section" id="grief">
+    <span class="section-label">Grief &amp; darkness</span>
+    <h2 class="section-title">Not grief as a concept.<br/>Grief as a <em>beast</em>.</h2>
+    <div class="section-body">
+      <p>Daniel understood what grief was before it happened to him. He didn't understand what it would actually feel like — the way it removes appetite, drains colour, and leaves you alive but somehow not living. He calls it a wandering soul. Just floating. Without direction or purpose.</p>
+      <p>Friends were reaching out. A therapist called every few days, then every week. Everyone offered help. He couldn't accept it. He wasn't ready.</p>
+    </div>
+
+    <div class="insight">
+      <p class="insight-title">Anticipatory grief — mourning someone while they're still alive</p>
+      <p class="insight-body">The grief didn't start when Sherry passed. It started the day of the diagnosis. Daniel spent years carrying that weight — the what-ifs, the why-us, the quiet fear — mostly alone, mostly inside. As a man, he didn't feel like vulnerability was available to him. Showing grief felt like failing at the job of support. So he suppressed it. He says now: he needed to cry. He didn't allow it. He knows better now.</p>
+    </div>
+
+    <div class="insight">
+      <p class="insight-title">What the addiction was actually filling</p>
+      <p class="insight-body">Late nights, alcohol, pornography. Daniel names them plainly — no performance, no shame spiral, just honesty about what they were: escape. The apartment was quiet. The lights were off. No one was there. The drinking wasn't about pleasure. It was about making the silence bearable. "I was drinking by myself. There was no one to tell me — hey, maybe this is enough." So he kept going. And it became a cycle.</p>
+    </div>
+
+    <div class="pull-quote">
+      <p>"A chunk of me was just cut out. And I didn't know who I was anymore. For the longest time, my mission was to support her. And then that mission was gone."</p>
+      <cite>— Daniel Wang</cite>
+    </div>
+  </section>
+
+  <!-- THE TURN -->
+  <section class="section" id="turn">
+    <span class="section-label">The turn</span>
+    <h2 class="section-title">She came back in a dream.<br/><em>And she asked one question.</em></h2>
+    <div class="section-body">
+      <p>Sherry walked into their apartment. Into the bedroom, into the closet — the one that used to be floor-to-ceiling with costumes and colour and her whole world, now mostly empty. Her jaw dropped. Then she smiled. "That dress probably looks really good on our friend," she said.</p>
+      <p>Then she looked at Daniel and asked: <em>"Are you looking after yourself?"</em></p>
+      <p>That was it. That was the whole thing.</p>
+    </div>
+
+    <div class="act">
+      <span class="act-label">What it broke open</span>
+      <p class="act-title">"Holy shit. I'm throwing my life away."</p>
+      <p class="act-body">The dream didn't arrive with an answer. It arrived with a mirror. Daniel saw clearly — suddenly, completely — that everything he and Sherry had worked for, all the fight and the fire and the five years, was supposed to feed his life too. Not just hers. He'd been letting it rot. The help that had been offered to him for months — the therapist, the friends, the community — he was finally willing to receive it. Not because things got better, but because he chose to open the door.</p>
+    </div>
+
+    <div class="pull-quote">
+      <p>"She came into my dream to save me. And that's when I was willing to receive help. It was offered to me — I just wasn't ready to take it until then."</p>
+      <cite>— Daniel Wang</cite>
+    </div>
+  </section>
+
+  <!-- RECOVERY -->
+  <section class="section" id="recovery">
+    <span class="section-label">What recovery looked like</span>
+    <h2 class="section-title">Not a moment. A series of small returns.</h2>
+    <div class="section-body">
+      <p>Daniel didn't recover in a single arc. He recovered in pieces — through community, through Sherry's world, through the act of choosing to show up for things that had nothing to do with grief.</p>
+    </div>
+
+    <div class="insight">
+      <p class="insight-title">He joined her classes</p>
+      <p class="insight-body">Flower arranging. Tennis. Dance — with two left feet, by his own admission. He walked into Sherry's dance community, met her teacher Paula, met her teammates, and let them carry him for a while. He met Coach Mary, who pulled strings to have a water fountain installed on the tennis court with a plaque in Sherry's memory. He was there when it was unveiled.</p>
+    </div>
+
+    <div class="insight">
+      <p class="insight-title">He found a men's circle</p>
+      <p class="insight-body">TMC — The Men's Circle — gave Daniel what he hadn't been able to find elsewhere: a container where it was safe to feel things and say them out loud without being told that wasn't appropriate. Men from different ages, backgrounds, walks of life. All in the same room, willing to be honest. "Just not feeling like I was going through all of this alone," he says. That was the whole point. That was the gift.</p>
+    </div>
+
+    <div class="insight">
+      <p class="insight-title">He let the grief be nonlinear</p>
+      <p class="insight-body">The thing about grieving, Daniel says, is that it's never fully over. Sometimes a wave just crashes in from nowhere and you're in deep sadness again with no warning. Other times you remember why you're still here. He's stopped trying to find the clean arc. He breathes. He meditates — not as a solution to any specific problem, but as a lifestyle that puts him in a better position to handle whatever comes. He describes it as becoming a "vigilant mouse" — stepping outside the moment just enough to choose how to respond.</p>
+    </div>
+
+    <div class="pull-quote">
+      <p>"Her growth hasn't ended. It still continues — in me. She's still my compass. She always will be."</p>
+      <cite>— Daniel Wang</cite>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="section" id="closing">
+    <span class="section-label">Closing wisdom</span>
+    <h2 class="section-title">The GwtF closing question.<br/>Daniel's answer.</h2>
+    <div class="section-body">
+      <p>He thought about it for a moment. Then he said:</p>
+    </div>
+
+    <div class="closing-block">
+      <span class="closing-label">Daniel Wang · Grow with the Flo</span>
+      <p class="closing-body">"If you're open to it, there are so many opportunities in the world.
+
+Life's too short to dwell in sadness all the time.
+
+It has its place, don't get me wrong. But keep living. Stay open. Let people find you on planes. You never know where the conversation goes."</p>
+      <p class="closing-attr">— Daniel Wang, closing the conversation</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- SIGNOFF -->
+<div class="signoff-band">
+  <p class="signoff-brand">Grow with the <span>Flo</span></p>
+  <p class="signoff-tagline">Episode companion · Daniel Wang</p>
+  <p class="signoff-quote">"Follow your intuition. Do everything with love.<br/>And just see where it takes you."</p>
+  <p class="signoff-for">for Sherry</p>
+</div>
+
+<!-- FOOTER GRID -->
+<div class="footer-grid">
+  <div class="footer-col">
+    <h4>Daniel Wang</h4>
+    <p>No platform, no product. He came because the story needed to exist outside of him. That's the only reason this episode exists.</p>
+    <a href="https://www.instagram.com/weeinspire/" target="_blank">@weeinspire on Instagram →</a>
+  </div>
+  <div class="footer-col">
+    <h4>Listen to the episode</h4>
+    <a href="https://open.spotify.com/show/3vRG8eplIkpnBBAUPpih2N" target="_blank">Spotify</a>
+    <a href="https://podcasts.apple.com/us/podcast/grow-with-the-flo/id1795716394" target="_blank">Apple Podcasts</a>
+    <a href="https://www.youtube.com/watch?v=jIG0lskGV6s" target="_blank">YouTube</a>
+  </div>
+  <div class="footer-col">
+    <h4>Grow with the Flo</h4>
+    <p>Real conversations about grief, identity, connection, and what it means to live a life that actually feels like yours.</p>
+    <a href="https://www.instagram.com/grow.with_the.flo/" target="_blank">Instagram</a>
+    <a href="mailto:growwiththeflo.podcast@gmail.com">growwiththeflo.podcast@gmail.com</a>
+  </div>
+</div>
+
+<!-- FOOTER BAR -->
+<footer>
+  <span>© 2026 Florian Hohenleitner. All rights reserved.</span>
+  <span>Grow with the Flo</span>
+</footer>
+
+</body>
+</html>

@@ -178,7 +178,7 @@ export default async function EpisodeDetailPage({ params }: PageProps) {
                         </a>
                       )}
                       <a
-                        href="https://www.youtube.com/@GrowWithTheFloPodcast"
+                        href={briefEpisode?.youtubeUrl ?? 'https://www.youtube.com/@GrowWithTheFloPodcast'}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center justify-center bg-white border-2 border-gray-200 p-3 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm"
