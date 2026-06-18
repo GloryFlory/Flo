@@ -81,6 +81,7 @@ export const episodes: Episode[] = [
     title: 'The Hội An Chapter — Four Months In',
     description: 'A solo reflection from Vietnam. What I found, what I built, the routine that helped, the performance trap, and three poems.',
     spotifyUrl: 'https://open.spotify.com/episode/5Kd0gEXtM2uVZo7dLhlr86',
+    podcastSlugs: ['episode-12-falling-in-love-with-my-life-again-reflections-from-hoi-an'],
     briefs: [
       { slug: 'hoian-q1', label: 'The Brief' },
     ],
@@ -102,6 +103,7 @@ export const episodes: Episode[] = [
     description: 'A chance meeting on a plane became a conversation about love, loss, and the woman who lived more fully in five years than most do in a lifetime.',
     spotifyUrl: 'https://open.spotify.com/episode/6m8izN3cwkGhf43joVxEt5',
     youtubeUrl: 'https://www.youtube.com/watch?v=jIG0lskGV6s',
+    podcastSlugs: ['episode-13-there-was-more-life-in-those-five-years-daniel-wang-on-love-loss-living-fully'],
     briefs: [
       { slug: 'daniel-wang-behind-episode', label: 'Behind the Episode' },
       { slug: 'daniel-wang', label: 'Original Brief' },
