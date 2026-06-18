@@ -4,12 +4,12 @@ import { useState } from 'react';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLocale } from '../../lib/i18n/hooks';
 
-type TranslationKey = 'home' | 'podcast' | 'behindTheEpisode' | 'retreat' | 'about';
+type TranslationKey = 'home' | 'podcast' | 'behindTheEpisode' | 'retreat' | 'about' | 'work';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { currentLocale } = useLocale();
-  
+
   // Translation helper function
   const t = (key: TranslationKey) => {
     const translations: Record<string, Record<TranslationKey, string>> = {
@@ -19,6 +19,7 @@ export default function Header() {
         behindTheEpisode: 'Behind the Episode',
         retreat: 'Retreat',
         about: 'My story',
+        work: 'Work with me',
       },
       de: {
         home: 'Startseite',
@@ -26,9 +27,10 @@ export default function Header() {
         behindTheEpisode: 'Hinter der Episode',
         retreat: 'Retreat',
         about: 'Meine Geschichte',
+        work: 'Zusammenarbeiten',
       }
     };
-    
+
     return translations[currentLocale]?.[key] || translations.en[key] || key;
   };
 
@@ -65,14 +67,20 @@ export default function Header() {
               >
                 {t('podcast')}
               </a>
-              <a 
-                href={getUrl('/retreat')} 
+              <a
+                href={getUrl('/retreat')}
                 className="link-underline text-ink hover:text-brand transition-colors font-medium text-lg"
               >
                 {t('retreat')}
               </a>
-              <a 
-                href={getUrl('/about')} 
+              <a
+                href="/work"
+                className="link-underline text-ink hover:text-brand transition-colors font-medium text-lg"
+              >
+                {t('work')}
+              </a>
+              <a
+                href={getUrl('/about')}
                 className="link-underline text-ink hover:text-brand transition-colors font-medium text-lg"
               >
                 {t('about')}
@@ -115,15 +123,22 @@ export default function Header() {
               >
                 {t('podcast')}
               </a>
-              <a 
-                href={getUrl('/retreat')} 
+              <a
+                href={getUrl('/retreat')}
                 className="text-ink hover:text-brand transition-colors font-medium py-2 text-lg"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('retreat')}
               </a>
-              <a 
-                href={getUrl('/about')} 
+              <a
+                href="/work"
+                className="text-ink hover:text-brand transition-colors font-medium py-2 text-lg"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {t('work')}
+              </a>
+              <a
+                href={getUrl('/about')}
                 className="text-ink hover:text-brand transition-colors font-medium py-2 text-lg"
                 onClick={() => setIsMenuOpen(false)}
               >

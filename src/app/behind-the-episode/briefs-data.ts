@@ -30,15 +30,15 @@ export const briefRegistry: Record<string, BriefMeta> = {
     description: 'Stats to ground the Danny Rahim conversation — not to lecture with. Use them as context, not content.',
     episodeUrl: 'https://www.youtube.com/watch?v=X08GuDSp2Kk&t=16s',
   },
-  ‘daniel-wang’: {
-    title: ‘Behind the Episode — Daniel Wang’,
-    description: ‘A reflection on recording with Daniel Wang in Hội An — and on Sherry, the love that doesn’t end.’,
-    episodeUrl: ‘https://open.spotify.com/episode/6m8izN3cwkGhf43joVxEt5’,
+  'daniel-wang': {
+    title: 'Behind the Episode — Daniel Wang',
+    description: "A reflection on recording with Daniel Wang in Hội An — and on Sherry, the love that doesn't end.",
+    episodeUrl: 'https://open.spotify.com/episode/6m8izN3cwkGhf43joVxEt5',
   },
-  ‘daniel-wang-behind-episode’: {
-    title: ‘Behind the Episode — There Was More Life in Those Five Years’,
-    description: ‘He lost his wife. This is what came after. Daniel Wang on grief, love, addiction and finding your way back.’,
-    episodeUrl: ‘https://www.youtube.com/watch?v=jIG0lskGV6s’,
+  'daniel-wang-behind-episode': {
+    title: 'Behind the Episode — There Was More Life in Those Five Years',
+    description: 'He lost his wife. This is what came after. Daniel Wang on grief, love, addiction and finding your way back.',
+    episodeUrl: 'https://www.youtube.com/watch?v=jIG0lskGV6s',
   },
 };
 

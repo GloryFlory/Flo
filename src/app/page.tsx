@@ -182,6 +182,52 @@ export default function HomePage() {
         </AnimatedSection>
       </section>
 
+      {/* Work / Build section */}
+      <section className="section py-16 sm:py-20 bg-sand">
+        <AnimatedSection className="max-w-4xl mx-auto px-4 sm:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <div>
+              <p className="text-xs font-semibold tracking-[0.22em] uppercase text-brand mb-4">
+                Web, Brand & Tools
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-5 text-ink leading-tight">
+                I also build for<br className="hidden sm:block" /> retreat organizers.
+              </h2>
+              <p className="text-ink/70 leading-relaxed mb-4">
+                Websites, event scheduling tools, brand identities, custom booking flows. One person — design, code, and copy — so nothing gets lost between three different freelancers.
+              </p>
+              <p className="text-ink/70 leading-relaxed mb-8">
+                I organize events myself. I know what breaks at 11pm before day one.
+              </p>
+              <a
+                href="/work"
+                className="inline-block bg-brand text-white font-bold rounded px-6 py-3 text-sm shadow hover:bg-brand/90 transition"
+              >
+                See the work <span className="arrow">&rarr;</span>
+              </a>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { label: 'Retreat Website', price: '€1,200+', note: 'Design, build, copy in 2–3 weeks' },
+                { label: 'Event Scheduling', price: '€800+', note: 'Custom tools, Stripe integration' },
+                { label: 'Brand Identity', price: '€600+', note: 'Logo, palette, guide' },
+                { label: 'Custom Tools', price: 'Scoped', note: 'Intakes, portals, dashboards' },
+              ].map((item) => (
+                <a
+                  key={item.label}
+                  href="/work"
+                  className="bg-white border border-ink/8 rounded-lg p-4 hover:border-brand/30 hover:shadow-sm transition-all group"
+                >
+                  <p className="text-[10px] font-semibold tracking-widest uppercase text-ink/40 mb-2">{item.label}</p>
+                  <p className="font-heading font-bold text-xl text-ink mb-1 group-hover:text-brand transition-colors">{item.price}</p>
+                  <p className="text-xs text-ink/50 leading-snug">{item.note}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        </AnimatedSection>
+      </section>
+
       {/* Newsletter Section */}
       <section className="section py-16 sm:py-24 bg-sand">
         <AnimatedSection className="max-w-7xl mx-auto px-4 sm:px-8 text-center">
