@@ -1,32 +1,8 @@
-import EpisodeCard from '../components/EpisodeCard';
 import MailingListForm from '../components/MailingListForm';
 import HeroContent from '../components/HeroContent';
 import AnimatedSection from '../components/AnimatedSection';
 import AnimatedOnLoad from '../components/AnimatedOnLoad';
 import ParallaxHero from '../components/ParallaxHero';
-
-const episodes = [
-  {
-    title: 'Finding Your Flow',
-    blurb: 'Discover how to unlock your potential and live with purpose.',
-    link: 'https://anchor.fm/s/100089160/podcast/rss',
-  },
-  {
-    title: 'Mindset Matters',
-    blurb: 'How to cultivate a growth mindset for lasting change.',
-    link: 'https://anchor.fm/s/100089160/podcast/rss',
-  },
-  {
-    title: 'Resilience & Recovery',
-    blurb: 'Bounce back from setbacks and thrive in adversity.',
-    link: 'https://anchor.fm/s/100089160/podcast/rss',
-  },
-  {
-    title: 'Coaching for Creatives',
-    blurb: 'Tools and stories for creative professionals.',
-    link: 'https://anchor.fm/s/100089160/podcast/rss',
-  },
-];
 
 export default function HomePage() {
   // Structured data for SEO
@@ -161,27 +137,6 @@ export default function HomePage() {
         </AnimatedOnLoad>
       </div>
 
-      {/* Retreat Teaser Section */}
-      <section className="section py-16 sm:py-20 bg-white">
-        <AnimatedSection className="max-w-3xl mx-auto px-4 sm:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-6 text-ink">
-            Something is coming.
-          </h2>
-          <p className="text-ink/80 text-base sm:text-lg leading-relaxed mb-4">
-            I've spent years organising festivals, conventions, and gatherings — and I've been quietly building toward something more intentional. A connection retreat. Grounded in movement, breathwork, and the kind of space where real human connection actually happens.
-          </p>
-          <p className="text-ink/80 text-base sm:text-lg leading-relaxed mb-8">
-            It's not ready yet. But if it sounds like your kind of thing, get on the list and you'll be the first to know.
-          </p>
-          <a
-            href="/retreat"
-            className="inline-block bg-brand text-white font-bold rounded px-6 sm:px-8 py-3 text-sm sm:text-base shadow hover:bg-brand/90 transition"
-          >
-            Stay in the loop <span className="arrow">&rarr;</span>
-          </a>
-        </AnimatedSection>
-      </section>
-
       {/* Work / Build section */}
       <section className="section py-16 sm:py-20 bg-sand">
         <AnimatedSection className="max-w-4xl mx-auto px-4 sm:px-8">
@@ -206,10 +161,9 @@ export default function HomePage() {
                 See the work <span className="arrow">&rarr;</span>
               </a>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="flex flex-col gap-3">
               {[
-                { label: 'Retreat Website', price: '€1,200+', note: 'Design, build, copy in 2–3 weeks' },
-                { label: 'Event Scheduling', price: '€800+', note: 'Custom tools, Stripe integration' },
+                { label: 'Retreat Website', price: '€1,200+', note: 'Design, build, copy, schedule — all in' },
                 { label: 'Brand Identity', price: '€600+', note: 'Logo, palette, guide' },
                 { label: 'Custom Tools', price: 'Scoped', note: 'Intakes, portals, dashboards' },
               ].map((item) => (
@@ -225,6 +179,27 @@ export default function HomePage() {
               ))}
             </div>
           </div>
+        </AnimatedSection>
+      </section>
+
+      {/* Retreat Teaser Section */}
+      <section className="section py-16 sm:py-20 bg-white">
+        <AnimatedSection className="max-w-3xl mx-auto px-4 sm:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-6 text-ink">
+            Something is coming.
+          </h2>
+          <p className="text-ink/80 text-base sm:text-lg leading-relaxed mb-4">
+            I've spent years organising festivals, conventions, and gatherings — and I've been quietly building toward something more intentional. A connection retreat. Grounded in movement, breathwork, and the kind of space where real human connection actually happens.
+          </p>
+          <p className="text-ink/80 text-base sm:text-lg leading-relaxed mb-8">
+            It's not ready yet. But if it sounds like your kind of thing, get on the list and you'll be the first to know.
+          </p>
+          <a
+            href="/retreat"
+            className="inline-block bg-brand text-white font-bold rounded px-6 sm:px-8 py-3 text-sm sm:text-base shadow hover:bg-brand/90 transition"
+          >
+            Stay in the loop <span className="arrow">&rarr;</span>
+          </a>
         </AnimatedSection>
       </section>
 

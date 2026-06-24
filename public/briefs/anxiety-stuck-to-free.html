@@ -3,777 +3,844 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Episode Brief — From Stuck to Free</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<title>From Stuck to Free — My Anxiety Journey | Grow with the Flo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --cream: #F6F3ED;
-    --cream-mid: #EDE8DF;
-    --cream-dark: #DDD8CE;
-    --ink: #1A1815;
-    --ink-mid: #47443E;
-    --ink-light: #888178;
-    --ink-faint: #BDB8B0;
-    --sage: #6A9680;
-    --sage-mid: #9BBDAD;
-    --sage-pale: #E8F2EE;
-    --rule: #D6D0C6;
-    --serif: 'Lora', Georgia, serif;
-    --sans: 'DM Sans', system-ui, sans-serif;
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+:root {
+  --teal: #3A9A96;
+  --teal-light: #5BB5B0;
+  --sage: #7BAA72;
+  --gold: #C8A24A;
+  --gold-light: #E2C47A;
+  --ink: #1C1A16;
+  --ink-mid: #5A5650;
+  --ink-light: #9A9690;
+  --cream: #F8F4EC;
+  --cream-dark: #EEE8DC;
+  --white: #FFFFFF;
+  --border: rgba(0,0,0,0.08);
+}
 
-  body {
-    background: var(--cream);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.7;
-  }
+html { scroll-behavior: smooth; }
 
-  /* grain */
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-  }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
 
-  .page {
-    position: relative;
-    z-index: 1;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 0 1.75rem 6rem;
-  }
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+  padding: 60px 48px 56px;
+}
 
-  /* ── Progress ── */
-  .prog-bar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--cream);
-    border-bottom: 1px solid var(--rule);
-    padding: 10px 1.75rem;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(58,154,150,0.2) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(123,170,114,0.1) 0%, transparent 60%);
+}
 
-  .prog-label { font-size: 11px; color: var(--ink-light); letter-spacing: 0.06em; }
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 256px;
+}
 
-  .prog-track {
-    flex: 1;
-    height: 2px;
-    background: var(--cream-dark);
-    border-radius: 99px;
-    overflow: hidden;
-  }
+.hero-eyebrow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: auto;
+}
+.podcast-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+.eyebrow-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+}
+.episode-tag {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 4px 12px;
+  border: 1px solid rgba(200,162,74,0.3);
+  border-radius: 4px;
+}
 
-  .prog-fill {
-    height: 100%;
-    background: var(--sage);
-    width: 0%;
-    transition: width 0.2s;
-    border-radius: 99px;
-  }
+.hero-content {
+  position: relative;
+  padding-top: 80px;
+}
 
-  /* ── Header ── */
-  .header {
-    padding: 3.5rem 0 2.5rem;
-    border-bottom: 1px solid var(--rule);
-    margin-bottom: 2.5rem;
-  }
+.behind-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--teal-light);
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+  display: block;
+}
 
-  .series-eyebrow {
-    font-size: 10.5px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--sage);
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .series-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--sage); display: block; }
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 8vw, 96px);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.0;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+.hero-title .outline {
+  -webkit-text-stroke: 1px rgba(255,255,255,0.4);
+  color: transparent;
+}
 
-  h1 {
-    font-family: var(--serif);
-    font-size: clamp(28px, 5vw, 42px);
-    font-weight: 400;
-    line-height: 1.18;
-    letter-spacing: -0.01em;
-    margin-bottom: 0.5rem;
-  }
+.hero-guest {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  margin-top: 24px;
+  letter-spacing: 0.04em;
+}
+.hero-guest strong {
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+}
 
-  .ep-sub {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 16px;
-    color: var(--ink-mid);
-    margin-bottom: 1.5rem;
-  }
+.hero-desc {
+  font-size: 16px;
+  color: rgba(255,255,255,0.45);
+  max-width: 520px;
+  margin-top: 20px;
+  line-height: 1.7;
+}
 
-  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
-  .chip {
-    font-size: 11px;
-    padding: 3px 12px;
-    border-radius: 99px;
-    border: 1px solid var(--rule);
-    color: var(--ink-light);
-  }
+.hero-scroll {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 64px;
+  color: rgba(255,255,255,0.3);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.scroll-line {
+  width: 40px;
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+}
 
-  /* ── Section label ── */
-  .sec-label {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 1.5rem;
-  }
-  .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+/* ── THEME STRIP ── */
+.themes {
+  background: var(--ink);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 0 48px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.themes::-webkit-scrollbar { display: none; }
+.theme-item {
+  flex-shrink: 0;
+  padding: 20px 28px;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.theme-item:last-child { border-right: none; }
+.theme-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.theme-item span {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+.theme-item:hover span { color: rgba(255,255,255,0.8); }
 
-  /* ── Hook block ── */
-  .hook-block {
-    background: var(--ink);
-    border-radius: 14px;
-    padding: 2rem 2.2rem;
-    margin-bottom: 2.5rem;
-    color: white;
-  }
+/* ── WRAPPER ── */
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
 
-  .hook-eyebrow {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--sage-mid);
-    margin-bottom: 1rem;
-  }
+/* ── SECTION ── */
+.section {
+  padding: 80px 0 0;
+  scroll-margin-top: 24px;
+}
+.section:last-of-type { padding-bottom: 100px; }
 
-  .hook-text {
-    font-family: var(--serif);
-    font-size: 20px;
-    line-height: 1.55;
-    color: #F0ECE6;
-    margin-bottom: 1.2rem;
-    font-weight: 400;
-  }
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.section-tag-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+}
+.section-tag-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
 
-  .hook-text em {
-    font-style: italic;
-    color: white;
-  }
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  color: var(--ink);
+}
+.section-title em { font-style: italic; color: var(--teal); }
 
-  .hook-note {
-    font-size: 12px;
-    color: #7A756E;
-    line-height: 1.6;
-    border-top: 1px solid #2E2C28;
-    padding-top: 1rem;
-  }
+.section-intro {
+  font-size: 16px;
+  color: var(--ink-mid);
+  line-height: 1.75;
+  max-width: 640px;
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
 
-  /* ── Arc blocks ── */
-  .arc {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin-bottom: 2.5rem;
-  }
+/* ── PROSE ── */
+.prose {
+  font-size: 16px;
+  color: var(--ink-mid);
+  line-height: 1.85;
+  max-width: 660px;
+  margin-bottom: 32px;
+}
+.prose em { color: var(--ink); font-style: italic; }
+.prose strong { color: var(--ink); font-weight: 500; }
 
-  .arc-block {
-    display: grid;
-    grid-template-columns: 36px 1fr;
-    gap: 0 14px;
-    position: relative;
-  }
+/* ── QUOTE BLOCK ── */
+.quote {
+  margin: 32px 0;
+  padding: 28px 32px;
+  background: var(--white);
+  border-radius: 12px;
+  border-left: 3px solid var(--teal);
+  position: relative;
+}
+.quote.gold { border-left-color: var(--gold); }
+.quote.sage { border-left-color: var(--sage); }
 
-  /* vertical connector */
-  .arc-block:not(:last-child) .arc-line {
-    position: absolute;
-    left: 17px;
-    top: 34px;
-    bottom: -1px;
-    width: 1px;
-    background: var(--rule);
-  }
+.quote-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 80px;
+  line-height: 0.6;
+  color: var(--cream-dark);
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  pointer-events: none;
+}
+.quote-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.55;
+  margin-bottom: 12px;
+  position: relative;
+}
+.quote-attr {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
 
-  .arc-dot-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 6px;
-  }
+/* ── MOMENT CARDS ── */
+.moments {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 32px 0;
+}
+.moment {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 24px 28px;
+  border: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.moment-timestamp {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  padding-top: 4px;
+  white-space: nowrap;
+  min-width: 52px;
+}
+.moment-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.moment-text {
+  font-size: 14px;
+  color: var(--ink-mid);
+  line-height: 1.65;
+}
 
-  .arc-dot {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 1.5px solid var(--rule);
-    background: var(--cream);
-    position: relative;
-    z-index: 1;
-    flex-shrink: 0;
-  }
+/* ── THEME BLOCK ── */
+.theme-block {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 32px;
+  margin: 16px 0;
+  border: 1px solid var(--border);
+}
+.theme-block-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.theme-block-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.theme-block-text {
+  font-size: 15px;
+  color: var(--ink-mid);
+  line-height: 1.85;
+}
+.theme-block-text strong { color: var(--ink); font-weight: 500; }
+.theme-block-text em { color: var(--ink); font-style: italic; }
 
-  .arc-dot.active {
-    background: var(--sage);
-    border-color: var(--sage);
-  }
+/* ── DIVIDER ── */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 60px 0 0;
+}
 
-  .arc-content {
-    padding-bottom: 2rem;
-  }
+/* ── CLOSING ── */
+.closing {
+  background: var(--ink);
+  padding: 80px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.closing-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 50% 80% at 90% 50%, rgba(58,154,150,0.15) 0%, transparent 70%);
+}
+.closing-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  position: relative;
+}
+.closing-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin-bottom: 24px;
+}
+.closing-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.35;
+  margin-bottom: 32px;
+  max-width: 700px;
+}
+.closing-title em {
+  color: var(--gold-light);
+  font-style: normal;
+}
+.closing-attr {
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.06em;
+}
 
-  .arc-tag {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-bottom: 4px;
-  }
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 32px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: rgba(255,255,255,0.5);
+}
+.footer-brand strong {
+  color: var(--gold);
+  font-style: normal;
+  font-weight: 400;
+}
+.footer-note {
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.04em;
+}
+.footer-links-group { display: grid; gap: 8px; }
+.footer-links-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  font-weight: 600;
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.footer-links a {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.88);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.footer-links a:hover { background: rgba(255,255,255,0.1); }
 
-  .arc-title {
-    font-family: var(--serif);
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--ink);
-    margin-bottom: 6px;
-    line-height: 1.3;
-  }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-content > * {
+  animation: fadeUp 0.8s ease forwards;
+  opacity: 0;
+}
+.hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-content > *:nth-child(2) { animation-delay: 0.25s; }
+.hero-content > *:nth-child(3) { animation-delay: 0.35s; }
+.hero-content > *:nth-child(4) { animation-delay: 0.45s; }
+.hero-content > *:nth-child(5) { animation-delay: 0.55s; }
 
-  .arc-prompt {
-    font-size: 13.5px;
-    color: var(--ink-light);
-    font-style: italic;
-    line-height: 1.55;
-    margin-bottom: 10px;
-  }
-
-  .arc-notes {
-    list-style: none;
-    border-left: 1px solid var(--cream-dark);
-    padding-left: 14px;
-  }
-
-  .arc-notes li {
-    font-size: 13px;
-    color: var(--ink-mid);
-    padding: 4px 0;
-    border-bottom: 1px dashed var(--cream-dark);
-    line-height: 1.55;
-  }
-  .arc-notes li:last-child { border: none; }
-
-  /* ── Steps — visual cards ── */
-  .steps-intro {
-    font-size: 14px;
-    color: var(--ink-light);
-    font-style: italic;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-  }
-
-  .steps-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 2.5rem;
-  }
-
-  .step-card {
-    display: grid;
-    grid-template-columns: 48px 1fr auto;
-    align-items: start;
-    gap: 16px;
-    background: white;
-    border: 1px solid var(--rule);
-    border-radius: 12px;
-    padding: 14px 18px;
-    transition: border-color 0.2s;
-  }
-
-  .step-card:hover { border-color: var(--sage-mid); }
-
-  .step-num {
-    font-family: var(--serif);
-    font-size: 22px;
-    color: var(--cream-dark);
-    line-height: 1;
-    padding-top: 3px;
-    text-align: center;
-  }
-
-  .step-body {}
-
-  .step-name {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--ink);
-    margin-bottom: 3px;
-    line-height: 1.3;
-  }
-
-  .step-why {
-    font-size: 12.5px;
-    color: var(--ink-light);
-    line-height: 1.5;
-  }
-
-  .step-phase {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 99px;
-    white-space: nowrap;
-    margin-top: 3px;
-  }
-
-  .phase-mind { background: #EEF0F8; color: #4A529E; }
-  .phase-body { background: var(--sage-pale); color: #3D7060; }
-  .phase-life { background: #F5EDE8; color: #9A5A3A; }
-  .phase-core { background: #F0ECF8; color: #6A4A9A; }
-
-  /* ── Tone card ── */
-  .tone-card {
-    background: var(--sage-pale);
-    border: 1px solid var(--sage-mid);
-    border-radius: 12px;
-    padding: 1.25rem 1.5rem;
-    margin-bottom: 2rem;
-    font-size: 14px;
-    color: var(--ink-mid);
-    line-height: 1.65;
-  }
-
-  .tone-card strong {
-    display: block;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--sage);
-    margin-bottom: 8px;
-  }
-
-  /* ── CTA block ── */
-  .cta-block {
-    background: white;
-    border: 1px solid var(--rule);
-    border-radius: 12px;
-    padding: 1.5rem 1.75rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .cta-title {
-    font-family: var(--serif);
-    font-size: 17px;
-    font-weight: 500;
-    color: var(--ink);
-    margin-bottom: 6px;
-  }
-
-  .cta-body {
-    font-size: 13.5px;
-    color: var(--ink-light);
-    line-height: 1.6;
-    margin-bottom: 1rem;
-  }
-
-  .cta-list {
-    list-style: none;
-    border-left: 1px solid var(--cream-dark);
-    padding-left: 14px;
-  }
-
-  .cta-list li {
-    font-size: 13px;
-    color: var(--ink-mid);
-    padding: 5px 0;
-    border-bottom: 1px dashed var(--cream-dark);
-    line-height: 1.6;
-  }
-
-  .cta-list li:last-child { border: none; }
-  .cta-list em { font-style: italic; color: var(--ink); }
-
-  /* ── Sign-off ── */
-  .signoff-block {
-    background: var(--ink);
-    border-radius: 14px;
-    padding: 2rem 2.2rem;
-    margin-bottom: 2.5rem;
-    text-align: center;
-  }
-
-  .signoff-quote {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 22px;
-    line-height: 1.5;
-    color: #F0ECE6;
-    margin-bottom: 1.2rem;
-    font-weight: 400;
-  }
-
-  .signoff-note {
-    font-size: 12.5px;
-    color: #7A756E;
-    line-height: 1.65;
-    border-top: 1px solid #2E2C28;
-    padding-top: 1rem;
-    font-style: italic;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-
-  /* ── Footer ── */
-  .footer {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--rule);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .footer-note { font-size: 11px; color: var(--ink-faint); }
-
-  .print-btn {
-    font-family: var(--sans);
-    font-size: 12px;
-    font-weight: 500;
-    padding: 7px 18px;
-    border-radius: 99px;
-    border: 1px solid var(--rule);
-    background: transparent;
-    color: var(--ink-mid);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .print-btn:hover { background: var(--ink); color: white; border-color: var(--ink); }
-
-  @media print {
-    .prog-bar, .print-btn { display: none; }
-    body::after { display: none; }
-    body { background: white; }
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .header { animation: fadeUp 0.4s ease both; }
-  .hook-block { animation: fadeUp 0.4s 0.05s ease both; }
-  .arc-block { animation: fadeUp 0.4s ease both; }
-  .arc-block:nth-child(1) { animation-delay: 0.05s; }
-  .arc-block:nth-child(2) { animation-delay: 0.1s; }
-  .arc-block:nth-child(3) { animation-delay: 0.15s; }
-  .arc-block:nth-child(4) { animation-delay: 0.2s; }
-  .step-card { animation: fadeUp 0.3s ease both; }
+@media (max-width: 640px) {
+  .hero { padding: 40px 24px 40px; }
+  .wrap { padding: 0 20px; }
+  .themes { padding: 0 20px; }
+  .moment { grid-template-columns: 1fr; gap: 4px; }
+  .moment-timestamp { display: none; }
+  footer { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+  .closing { padding: 60px 24px; }
+}
 </style>
 </head>
 <body>
 
-<div class="prog-bar">
-  <span class="prog-label">Episode Brief</span>
-  <div class="prog-track"><div class="prog-fill" id="pf"></div></div>
-  <span class="prog-label" id="pp">0%</span>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+
+  <div class="hero-eyebrow">
+    <span class="podcast-name">Grow with the Flo</span>
+    <div class="eyebrow-line"></div>
+    <span class="episode-tag">Behind the Episode</span>
+  </div>
+
+  <div class="hero-content">
+    <span class="behind-label">A solo episode — on anxiety, avoidance, and the long way back to freedom</span>
+    <h1 class="hero-title">
+      From<br>
+      <em>stuck</em><br>
+      <span class="outline">to free</span>
+    </h1>
+    <p class="hero-guest">A solo episode — <strong>Florian Hohenleitner</strong> · Grow with the Flo</p>
+    <p class="hero-desc">This is the episode I wasn't sure I'd ever make. Not because the story isn't worth telling — but because I had to live most of it before I understood it enough to speak about it honestly.</p>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Read the companion</span>
+    </div>
+  </div>
+</section>
+
+<!-- THEME STRIP -->
+<nav class="themes">
+  <a class="theme-item" href="#at-its-worst">
+    <div class="theme-dot" style="background:#3A9A96;"></div>
+    <span>At its worst</span>
+  </a>
+  <a class="theme-item" href="#the-spiral">
+    <div class="theme-dot" style="background:#C8A24A;"></div>
+    <span>The spiral</span>
+  </a>
+  <a class="theme-item" href="#what-failed">
+    <div class="theme-dot" style="background:#7BAA72;"></div>
+    <span>What didn't work</span>
+  </a>
+  <a class="theme-item" href="#the-turn">
+    <div class="theme-dot" style="background:#5BB5B0;"></div>
+    <span>The turn</span>
+  </a>
+  <a class="theme-item" href="#where-i-am">
+    <div class="theme-dot" style="background:#E2A860;"></div>
+    <span>Where I am now</span>
+  </a>
+  <a class="theme-item" href="#for-you">
+    <div class="theme-dot" style="background:#888;"></div>
+    <span>For you</span>
+  </a>
+</nav>
+
+<div class="wrap">
+
+  <!-- ── AT ITS WORST ── -->
+  <div class="section" id="at-its-worst">
+    <div class="section-tag">
+      <div class="section-tag-dot" style="background:#3A9A96;"></div>
+      <span class="section-tag-label" style="color:#3A9A96;">At its worst</span>
+    </div>
+    <h2 class="section-title">The life that got smaller and smaller</h2>
+    <p class="section-intro">Anxiety doesn't announce itself. It moves in quietly — one small avoidance at a time, one choice to stay close to home, one excuse that feels completely reasonable in the moment. By the time I noticed how small my world had become, it had been shrinking for years.</p>
+
+    <div class="prose">
+      <p>For me, it was toilet anxiety. The specific, particular, almost absurdly named fear of being somewhere without access to a bathroom — or of needing one and not making it. On the surface it sounds manageable. Embarrassing, maybe, but manageable. That's what I told myself. And that gap between what anxiety sounds like from the outside and what it feels like from the inside is exactly what I wanted to close with this episode.</p>
+      <p>In practice, it meant planning every journey around toilet locations. Turning down invitations. Sitting near exits. Leaving before I had to, arriving late after I'd already checked. Eating in particular ways before particular events. Carrying certainty in the form of routines that got more elaborate, not less, the longer I lived with this.</p>
+    </div>
+
+    <div class="moments">
+      <div class="moment">
+        <div class="moment-timestamp">Early on</div>
+        <div class="moment-body">
+          <div class="moment-title">The first avoidance</div>
+          <div class="moment-text">It starts with one "just in case" decision. A route home that passes a bathroom. A seat chosen for its proximity to the exit. It feels like common sense. It feels like taking care of yourself. You don't yet know it's teaching your nervous system that danger is real.</div>
+        </div>
+      </div>
+      <div class="moment">
+        <div class="moment-timestamp">Peak</div>
+        <div class="moment-body">
+          <div class="moment-title">The world at its smallest</div>
+          <div class="moment-text">Long train journeys became ordeals. Flights required days of preparation. Restaurants needed to be scoped in advance. Nothing spontaneous. Nothing unplanned. Every yes came with a checklist running underneath it — and most invitations quietly got a no.</div>
+        </div>
+      </div>
+      <div class="moment">
+        <div class="moment-timestamp">The cost</div>
+        <div class="moment-body">
+          <div class="moment-title">What anxiety actually took from me</div>
+          <div class="moment-text">Not just logistics. Ease. The ability to be present without calculating. The lightness of going somewhere without it meaning something. Relationships strained by explanations I couldn't fully give. A version of myself I'd lost access to.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── THE SPIRAL ── -->
+  <div class="section" id="the-spiral">
+    <div class="section-tag">
+      <div class="section-tag-dot" style="background:#C8A24A;"></div>
+      <span class="section-tag-label" style="color:#C8A24A;">The spiral</span>
+    </div>
+    <h2 class="section-title">How anxiety learns to <em>keep you safe</em></h2>
+    <p class="section-intro">The cruelest thing about anxiety is that avoidance feels like the solution. Every time you sidestep the feared situation, you get immediate relief. And your nervous system files that away as evidence: the threat was real, and you survived because you avoided it.</p>
+
+    <div class="theme-block">
+      <div class="theme-block-title">
+        <div class="theme-block-icon" style="background:#FDF2E0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M8 16H3v5"/></svg>
+        </div>
+        The avoidance loop
+      </div>
+      <div class="theme-block-text">
+        You avoid. You feel relief. The relief reinforces the avoidance. The next time, the anxiety is slightly bigger because the world has confirmed that the thing you avoided was worth avoiding. <strong>The loop tightens.</strong> The window of what feels safe gets narrower. And you keep moving within it, calling it management, calling it self-knowledge, calling it anything except what it is: a life that is shrinking.
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>The anxiety was also doing something subtler: it was making me hypervigilant to my own body. Every sensation became data. Every twinge, every shift in digestion, every moment of physical discomfort got tagged immediately as a potential emergency. The nervous system that was supposed to protect me had become the loudest thing in the room.</p>
+      <p>And the more I listened to it, the louder it got.</p>
+    </div>
+
+    <div class="quote gold">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">Anxiety is not lying to you. It genuinely believes the threat is real. The problem is, it learned the wrong lesson — and it's been applying it ever since.</p>
+      <span class="quote-attr">— Flo · Grow with the Flo</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── WHAT DIDN'T WORK ── -->
+  <div class="section" id="what-failed">
+    <div class="section-tag">
+      <div class="section-tag-dot" style="background:#7BAA72;"></div>
+      <span class="section-tag-label" style="color:#7BAA72;">What didn't work</span>
+    </div>
+    <h2 class="section-title">The things that kept me <em>stuck</em></h2>
+    <p class="section-intro">I tried a lot. Most of it kept me stuck because it was oriented around managing the anxiety rather than working through it. There's a big difference.</p>
+
+    <div class="moments">
+      <div class="moment">
+        <div class="moment-timestamp">Tactic 01</div>
+        <div class="moment-body">
+          <div class="moment-title">Information and preparation</div>
+          <div class="moment-text">Researching every venue. Knowing where bathrooms were before arriving. This felt like problem-solving. It was actually just sophisticated avoidance — it reduced the anxiety short-term and confirmed it long-term.</div>
+        </div>
+      </div>
+      <div class="moment">
+        <div class="moment-timestamp">Tactic 02</div>
+        <div class="moment-body">
+          <div class="moment-title">Willpower and distraction</div>
+          <div class="moment-text">Pushing through while trying not to think about it. Forcing yourself into situations and white-knuckling through. Sometimes it worked in the moment. But it didn't change anything underneath — and the relief of surviving never felt as good as the fear felt bad.</div>
+        </div>
+      </div>
+      <div class="moment">
+        <div class="moment-timestamp">Tactic 03</div>
+        <div class="moment-body">
+          <div class="moment-title">Talking about it as a problem to solve</div>
+          <div class="moment-text">I could intellectualise the anxiety clearly. I knew where it came from. I understood the mechanics. And I was still stuck. Understanding is not the same as healing. The knowledge lived in my head; the anxiety lived in my body.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── THE TURN ── -->
+  <div class="section" id="the-turn">
+    <div class="section-tag">
+      <div class="section-tag-dot" style="background:#5BB5B0;"></div>
+      <span class="section-tag-label" style="color:#5BB5B0;">The turn</span>
+    </div>
+    <h2 class="section-title">Not pushing through. <em>Moving toward.</em></h2>
+    <p class="section-intro">The shift came not from finding a better coping strategy, but from changing the relationship with the anxiety itself. From fighting it to — slowly, imperfectly — allowing it.</p>
+
+    <div class="theme-block">
+      <div class="theme-block-title">
+        <div class="theme-block-icon" style="background:#E8F5F0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3A9A96" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="M12 12C12 7 7 4 3 4c0 5 3 8 9 8z"/><path d="M12 12c0-5 5-8 9-8 0 5-3 8-9 8z"/></svg>
+        </div>
+        Exposure — but not the brutal kind
+      </div>
+      <div class="theme-block-text">
+        Gradual, intentional exposure to the feared situations — starting small, building slowly. <strong>Not proving the anxiety wrong through force, but giving the nervous system evidence through experience.</strong> The difference matters. One is combat. The other is learning. And the nervous system learns from lived experience, not from logic.
+      </div>
+    </div>
+
+    <div class="theme-block">
+      <div class="theme-block-title">
+        <div class="theme-block-icon" style="background:#EAF3EE;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7BAA72" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v2"/><path d="M12 19v2"/><path d="M3 12h2"/><path d="M19 12h2"/></svg>
+        </div>
+        The body, not just the mind
+      </div>
+      <div class="theme-block-text">
+        Breathwork. Movement. Cold water. Yoga — not as exercise, but as practice in inhabiting my own body without running from what I found there. <strong>The anxiety lived in my body; the healing had to meet it there.</strong> Regulation before reasoning. Signal before story.
+      </div>
+    </div>
+
+    <div class="theme-block">
+      <div class="theme-block-title">
+        <div class="theme-block-icon" style="background:#FDF2E0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        Saying it out loud
+      </div>
+      <div class="theme-block-text">
+        Something happened when I started talking about it honestly — first with people I trusted, then in this episode. <strong>Shame feeds on silence.</strong> Anxiety that stays unnamed stays enormous. When I said it out loud — the actual specific thing, without softening it — it lost some of its power. Not all of it. But enough to move.
+      </div>
+    </div>
+
+    <div class="quote sage">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">The opposite of anxiety isn't calm. It's presence. The ability to be fully in a moment without cataloguing everything that could go wrong.</p>
+      <span class="quote-attr">— Flo · Grow with the Flo</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── WHERE I AM NOW ── -->
+  <div class="section" id="where-i-am">
+    <div class="section-tag">
+      <div class="section-tag-dot" style="background:#E2A860;"></div>
+      <span class="section-tag-label" style="color:#C8824A;">Where I am now</span>
+    </div>
+    <h2 class="section-title">Not cured. <em>Free.</em></h2>
+    <p class="section-intro">Freedom from anxiety, I've learned, doesn't mean the absence of the feeling. It means the feeling no longer runs your life. That's a different finish line than the one I started with — and a better one.</p>
+
+    <div class="prose">
+      <p>I travel now. Long flights. Journeys without plans. Restaurants chosen on a whim, trains without reserved seats. Not because the anxiety is gone, but because I have a different relationship with it. It still shows up. I've just stopped giving it the keys.</p>
+      <p>I moved to Vietnam. I taught yoga. I started a podcast. I had conversations on planes with strangers that changed my life. None of that was available to the version of me who was managing his anxiety by making his world smaller.</p>
+      <p>The version of me who made this episode isn't some polished, arrived-at-a-destination version. He's someone who learned — slowly, through a lot of mistakes — that the things he was avoiding were often exactly where the life he wanted was waiting.</p>
+    </div>
+
+    <div class="theme-block">
+      <div class="theme-block-title">
+        <div class="theme-block-icon" style="background:#E8F5F0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3A9A96" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="M5 12H2"/><path d="M22 12h-3"/><path d="M12 2v3"/></svg>
+        </div>
+        What I know now that I didn't know then
+      </div>
+      <div class="theme-block-text">
+        <strong>Avoidance is not self-care.</strong> The nervous system needs evidence that the feared situation is survivable — and the only way to collect that evidence is to enter the situation. Gently. Repeatedly. With support, if you need it. But you have to go. No amount of preparation, understanding, or willpower gets you there from the outside. The door only opens from the inside.
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── FOR YOU ── -->
+  <div class="section" id="for-you">
+    <div class="section-tag">
+      <div class="section-tag-dot" style="background:#888;"></div>
+      <span class="section-tag-label" style="color:#888;">For you</span>
+    </div>
+    <h2 class="section-title">If you're still in the middle of it</h2>
+    <p class="section-intro">This section is for anyone who recognised themselves somewhere in this episode — and felt both relieved and exhausted by that recognition.</p>
+
+    <div class="prose">
+      <p>If you're currently in the middle of this — whatever your version of it looks like — I want to say something that I needed to hear and didn't hear enough: <em>you are not broken.</em> The anxiety is not evidence of weakness. It is evidence of a nervous system doing exactly what it was designed to do, in response to something that felt dangerous, probably a long time ago.</p>
+      <p>The thing it learned was wrong. But it learned it from something real. And there is a way through — not around, through — that doesn't require you to be braver than you are right now, or to have more information, or to figure it out on your own.</p>
+    </div>
+
+    <div class="moments">
+      <div class="moment">
+        <div class="moment-timestamp">First</div>
+        <div class="moment-body">
+          <div class="moment-title">Name it — out loud, to someone</div>
+          <div class="moment-text">Not the sanitised version. The actual specific thing. Shame and secrecy make anxiety larger. Speaking it makes it workable. Find one person and say the real thing.</div>
+        </div>
+      </div>
+      <div class="moment">
+        <div class="moment-timestamp">Second</div>
+        <div class="moment-body">
+          <div class="moment-title">Get support — professional if you can</div>
+          <div class="moment-text">CBT, ACT, somatic therapy. These work. Not because they're magic, but because they give you a structure for the work your nervous system needs to do. You don't have to figure out the method alone.</div>
+        </div>
+      </div>
+      <div class="moment">
+        <div class="moment-timestamp">Third</div>
+        <div class="moment-body">
+          <div class="moment-title">Move toward, not away</div>
+          <div class="moment-text">Start smaller than you think. One situation. One degree of difficulty above where you are now. Do it enough times that your nervous system gets the data it needs: <em>I survived. It was okay. I can do this.</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">You don't have to want to do the thing. You just have to do it. The wanting comes after — sometimes long after — but it comes.</p>
+      <span class="quote-attr">— Flo · Grow with the Flo</span>
+    </div>
+  </div>
+
 </div>
 
-<div class="page">
-
-  <header class="header">
-    <p class="series-eyebrow">Vulnerability Series · Solo Episode · ~20 min</p>
-    <h1>From Stuck to Free</h1>
-    <p class="ep-sub">My journey with anxiety — what it took, what helped, and where I am now</p>
-    <div class="chips">
-      <span class="chip">Raw &amp; personal</span>
-      <span class="chip">Already lived it</span>
-      <span class="chip">Practical takeaways</span>
-    </div>
-  </header>
-
-  <!-- Hook -->
-  <div class="sec-label">Viral hook — open with this</div>
-
-  <div class="hook-block">
-    <p class="hook-eyebrow">Before/after contrast — say this first</p>
-    <p class="hook-text">
-      "Right now I'm travelling with no fixed plans. No itinerary, no mapped-out toilets, no exit strategy. Just — going.<br><br>
-      Two years ago, I couldn't walk twenty minutes from my front door without <em>knowing</em> there was a toilet on the route."
-    </p>
-    <p class="hook-note">Pause after that. Let it land. Then: <em>"Today I want to talk about what happened in between — because nobody talks about this, and I really wish someone had."</em></p>
+<!-- CLOSING -->
+<div class="closing">
+  <div class="closing-bg"></div>
+  <div class="closing-wrap">
+    <div class="closing-label">The GwtF closing · Flo's answer</div>
+    <blockquote class="closing-title">
+      "The life I wanted was always on the other side of the thing I was avoiding. I just had to stay in it long enough to find out what was <em>actually there</em> — which turned out to be less terrifying, and much more alive, than anything I imagined."
+    </blockquote>
+    <div class="closing-attr">— Flo · Grow with the Flo · Episode 10</div>
   </div>
-
-  <!-- Arc -->
-  <div class="sec-label">Natural arc for the episode</div>
-
-  <div class="arc">
-
-    <div class="arc-block">
-      <div class="arc-dot-col">
-        <div class="arc-dot active"></div>
-        <div class="arc-line"></div>
-      </div>
-      <div class="arc-content">
-        <p class="arc-tag">Part 1 · ~4 min</p>
-        <h2 class="arc-title">What it was actually like</h2>
-        <p class="arc-prompt">Paint the picture honestly — not as backstory, as a place you're taking them.</p>
-        <ul class="arc-notes">
-          <li>The walk you couldn't take. Mapping toilets. The constant exit-planning.</li>
-          <li>The social cost — avoiding things, making excuses, feeling like you were the only one</li>
-          <li>The shame of it. Why this kind of anxiety hides.</li>
-          <li>End on: "I didn't know what it was. I just knew I couldn't keep living like this."</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="arc-block">
-      <div class="arc-dot-col">
-        <div class="arc-dot active"></div>
-        <div class="arc-line"></div>
-      </div>
-      <div class="arc-content">
-        <p class="arc-tag">Part 2 · ~3 min</p>
-        <h2 class="arc-title">The turning point</h2>
-        <p class="arc-prompt">Not dramatic — just the moment you stopped pretending it was fine.</p>
-        <ul class="arc-notes">
-          <li>What made you finally say it out loud (and who you said it to)</li>
-          <li>The research spiral — finding a name for it, realising you weren't alone</li>
-          <li>Deciding to try things, even without knowing if they'd work</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="arc-block">
-      <div class="arc-dot-col">
-        <div class="arc-dot active"></div>
-        <div class="arc-line"></div>
-      </div>
-      <div class="arc-content">
-        <p class="arc-tag">Part 3 · ~9 min</p>
-        <h2 class="arc-title">What actually helped — the steps</h2>
-        <p class="arc-prompt">Walk through these conversationally. One or two sentences each — you've lived it, you don't need to lecture it. The detail is below.</p>
-        <ul class="arc-notes">
-          <li>Frame it: "There wasn't one thing. There were about fourteen. And they stacked."</li>
-          <li>Group them loosely as you speak: mind first, then body, then life, then the deep stuff</li>
-          <li>Be honest about what was hard (especially exposure) and what surprised you (acupuncture, community)</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="arc-block">
-      <div class="arc-dot-col">
-        <div class="arc-dot active"></div>
-      </div>
-      <div class="arc-content">
-        <p class="arc-tag">Part 4 · ~4 min</p>
-        <h2 class="arc-title">Where I am now — and what freedom actually feels like</h2>
-        <p class="arc-prompt">Honest, not triumphant. Real, not wrapped up.</p>
-        <ul class="arc-notes">
-          <li>The travel. The situations that used to be impossible.</li>
-          <li>The stuff that still shows up sometimes — and why that's okay</li>
-          <li>"Freedom isn't the absence of anxiety. It's a different relationship with it."</li>
-          <li>Close: if you're in the middle of this right now — you're not broken, and you're not alone. It just takes time and a lot of small things.</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Steps -->
-  <div class="sec-label">The steps — what helped &amp; why</div>
-  <p class="steps-intro">Use these as your reference during Part 3. Speak to each briefly and honestly — don't read them out, just glance back if you lose your thread.</p>
-
-  <div class="steps-grid">
-
-    <div class="step-card">
-      <div class="step-num">01</div>
-      <div class="step-body">
-        <p class="step-name">Talking about it</p>
-        <p class="step-why">The act of naming it out loud — to one person — was the first crack in the shame</p>
-      </div>
-      <span class="step-phase phase-mind">Mind</span>
-    </div>
-
-    <div class="step-card">
-      <div class="step-num">02</div>
-      <div class="step-body">
-        <p class="step-name">Research &amp; learning</p>
-        <p class="step-why">Understanding the gut-brain axis made it feel physical, not personal. Less shameful.</p>
-      </div>
-      <span class="step-phase phase-mind">Mind</span>
-    </div>
-
-    <div class="step-card">
-      <div class="step-num">03</div>
-      <div class="step-body">
-        <p class="step-name">Mindset work</p>
-        <p class="step-why">Reframing anxiety signals — from "threat" to "my nervous system is trying to tell me something"</p>
-      </div>
-      <span class="step-phase phase-mind">Mind</span>
-    </div>
-
-    <div class="step-card">
-      <div class="step-num">04</div>
-      <div class="step-body">
-        <p class="step-name">Vagus nerve workshop</p>
-        <p class="step-why">Understanding the nervous system gave the anxiety somewhere to go — I had tools, not just feelings</p>
-      </div>
-      <span class="step-phase phase-body">Body</span>
-    </div>
-
-    <div class="step-card">
-      <div class="step-num">05</div>
-      <div class="step-body">
-        <p class="step-name">Breathwork</p>
-        <p class="step-why">In-the-moment regulation. Something to do when the anxiety spiked instead of just enduring it.</p>
-      </div>
-      <span class="step-phase phase-body">Body</span>
-    </div>
-
-    <div class="step-card">
-      <div class="step-num">06</div>
-      <div class="step-body">
-        <p class="step-name">Acupuncture</p>
-        <p class="step-why">Surprised me. More about nervous system settling than I expected.</p>
-      </div>
-      <span class="step-phase phase-body">Body</span>
-    </div>
-
-    <div class="step-card">
-      <div class="step-num">07</div>
-      <div class="step-body">
-        <p class="step-name">Getting into the body</p>
-        <p class="step-why">Dancing, yoga, gym — being present in the body rather than at war with it</p>
-      </div>
-      <span class="step-phase phase-body">Body</span>
-    </div>
-
-    <div class="step-card">
-      <div class="step-num">08</div>
-      <div class="step-body">
-        <p class="step-name">Lifestyle changes</p>
-        <p class="step-why">Diet, stopping smoking and drinking — the baseline shifted when the inputs shifted</p>
-      </div>
-      <span class="step-phase phase-life">Life</span>
-    </div>
-
-    <div class="step-card">
-      <div class="step-num">09</div>
-      <div class="step-body">
-        <p class="step-name">Health checks</p>
-        <p class="step-why">Real information beat anxious spiralling. Ruling things out gave me solid ground.</p>
-      </div>
-      <span class="step-phase phase-life">Life</span>
-    </div>
-
-    <div class="step-card">
-      <div class="step-num">10</div>
-      <div class="step-body">
-        <p class="step-name">Journalling &amp; self-reflection</p>
-        <p class="step-why">Tracking patterns I'd never have noticed otherwise. Also: proof of progress when it felt invisible.</p>
-      </div>
-      <span class="step-phase phase-life">Life</span>
-    </div>
-
-    <div class="step-card">
-      <div class="step-num">11</div>
-      <div class="step-body">
-        <p class="step-name">Building trust with my body</p>
-        <p class="step-why">Slowly learning the difference between real urgency and anxiety. It took a long time. It happened.</p>
-      </div>
-      <span class="step-phase phase-core">Core shift</span>
-    </div>
-
-    <div class="step-card">
-      <div class="step-num">12</div>
-      <div class="step-body">
-        <p class="step-name">Exposure</p>
-        <p class="step-why">The hardest one. Deliberately doing the thing I was avoiding. Avoidance was feeding the anxiety.</p>
-      </div>
-      <span class="step-phase phase-core">Core shift</span>
-    </div>
-
-    <div class="step-card">
-      <div class="step-num">13</div>
-      <div class="step-body">
-        <p class="step-name">Finding community</p>
-        <p class="step-why">Realising others share this exact experience changed something. Shame can't survive community.</p>
-      </div>
-      <span class="step-phase phase-core">Core shift</span>
-    </div>
-
-    <div class="step-card">
-      <div class="step-num">14</div>
-      <div class="step-body">
-        <p class="step-name">Sitting with uncertainty</p>
-        <p class="step-why">The deepest one. I couldn't always control the situation — but I could change my relationship to that.</p>
-      </div>
-      <span class="step-phase phase-core">Core shift</span>
-    </div>
-
-  </div>
-
-  <!-- Tone -->
-  <div class="tone-card">
-    <strong>Remember while recording</strong>
-    This is a spine, not a script. Glance at it, then put it down and speak. The moments that will land are the pauses, the small laughs, the "I can't believe I'm saying this." Twenty minutes goes fast — trust the arc, don't rush the hook, and be brief on each step. You've already lived all of this.
-  </div>
-
-  <!-- Call to action -->
-  <div class="sec-label">Before the sign-off — listener moment</div>
-
-  <div class="cta-block">
-    <p class="cta-title">Invite them in</p>
-    <p class="cta-body">Before you close, give the listener something to do with what they've just heard. A moment of connection turns a good episode into one people share.</p>
-    <ul class="cta-list">
-      <li>Ask: <em>"Has this been part of your story too? I'd genuinely love to know — reach out, reply, send me a message."</em></li>
-      <li>Remind them they don't need to have it figured out — just starting to talk about it is enough</li>
-      <li>If relevant, mention anything you'd point them toward — a resource, a course, a community</li>
-    </ul>
-  </div>
-
-  <!-- Sign-off -->
-  <div class="sec-label">Your sign-off</div>
-
-  <div class="signoff-block">
-    <p class="signoff-quote">"Follow your intuition, do everything with love, and just see where it takes you."</p>
-    <p class="signoff-note">Say it slowly. It's not a throwaway — for an episode like this one, it lands differently. You've just spent twenty minutes showing exactly what that looks like in practice.</p>
-  </div>
-
-  <footer class="footer">
-    <span class="footer-note">Vulnerability Series · v2</span>
-    <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
-  </footer>
-
 </div>
 
-<script>
-  window.addEventListener('scroll', () => {
-    const d = document.documentElement;
-    const pct = Math.round((d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100) || 0;
-    document.getElementById('pf').style.width = pct + '%';
-    document.getElementById('pp').textContent = pct + '%';
-  });
-</script>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Grow with the <strong>Flo</strong></div>
+  <div class="footer-note">Behind the Episode · From Stuck to Free · Episode 10</div>
+  <div class="footer-links-group">
+    <div class="footer-links-label">Listen</div>
+    <div class="footer-links">
+      <a href="https://open.spotify.com/episode/1NsYf3o8fkfpHy4yOnCCW3" target="_blank" rel="noopener noreferrer">Spotify</a>
+      <a href="https://www.youtube.com/watch?v=qiZzu9mosdA" target="_blank" rel="noopener noreferrer">YouTube</a>
+    </div>
+  </div>
+  <div class="footer-links-group">
+    <div class="footer-links-label">Grow with the Flo</div>
+    <div class="footer-links">
+      <a href="https://www.florianhohenleitner.com" target="_blank" rel="noopener noreferrer">Website</a>
+      <a href="https://www.instagram.com/growwiththeflopodcast/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>

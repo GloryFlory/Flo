@@ -17,37 +17,17 @@ const services = [
       </svg>
     ),
     title: 'Retreat Website',
-    body: 'A clean, fast, mobile-first site that explains your offering and converts visitors into bookings.',
+    body: 'Everything your retreat needs online — in one complete build. A clean, fast site that explains your offering, shows your schedule, and converts visitors into bookings.',
     includes: [
       'Custom design matched to your brand',
-      'Mobile-optimised, SEO-ready',
+      'Mobile-first, SEO-ready',
       'Booking or inquiry integration',
-      'Teacher & schedule pages',
+      'Event schedule — teachers, sessions, filtering',
+      'Teacher profiles & session pages',
       'Delivered in 2–3 weeks',
     ],
     price: '€1,200+',
-    priceNote: 'Design, build, copy. Ready in 2–3 weeks.',
-  },
-  {
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-        <rect x="3" y="3" width="11" height="11" rx="1.5" stroke="currentColor" strokeWidth="1.4" />
-        <rect x="18" y="3" width="11" height="11" rx="1.5" stroke="currentColor" strokeWidth="1.4" />
-        <rect x="3" y="18" width="11" height="11" rx="1.5" stroke="currentColor" strokeWidth="1.4" />
-        <path d="M18 23.5h11M23.5 18v11" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-      </svg>
-    ),
-    title: 'Event Schedule & Ticketing',
-    body: 'Custom scheduling and booking tools so your attendees always know where to be — and you stay in control.',
-    includes: [
-      'Attendee-facing schedule page',
-      'Session filtering by teacher or level',
-      'Ticket sales via Stripe',
-      'Booking management dashboard',
-      'Works on any device, even offline',
-    ],
-    price: '€800+',
-    priceNote: 'Custom tool, Stripe integration, your branding.',
+    priceNote: 'Design, build, copy, schedule. Ready in 2–3 weeks.',
   },
   {
     icon: (
@@ -95,7 +75,7 @@ const projects = [
   {
     tag: 'SaaS Tool · Event Tech',
     title: 'FlowGrid',
-    desc: 'Retreat and festival organizers were managing schedules in spreadsheets that broke on mobile and PDFs nobody could update. FlowGrid is a full event scheduling platform — drag-and-drop session builder, attendee-facing mobile schedule, teacher profiles, analytics. Built from scratch.',
+    desc: 'Retreat and festival organizers were managing schedules in spreadsheets that broke on mobile and PDFs nobody could update. FlowGrid is a retreat management system and event scheduling platform — drag-and-drop session builder, attendee-facing mobile schedule, teacher profiles, analytics. Built from scratch.',
     pills: ['Next.js', 'Supabase', 'Stripe', 'Full-stack'],
     href: 'https://tryflowgrid.com',
   },
@@ -189,7 +169,7 @@ export default function WorkPage() {
         </div>
 
         {/* Services grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-ink/8 border border-ink/8 rounded-xl overflow-hidden">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-ink/8 border border-ink/8 rounded-xl overflow-hidden">
           {services.map((s) => (
             <div key={s.title} className="bg-sand p-8 hover:bg-white transition-colors">
               <div className="text-brand mb-5">{s.icon}</div>
@@ -208,10 +188,10 @@ export default function WorkPage() {
         </div>
 
         {/* Pricing */}
-        <div className="mt-8 bg-white border border-ink/8 rounded-xl p-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
+        <div className="mt-8 bg-white border border-ink/8 rounded-xl p-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
           {services.map((s) => (
             <div key={s.title} className="border-l-2 border-accent pl-4">
-              <p className="text-xs font-semibold tracking-[0.15em] uppercase text-ink/40 mb-2">{s.title}</p>
+              <p className="text-xs font-semibold tracking-[0.15em] uppercase text-ink/40 mb-2 min-h-[2.5rem]">{s.title}</p>
               <p className="font-heading font-bold text-2xl text-ink mb-2">{s.price}</p>
               <p className="text-xs text-ink/50 leading-relaxed">{s.priceNote}</p>
             </div>

@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { episodes } from '../../briefs-data';
 import { loadBriefHtml, LoadedBrief } from '../../load-brief';
 import EpisodeTabs from './EpisodeTabs';
@@ -27,6 +27,10 @@ export default async function EpisodePage({ params }: Props) {
   const { episode: slug } = await params;
   const ep = episodes.find((e) => e.slug === slug);
   if (!ep) notFound();
+
+  if (ep.primaryBriefSlug) {
+    redirect(`/behind-the-episode/${ep.primaryBriefSlug}`);
+  }
 
   const loaded: LoadedBrief[] = (
     await Promise.all(ep.briefs.map((b) => loadBriefHtml(b.slug)))

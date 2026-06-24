@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { episodes } from './briefs-data';
+import { episodes, getEpisodeBriefHref } from './briefs-data';
 
 export const metadata: Metadata = {
   title: 'Behind the Episode',
@@ -50,7 +50,7 @@ export default function BehindTheEpisodePage() {
                   )}
                   <div className="flex flex-wrap gap-3">
                     <a
-                      href={`/behind-the-episode/episode/${ep.slug}`}
+                      href={getEpisodeBriefHref(ep)}
                       className="inline-block bg-brand text-white font-bold rounded px-5 py-2 text-sm shadow hover:bg-brand/90 transition"
                     >
                       Read brief{ep.briefs.length > 1 ? 's' : ''}

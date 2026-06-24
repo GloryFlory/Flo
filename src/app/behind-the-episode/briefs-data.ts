@@ -82,6 +82,7 @@ export const episodes: Episode[] = [
     description: 'A solo reflection from Vietnam. What I found, what I built, the routine that helped, the performance trap, and three poems.',
     spotifyUrl: 'https://open.spotify.com/episode/5Kd0gEXtM2uVZo7dLhlr86',
     podcastSlugs: ['episode-12-falling-in-love-with-my-life-again-reflections-from-hoi-an'],
+    primaryBriefSlug: 'hoian-q1',
     briefs: [
       { slug: 'hoian-q1', label: 'The Brief' },
     ],
@@ -93,6 +94,7 @@ export const episodes: Episode[] = [
     spotifyUrl: 'https://open.spotify.com/episode/1NsYf3o8fkfpHy4yOnCCW3',
     youtubeUrl: 'https://www.youtube.com/watch?v=qiZzu9mosdA',
     podcastSlugs: ['episode-10-how-i-overcame-toilet-anxiety-and-reclaimed-my-freedom'],
+    primaryBriefSlug: 'anxiety-stuck-to-free',
     briefs: [
       { slug: 'anxiety-stuck-to-free', label: 'The Brief' },
     ],
@@ -104,6 +106,7 @@ export const episodes: Episode[] = [
     spotifyUrl: 'https://open.spotify.com/episode/6m8izN3cwkGhf43joVxEt5',
     youtubeUrl: 'https://www.youtube.com/watch?v=jIG0lskGV6s',
     podcastSlugs: ['episode-13-there-was-more-life-in-those-five-years-daniel-wang-on-love-loss-living-fully'],
+    primaryBriefSlug: 'daniel-wang-behind-episode',
     briefs: [
       { slug: 'daniel-wang-behind-episode', label: 'Behind the Episode' },
       { slug: 'daniel-wang', label: 'Original Brief' },

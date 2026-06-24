@@ -5,811 +5,875 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Behind the Episode — The Hội An Chapter | Grow with the Flo</title>
   <meta name="description" content="Four months in — what I found, what I built, and what I'm still figuring out. The routine, the performance trap, and falling in love with this life." />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --white:       #FFFFFF;
-      --bg:          #FAFAF8;
-      --bg-warm:     #F5F2EC;
-      --border:      #E8E3DB;
-      --text:        #1A1A18;
-      --text-mid:    #5A564F;
-      --text-light:  #9A9488;
-      --teal:        #3AAFA9;
-      --teal-light:  #EAF6F5;
-      --teal-mid:    #2D9992;
-      --gold:        #B8822E;
-      --gold-light:  #FBF5EA;
-      --gold-border: #E8D4A8;
-      --ink-dark:    #1A1815;
-      --ink-card:    #222220;
+      --teal: #3A9A96;
+      --teal-light: #5BB5B0;
+      --sage: #7BAA72;
+      --gold: #C8A24A;
+      --gold-light: #E2C47A;
+      --ink: #1C1A16;
+      --ink-mid: #5A5650;
+      --ink-light: #9A9690;
+      --cream: #F8F4EC;
+      --cream-dark: #EEE8DC;
+      --white: #FFFFFF;
+      --border: rgba(0,0,0,0.08);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--white);
-      color: var(--text);
-      font-family: 'Jost', sans-serif;
-      font-weight: 400;
+      font-family: 'Outfit', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
       line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* — NAV — */
-    nav {
-      border-bottom: 1px solid var(--border);
-      padding: 20px 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--white);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .nav-logo-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      color: var(--text);
-      text-decoration: none;
-    }
-    .nav-logo-text span { color: var(--teal); }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a {
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      color: var(--text-mid);
-      text-decoration: none;
-    }
-    .nav-links a:hover { color: var(--teal); }
-
-    /* — EYEBROW BAND — */
-    .eyebrow-band {
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 48px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .eyebrow-band span {
-      font-size: 0.72rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-light);
-    }
-    .eyebrow-band .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-light); }
-    .eyebrow-band .highlight { color: var(--teal); }
-
-    /* — HERO — */
+    /* ── HERO ── */
     .hero {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 80px 48px 64px;
-      text-align: center;
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+      padding: 60px 48px 56px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(58,154,150,0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(200,162,74,0.12) 0%, transparent 60%);
+    }
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 256px;
     }
     .hero-eyebrow {
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 24px;
-      display: block;
-    }
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      font-weight: 600;
-      line-height: 1.14;
-      color: var(--text);
-      margin-bottom: 16px;
-    }
-    .hero-title em { font-style: italic; color: var(--teal); }
-    .hero-sub {
-      font-size: 0.9rem;
-      color: var(--text-mid);
-      margin-bottom: 28px;
-    }
-    .hero-intro {
-      font-size: 1.08rem;
-      line-height: 1.78;
-      color: var(--text-mid);
-      max-width: 620px;
-      margin: 0 auto 32px;
-    }
-    .chips { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
-    .chip {
-      font-size: 0.7rem;
-      padding: 4px 14px;
-      border-radius: 99px;
-      border: 1px solid var(--border);
-      color: var(--text-light);
-      letter-spacing: 0.04em;
-    }
-    .chip.new { border-color: var(--teal); color: var(--teal); background: var(--teal-light); }
-
-    /* — SECTION NAV — */
-    .section-nav {
-      display: flex;
-      gap: 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    .section-nav::-webkit-scrollbar { display: none; }
-    .section-nav a {
-      font-size: 0.76rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      color: var(--text-mid);
-      padding: 14px 24px;
-      white-space: nowrap;
-      border-right: 1px solid var(--border);
-      transition: all 0.15s;
-    }
-    .section-nav a:hover { color: var(--teal); background: var(--teal-light); }
-
-    /* — LAYOUT — */
-    .page-body {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 48px;
-    }
-
-    /* — SECTION — */
-    .section {
-      padding: 72px 0 56px;
-      border-top: 1px solid var(--border);
-    }
-    .section:first-child { border-top: none; }
-
-    .section-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 20px;
-      display: block;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 3vw, 2.3rem);
-      font-weight: 600;
-      line-height: 1.2;
-      color: var(--text);
-      margin-bottom: 28px;
-    }
-    .section-title em { font-style: italic; color: var(--teal); }
-    .section-body { font-size: 1rem; line-height: 1.82; color: var(--text-mid); }
-    .section-body p + p { margin-top: 18px; }
-
-    /* — NEW LAYER BANNER (gold) — */
-    .new-layer {
-      margin: 40px 0;
-      background: var(--gold-light);
-      border: 1px solid var(--gold-border);
-      padding: 32px 40px;
       position: relative;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: auto;
     }
-    .new-layer::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), #D4A855, var(--gold));
-    }
-    .new-layer-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 12px;
-      display: block;
-    }
-    .new-layer p {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1rem;
-      color: var(--text-mid);
-      line-height: 1.72;
-    }
-
-    /* — HOOK (dark) — */
-    .hook-block {
-      margin: 40px 0;
-      background: var(--ink-dark);
-      padding: 40px 44px;
-    }
-    .hook-eyebrow {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #8A7050;
-      margin-bottom: 16px;
-      display: block;
-    }
-    .hook-text {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.1rem, 2vw, 1.35rem);
-      font-style: italic;
-      line-height: 1.6;
-      color: #F0ECE6;
-      margin-bottom: 20px;
-    }
-    .hook-text em { color: #fff; font-style: normal; }
-    .hook-note {
-      font-size: 0.82rem;
-      color: #5A5550;
-      line-height: 1.65;
-      border-top: 1px solid #2E2C28;
-      padding-top: 16px;
-    }
-    .hook-note em { color: #8A8070; font-style: italic; }
-
-    /* — JOURNEY CARDS — */
-    .journey-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      margin: 28px 0 48px;
-    }
-    .journey-card {
-      background: var(--white);
-      padding: 28px 28px;
-    }
-    .journey-card.present { background: var(--ink-dark); }
-    .journey-flag {
-      font-size: 0.65rem;
+    .podcast-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
       font-weight: 500;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--text-light);
-      margin-bottom: 10px;
-      display: block;
+      color: rgba(255,255,255,0.4);
     }
-    .journey-card.present .journey-flag { color: #8A7050; }
-    .journey-place {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 10px;
-      line-height: 1.2;
-    }
-    .journey-card.present .journey-place { color: #F0ECE6; }
-    .journey-lesson {
-      font-size: 0.86rem;
-      color: var(--text-mid);
-      line-height: 1.65;
-      margin-bottom: 14px;
-    }
-    .journey-card.present .journey-lesson { color: #5A5550; }
-    .journey-tag {
-      display: inline-block;
-      font-size: 0.65rem;
+    .eyebrow-line { flex: 1; height: 1px; background: rgba(255,255,255,0.1); }
+    .episode-tag {
+      font-size: 12px;
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 3px 12px;
-      border-radius: 99px;
+      color: var(--gold);
+      padding: 4px 12px;
+      border: 1px solid rgba(200,162,74,0.3);
+      border-radius: 4px;
     }
-    .tag-learned { background: var(--gold-light); color: var(--gold); }
-    .tag-distracted { background: var(--teal-light); color: var(--teal-mid); }
-    .tag-now { background: #2E2C28; color: #8A7050; }
-
-    /* — ACTS — */
-    .act {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      padding: 32px 36px;
-      margin-top: 24px;
-    }
-    .act.new-act {
-      background: var(--teal-light);
-      border-color: rgba(58, 175, 169, 0.3);
-    }
-    .act-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-light);
-      margin-bottom: 10px;
+    .hero-content { position: relative; padding-top: 80px; }
+    .behind-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--teal-light);
+      letter-spacing: 0.06em;
+      margin-bottom: 20px;
       display: block;
     }
-    .act.new-act .act-label { color: var(--teal-mid); }
-    .act-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      color: var(--text);
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.0;
+      letter-spacing: -1px;
       margin-bottom: 8px;
-      line-height: 1.35;
     }
-    .act-prompt {
-      font-size: 0.85rem;
-      font-style: italic;
-      color: var(--text-light);
+    .hero-title em { font-style: italic; color: var(--gold-light); }
+    .hero-title .outline { -webkit-text-stroke: 1px rgba(255,255,255,0.4); color: transparent; }
+    .hero-guest {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      margin-top: 24px;
+      letter-spacing: 0.04em;
+    }
+    .hero-guest strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+    .hero-desc {
+      font-size: 16px;
+      color: rgba(255,255,255,0.45);
+      max-width: 520px;
+      margin-top: 20px;
+      line-height: 1.7;
+    }
+    .hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 28px;
+    }
+    .chip {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      padding: 4px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.45);
+    }
+    .chip.new {
+      border-color: rgba(200,162,74,0.4);
+      color: var(--gold-light);
+      background: rgba(200,162,74,0.08);
+    }
+    .hero-scroll {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 48px;
+      color: rgba(255,255,255,0.3);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .scroll-line { width: 40px; height: 1px; background: rgba(255,255,255,0.2); }
+
+    /* ── THEME STRIP ── */
+    .themes {
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 0 48px;
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .themes::-webkit-scrollbar { display: none; }
+    .theme-item {
+      flex-shrink: 0;
+      padding: 20px 28px;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .theme-item:last-child { border-right: none; }
+    .theme-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .theme-item span {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .theme-item:hover span { color: rgba(255,255,255,0.8); }
+
+    /* ── WRAPPER ── */
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+    /* ── SECTION ── */
+    .section {
+      padding: 80px 0 0;
+      scroll-margin-top: 24px;
+    }
+    .section:last-of-type { padding-bottom: 100px; }
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .section-tag-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .section-tag-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(30px, 4vw, 44px);
+      font-weight: 400;
+      line-height: 1.15;
       margin-bottom: 16px;
-      line-height: 1.6;
+      color: var(--ink);
     }
-    .act-notes { list-style: none; border-left: 2px solid var(--border); padding-left: 16px; }
+    .section-title em { font-style: italic; color: var(--teal); }
+    .section-intro {
+      font-size: 16px;
+      color: var(--ink-mid);
+      line-height: 1.75;
+      max-width: 640px;
+      margin-bottom: 40px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── QUOTE BLOCK ── */
+    .quote {
+      margin: 32px 0;
+      padding: 28px 32px;
+      background: var(--white);
+      border-radius: 12px;
+      border-left: 3px solid var(--teal);
+      position: relative;
+    }
+    .quote.gold { border-left-color: var(--gold); }
+    .quote.sage { border-left-color: var(--sage); }
+    .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 80px;
+      line-height: 0.6;
+      color: var(--cream-dark);
+      position: absolute;
+      top: 20px; right: 24px;
+      pointer-events: none;
+    }
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.55;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .quote-attr {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+    }
+
+    /* ── HOOK BLOCK (dark) ── */
+    .hook-block {
+      background: var(--ink);
+      border-radius: 16px;
+      padding: 40px 44px;
+      margin: 24px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .hook-block::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 100% 0%, rgba(58,154,150,0.1) 0%, transparent 70%);
+    }
+    .hook-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(200,162,74,0.7);
+      margin-bottom: 20px;
+      display: block;
+      position: relative;
+    }
+    .hook-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-style: italic;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .hook-text em { color: var(--white); font-style: normal; }
+    .hook-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.65;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 16px;
+      position: relative;
+    }
+    .hook-note em { color: rgba(255,255,255,0.5); font-style: italic; }
+
+    /* ── MOMENT CARDS ── */
+    .moments { display: flex; flex-direction: column; gap: 12px; margin: 32px 0; }
+    .moment {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 24px 28px;
+      border: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    .moment.new-moment { background: rgba(200,162,74,0.05); border-color: rgba(200,162,74,0.25); }
+    .moment-timestamp {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      padding-top: 4px;
+      white-space: nowrap;
+      min-width: 72px;
+    }
+    .moment.new-moment .moment-timestamp { color: var(--gold); }
+    .moment-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .moment-text {
+      font-size: 14px;
+      color: var(--ink-mid);
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+    .act-notes {
+      list-style: none;
+      border-left: 2px solid var(--border);
+      padding-left: 14px;
+      margin-top: 8px;
+    }
     .act-notes li {
-      font-size: 0.88rem;
-      color: var(--text-mid);
+      font-size: 13px;
+      color: var(--ink-mid);
       padding: 5px 0;
       border-bottom: 1px dashed var(--border);
       line-height: 1.65;
     }
     .act-notes li:last-child { border: none; }
-    .act-notes li.highlight {
-      color: var(--text);
-      font-style: italic;
-    }
+    .act-notes li.highlight { color: var(--ink); font-style: italic; }
 
-    /* — PULL QUOTE — */
-    .pull-quote {
-      margin: 48px 0;
-      padding: 36px 44px;
-      border-left: 3px solid var(--teal);
-      background: var(--teal-light);
+    /* ── STAT ROW (journey cards) ── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 32px 0;
     }
-    .pull-quote p {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.1rem, 2vw, 1.4rem);
-      font-style: italic;
-      line-height: 1.55;
-      color: var(--text);
-      margin-bottom: 14px;
+    .stat-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 24px 20px;
+      border: 1px solid var(--border);
     }
-    .pull-quote cite {
-      font-size: 0.72rem;
+    .stat-card.present { background: var(--ink); }
+    .stat-card-flag {
+      font-size: 10px;
+      font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--text-light);
-      font-style: normal;
+      color: var(--ink-light);
+      margin-bottom: 8px;
+      display: block;
     }
+    .stat-card.present .stat-card-flag { color: rgba(200,162,74,0.7); }
+    .stat-place {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .stat-card.present .stat-place { color: rgba(255,255,255,0.9); }
+    .stat-lesson {
+      font-size: 13px;
+      color: var(--ink-mid);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .stat-card.present .stat-lesson { color: rgba(255,255,255,0.4); }
+    .journey-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 999px;
+    }
+    .tag-learned { background: rgba(200,162,74,0.12); color: var(--gold); }
+    .tag-distracted { background: rgba(58,154,150,0.1); color: var(--teal); }
+    .tag-now { background: rgba(255,255,255,0.08); color: rgba(200,162,74,0.8); }
 
-    /* — ROUTINE GRID — */
+    /* ── ROUTINE GRID ── */
     .routine-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      margin-top: 24px;
+      gap: 12px;
+      margin-top: 32px;
     }
     .routine-card {
       background: var(--white);
-      padding: 24px 28px;
+      border-radius: 12px;
+      padding: 22px 24px;
+      border: 1px solid var(--border);
       display: grid;
       grid-template-columns: 36px 1fr auto;
       align-items: start;
       gap: 14px;
     }
     .routine-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
       font-weight: 300;
-      color: var(--border);
+      color: var(--cream-dark);
       line-height: 1;
       padding-top: 2px;
     }
     .routine-name {
-      font-size: 0.9rem;
+      font-size: 14px;
       font-weight: 500;
-      color: var(--text);
+      color: var(--ink);
       margin-bottom: 4px;
       line-height: 1.3;
     }
     .routine-why {
-      font-size: 0.8rem;
-      color: var(--text-mid);
+      font-size: 12px;
+      color: var(--ink-mid);
       line-height: 1.55;
     }
     .routine-phase {
-      font-size: 0.65rem;
+      font-size: 10px;
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       padding: 3px 10px;
-      border-radius: 99px;
+      border-radius: 999px;
       white-space: nowrap;
     }
-    .phase-morning { background: var(--gold-light); color: var(--gold); }
-    .phase-move { background: var(--teal-light); color: var(--teal-mid); }
-    .phase-nourish { background: var(--bg-warm, #F5F2EC); color: var(--text-mid); border: 1px solid var(--border); }
-    .phase-mind { background: var(--bg); color: var(--text-mid); border: 1px solid var(--border); }
+    .phase-morning { background: rgba(200,162,74,0.1); color: var(--gold); }
+    .phase-move { background: rgba(58,154,150,0.1); color: var(--teal); }
+    .phase-nourish { background: rgba(0,0,0,0.05); color: var(--ink-mid); }
+    .phase-mind { background: rgba(0,0,0,0.04); color: var(--ink-light); }
 
-    /* — MOMENT CARDS — */
-    .moments-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      margin-top: 24px;
-    }
-    .moment-card {
+    /* ── THEME BLOCK ── */
+    .theme-block {
       background: var(--white);
-      padding: 24px 28px;
-    }
-    .moment-card.new-moment { background: var(--teal-light); }
-    .moment-label {
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-light);
-      margin-bottom: 10px;
-      display: block;
-    }
-    .moment-card.new-moment .moment-label { color: var(--teal-mid); }
-    .moment-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.92rem;
-      font-style: italic;
-      color: var(--text-mid);
-      line-height: 1.6;
-    }
-
-    /* — INSIGHT (tone/advisory) — */
-    .insight {
-      background: var(--bg);
+      border-radius: 16px;
+      padding: 32px;
+      margin: 16px 0;
       border: 1px solid var(--border);
-      padding: 32px 36px;
-      margin-top: 24px;
     }
-    .insight-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      color: var(--text);
-      margin-bottom: 10px;
-      line-height: 1.35;
+    .theme-block.new-theme { background: rgba(200,162,74,0.04); border-color: rgba(200,162,74,0.2); }
+    .theme-block-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-    .insight-body {
-      font-size: 0.9rem;
-      color: var(--text-mid);
-      line-height: 1.72;
+    .theme-block-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
     }
-    .insight-body p + p { margin-top: 12px; }
-    .insight-list { list-style: none; border-left: 2px solid var(--border); padding-left: 16px; margin-top: 14px; }
+    .theme-block-text {
+      font-size: 14px;
+      color: var(--ink-mid);
+      line-height: 1.75;
+    }
+    .theme-block-text strong { color: var(--ink); font-weight: 500; }
+    .theme-block-text em { color: var(--ink); font-style: italic; }
+    .insight-list {
+      list-style: none;
+      border-left: 2px solid var(--border);
+      padding-left: 16px;
+      margin-top: 14px;
+    }
     .insight-list li {
-      font-size: 0.88rem;
-      color: var(--text-mid);
+      font-size: 13px;
+      color: var(--ink-mid);
       padding: 5px 0;
       border-bottom: 1px dashed var(--border);
       line-height: 1.65;
     }
     .insight-list li:last-child { border: none; }
-    .insight-list em { font-style: italic; color: var(--text); }
+    .insight-list em { font-style: italic; color: var(--ink); }
 
-    /* — CLOSING — */
-    .closing-block {
-      background: var(--ink-dark);
-      padding: 48px 52px;
-      margin-top: 24px;
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); margin: 60px 0 0; }
+
+    /* ── CLOSING ── */
+    .closing {
+      background: var(--ink);
+      padding: 80px 48px;
+      position: relative;
+      overflow: hidden;
     }
+    .closing-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 50% 80% at 90% 50%, rgba(58,154,150,0.15) 0%, transparent 70%);
+    }
+    .closing-wrap { max-width: 860px; margin: 0 auto; position: relative; }
     .closing-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.22em;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: #5A5550;
-      margin-bottom: 20px;
-      display: block;
+      color: var(--teal-light);
+      margin-bottom: 24px;
     }
-    .closing-body {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1rem, 1.8vw, 1.25rem);
+    .closing-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 300;
       font-style: italic;
-      line-height: 1.65;
-      color: #F0ECE6;
-      white-space: pre-line;
+      color: var(--white);
+      line-height: 1.35;
+      margin-bottom: 20px;
+      max-width: 700px;
     }
     .closing-note {
-      margin-top: 20px;
-      padding-top: 16px;
-      border-top: 1px solid #2E2C28;
-      font-size: 0.82rem;
-      color: #5A5550;
-      line-height: 1.65;
-    }
-
-    /* — SIGNOFF — */
-    .signoff-band {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: var(--bg);
-      padding: 48px 48px;
-      text-align: center;
-      margin-top: 64px;
-    }
-    .signoff-brand {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-    .signoff-brand span { color: var(--teal); }
-    .signoff-tagline {
-      font-size: 0.82rem;
-      color: var(--text-light);
-      margin-bottom: 28px;
-    }
-    .signoff-quote {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 0.98rem;
-      color: var(--text-mid);
+      font-size: 14px;
+      color: rgba(255,255,255,0.35);
       line-height: 1.7;
+      max-width: 620px;
+      margin-bottom: 24px;
+    }
+    .closing-attr {
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.06em;
     }
 
-    /* — FOOTER GRID — */
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      padding: 56px 48px;
-      max-width: 860px;
-      margin: 0 auto;
-    }
-    .footer-col h4 {
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-light);
-      margin-bottom: 16px;
-    }
-    .footer-col p {
-      font-size: 0.88rem;
-      color: var(--text-mid);
-      line-height: 1.65;
-      margin-bottom: 14px;
-    }
-    .footer-col a {
-      display: block;
-      font-size: 0.88rem;
-      color: var(--teal);
-      text-decoration: none;
-      margin-bottom: 8px;
-    }
-    .footer-col a:hover { color: var(--teal-mid); }
-
-    /* — FOOTER BAR — */
+    /* ── FOOTER ── */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 24px 48px;
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 48px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
+      justify-content: space-between;
+      gap: 24px;
     }
-    footer span { font-size: 0.75rem; color: var(--text-light); }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: rgba(255,255,255,0.5);
+    }
+    .footer-brand strong { color: var(--gold); font-style: normal; font-weight: 400; }
+    .footer-note { font-size: 12px; color: rgba(255,255,255,0.25); letter-spacing: 0.04em; }
+    .footer-links-group { display: grid; gap: 8px; }
+    .footer-links-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      font-weight: 600;
+    }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .footer-links a {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.88);
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .footer-links a:hover { background: rgba(255,255,255,0.1); }
 
-    /* — RESPONSIVE — */
-    @media (max-width: 680px) {
-      nav, .eyebrow-band, footer { padding-left: 20px; padding-right: 20px; }
-      .hero, .page-body { padding-left: 20px; padding-right: 20px; }
-      .hero { padding-top: 48px; }
-      .hook-block, .new-layer, .closing-block { padding: 28px 24px; }
-      .pull-quote { padding: 24px 24px; }
-      .act, .insight { padding: 24px 24px; }
-      .journey-row { grid-template-columns: 1fr; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-content > * { animation: fadeUp 0.8s ease forwards; opacity: 0; }
+    .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+    .hero-content > *:nth-child(2) { animation-delay: 0.25s; }
+    .hero-content > *:nth-child(3) { animation-delay: 0.35s; }
+    .hero-content > *:nth-child(4) { animation-delay: 0.45s; }
+    .hero-content > *:nth-child(5) { animation-delay: 0.55s; }
+    .hero-content > *:nth-child(6) { animation-delay: 0.65s; }
+
+    @media (max-width: 640px) {
+      .hero { padding: 40px 24px 40px; }
+      .wrap { padding: 0 20px; }
+      .themes { padding: 0 20px; }
+      .stat-row { grid-template-columns: 1fr; }
       .routine-grid { grid-template-columns: 1fr; }
-      .moments-grid { grid-template-columns: 1fr; }
       .routine-card { grid-template-columns: 36px 1fr; }
       .routine-phase { display: none; }
-      .footer-grid { grid-template-columns: 1fr; padding: 40px 20px; gap: 32px; }
-      .signoff-band { padding: 40px 20px; }
+      .moment { grid-template-columns: 1fr; gap: 4px; }
+      .moment-timestamp { display: none; }
+      .hook-block { padding: 28px 24px; }
+      footer { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+      .closing { padding: 60px 24px; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo-text" href="https://www.florianhohenleitner.com/">Grow with the <span>Flo</span></a>
-  <ul class="nav-links">
-    <li><a href="https://www.florianhohenleitner.com/">Home</a></li>
-    <li><a href="https://www.florianhohenleitner.com/podcast">Podcast</a></li>
-    <li><a href="https://www.florianhohenleitner.com/retreat">Retreat</a></li>
-    <li><a href="https://www.florianhohenleitner.com/about">My story</a></li>
-  </ul>
-</nav>
-
-<!-- EYEBROW -->
-<div class="eyebrow-band">
-  <span>Grow with the Flo</span>
-  <div class="dot"></div>
-  <span>Behind the Episode</span>
-  <div class="dot"></div>
-  <span class="highlight">Q1 Reflection &middot; Solo Episode &middot; ~25 min</span>
-</div>
-
 <!-- HERO -->
-<header class="hero">
-  <span class="hero-eyebrow">Behind the Episode</span>
-  <h1 class="hero-title">The <em>Hội An</em> Chapter</h1>
-  <p class="hero-sub">Four months in — what I found, what I built, and what I'm still figuring out</p>
-  <p class="hero-intro">I went to Hội An to reconnect with myself. I struggled at first. I stayed anyway. I built something real — and some mornings I still wake up and lose two hours to a screen. Both things are true. This episode says both.</p>
-  <div class="chips">
-    <span class="chip">Q1 summary</span>
-    <span class="chip">Raw &amp; honest</span>
-    <span class="chip">Routine deep-dive</span>
-    <span class="chip">Self-love</span>
-    <span class="chip new">+ The performance trap</span>
-    <span class="chip new">+ Still in it</span>
-  </div>
-</header>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
 
-<!-- SECTION NAV -->
-<nav class="section-nav" aria-label="Jump to section">
-  <a href="#hook">The hook</a>
-  <a href="#journey">The journey</a>
-  <a href="#arc">Episode arc</a>
-  <a href="#routine">The routine</a>
-  <a href="#moments">Anchor moments</a>
-  <a href="#signoff">Sign-off</a>
+  <div class="hero-eyebrow">
+    <span class="podcast-name">Grow with the Flo</span>
+    <div class="eyebrow-line"></div>
+    <span class="episode-tag">Behind the Episode</span>
+  </div>
+
+  <div class="hero-content">
+    <span class="behind-label">Q1 Reflection · Solo Episode · ~25 min</span>
+    <h1 class="hero-title">
+      The<br>
+      <em>Hội An</em><br>
+      <span class="outline">Chapter</span>
+    </h1>
+    <p class="hero-guest">A solo episode — <strong>Florian Hohenleitner</strong> · Grow with the Flo</p>
+    <p class="hero-desc">Four months in — what I found, what I built, and what I'm still figuring out. The routine, the performance trap, and falling in love with this life.</p>
+    <div class="hero-chips">
+      <span class="chip">Q1 summary</span>
+      <span class="chip">Raw &amp; honest</span>
+      <span class="chip">Routine deep-dive</span>
+      <span class="chip">Self-love</span>
+      <span class="chip new">+ The performance trap</span>
+      <span class="chip new">+ Still in it</span>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Read the companion</span>
+    </div>
+  </div>
+</section>
+
+<!-- THEME STRIP -->
+<nav class="themes">
+  <a class="theme-item" href="#hook">
+    <div class="theme-dot" style="background:#3A9A96;"></div>
+    <span>The hook</span>
+  </a>
+  <a class="theme-item" href="#journey">
+    <div class="theme-dot" style="background:#C8A24A;"></div>
+    <span>The journey</span>
+  </a>
+  <a class="theme-item" href="#arc">
+    <div class="theme-dot" style="background:#7BAA72;"></div>
+    <span>Episode arc</span>
+  </a>
+  <a class="theme-item" href="#routine">
+    <div class="theme-dot" style="background:#5BB5B0;"></div>
+    <span>The routine</span>
+  </a>
+  <a class="theme-item" href="#moments">
+    <div class="theme-dot" style="background:#E2A860;"></div>
+    <span>Anchor moments</span>
+  </a>
+  <a class="theme-item" href="#signoff">
+    <div class="theme-dot" style="background:#888;"></div>
+    <span>Sign-off</span>
+  </a>
 </nav>
 
-<!-- BODY -->
-<main class="page-body">
+<div class="wrap">
 
-  <!-- NEW LAYER -->
-  <section class="section" id="hook">
-    <span class="section-label">New layer</span>
-    <h2 class="section-title">This episode isn't a highlight reel.<br/><em>Say both things.</em></h2>
+  <!-- ── HOOK ── -->
+  <div class="section" id="hook">
+    <div class="section-tag">
+      <div class="section-tag-dot" style="background:#3A9A96;"></div>
+      <span class="section-tag-label" style="color:#3A9A96;">New layer</span>
+    </div>
+    <h2 class="section-title">This episode isn't a highlight reel. <em>Say both things.</em></h2>
+    <p class="section-intro">This episode isn't just a Q1 summary. It's an honest look at both what opened up in Hội An — and what's still unresolved. I went to Hội An to reconnect with myself. I struggled at first. I stayed anyway. I built something real — and some mornings I still wake up and lose two hours to a screen. Both things are true. This episode says both.</p>
 
-    <div class="new-layer">
-      <span class="new-layer-label">New insight — recorded morning of this session</span>
-      <p>This episode isn't just a Q1 summary. It's an honest look at both what opened up in Hội An — and what's still unresolved. The routine helped. The growth was real. And this morning you woke up, spent two hours on Instagram, and felt the old weight again. Both things are true. Say both.</p>
+    <div class="quote gold">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">New insight — recorded the morning of this session. The routine helped. The growth was real. And this morning you woke up, spent two hours on Instagram, and felt the old weight again. Both things are true. Say both.</p>
+      <span class="quote-attr">Pre-recording note</span>
     </div>
 
-    <!-- HOOK -->
     <div class="hook-block">
       <span class="hook-eyebrow">Viral hook — open with this · before/after contrast, but complicate the "after"</span>
       <p class="hook-text">
-        "A few weeks ago I dug a hole at the beach. Just dug it. Got in. Let the sand bury me.<br/><br/>
-        And I genuinely cannot tell you the last time I felt that free.<br/><br/>
+        "A few weeks ago I dug a hole at the beach. Just dug it. Got in. Let the sand bury me.<br><br>
+        And I genuinely cannot tell you the last time I felt that free.<br><br>
         <em>This morning I woke up and spent two hours on Instagram. I don't even know what I was looking for.</em>"
       </p>
       <p class="hook-note">Pause. Then: <em>"Both of those things are me. And this episode is about the distance between them — and why I think that gap is actually the most honest thing I can share right now."</em></p>
     </div>
-  </section>
+  </div>
 
-  <!-- JOURNEY -->
-  <section class="section" id="journey">
-    <span class="section-label">The journey so far</span>
-    <h2 class="section-title">Three chapters.<br/>Three different <em>lessons.</em></h2>
-    <div class="section-body">
-      <p>Set the scene briefly before going deep. Each place taught something different — and Hội An is where it clicked.</p>
+  <div class="divider"></div>
+
+  <!-- ── JOURNEY ── -->
+  <div class="section" id="journey">
+    <div class="section-tag">
+      <div class="section-tag-dot" style="background:#C8A24A;"></div>
+      <span class="section-tag-label" style="color:#C8A24A;">The journey so far</span>
     </div>
+    <h2 class="section-title">Three chapters. Three different <em>lessons.</em></h2>
+    <p class="section-intro">Set the scene briefly before going deep. Each place taught something different — and Hội An is where it clicked.</p>
 
-    <div class="journey-row">
-      <div class="journey-card">
-        <span class="journey-flag">Chapter 1</span>
-        <p class="journey-place">Sri Lanka</p>
-        <p class="journey-lesson">Beautiful but ungrounded. Constantly moving. No kitchen, no stability, no anchor. Showed me what I don't want.</p>
+    <div class="stat-row">
+      <div class="stat-card">
+        <span class="stat-card-flag">Chapter 1</span>
+        <p class="stat-place">Sri Lanka</p>
+        <p class="stat-lesson">Beautiful but ungrounded. Constantly moving. No kitchen, no stability, no anchor. Showed me what I don't want.</p>
         <span class="journey-tag tag-learned">Clarified values</span>
       </div>
-      <div class="journey-card">
-        <span class="journey-flag">Chapter 2</span>
-        <p class="journey-place">Bali</p>
-        <p class="journey-lesson">Connection, community, movement. Everything I wanted — and then too much. The opportunity for connection became an escape from myself.</p>
+      <div class="stat-card">
+        <span class="stat-card-flag">Chapter 2</span>
+        <p class="stat-place">Bali</p>
+        <p class="stat-lesson">Connection, community, movement. Everything I wanted — and then too much. The opportunity for connection became an escape from myself.</p>
         <span class="journey-tag tag-distracted">Beautiful distraction</span>
       </div>
-      <div class="journey-card present">
-        <span class="journey-flag">Chapter 3 &middot; Now</span>
-        <p class="journey-place">Hội An</p>
-        <p class="journey-lesson">Came here to reconnect with myself. Struggled at first. Stayed anyway. Built something real — and am still figuring out how to live in it.</p>
+      <div class="stat-card present">
+        <span class="stat-card-flag">Chapter 3 · Now</span>
+        <p class="stat-place">Hội An</p>
+        <p class="stat-lesson">Came here to reconnect with myself. Struggled at first. Stayed anyway. Built something real — and am still figuring out how to live in it.</p>
         <span class="journey-tag tag-now">Where I found myself</span>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ARC -->
-  <section class="section" id="arc">
-    <span class="section-label">Natural arc</span>
-    <h2 class="section-title">Six parts. ~25 minutes.<br/><em>Let it breathe.</em></h2>
+  <div class="divider"></div>
 
-    <div class="act">
-      <span class="act-label">Part 1 &middot; ~3 min</span>
-      <p class="act-title">Where I arrived from</p>
-      <p class="act-prompt">Brief but honest — set up the contrast before Hội An.</p>
-      <ul class="act-notes">
-        <li>Sri Lanka: lovely, chaotic, clarifying. What it showed me I didn't want.</li>
-        <li>Bali: what I thought I needed — and how it became a mirror for a different problem. Distractions dressed up as connection.</li>
-        <li>"Without any anchor, I felt restless. Ungrounded. Lost. And I didn't know why."</li>
-        <li>Arriving in Hội An: I wanted solitude. Within a few days I felt lonely. Big surprise.</li>
-      </ul>
+  <!-- ── ARC ── -->
+  <div class="section" id="arc">
+    <div class="section-tag">
+      <div class="section-tag-dot" style="background:#7BAA72;"></div>
+      <span class="section-tag-label" style="color:#7BAA72;">Natural arc</span>
+    </div>
+    <h2 class="section-title">Six parts. ~25 minutes. <em>Let it breathe.</em></h2>
+    <p class="section-intro">Each part has a clear intent. Don't rush past the discomfort — that's where the episode lives.</p>
+
+    <div class="moments">
+      <div class="moment">
+        <div class="moment-timestamp">Part 1 · 3 min</div>
+        <div>
+          <div class="moment-title">Where I arrived from</div>
+          <div class="moment-text">Brief but honest — set up the contrast before Hội An.</div>
+          <ul class="act-notes">
+            <li>Sri Lanka: lovely, chaotic, clarifying. What it showed me I didn't want.</li>
+            <li>Bali: what I thought I needed — and how it became a mirror for a different problem. Distractions dressed up as connection.</li>
+            <li>"Without any anchor, I felt restless. Ungrounded. Lost. And I didn't know why."</li>
+            <li>Arriving in Hội An: I wanted solitude. Within a few days I felt lonely. Big surprise.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="moment">
+        <div class="moment-timestamp">Part 2 · 3 min</div>
+        <div>
+          <div class="moment-title">The hard first weeks</div>
+          <div class="moment-text">Don't skip this — the discomfort is the point.</div>
+          <ul class="act-notes">
+            <li>The loneliness that came with choosing to be alone. Feeling lost, overwhelmed, ready to leave.</li>
+            <li>The tension: I came here for me, but being with me was uncomfortable.</li>
+            <li>What kept you there. The decision to stay anyway.</li>
+            <li class="highlight">"I didn't know it yet, but staying was the whole point."</li>
+          </ul>
+        </div>
+      </div>
+      <div class="moment">
+        <div class="moment-timestamp">Part 3 · 7 min</div>
+        <div>
+          <div class="moment-title">The routine that helped — and what it revealed</div>
+          <div class="moment-text">This is the heart of it. But be honest about both sides: it worked, and it's also become fragile again. Don't tell the clean version.</div>
+          <ul class="act-notes">
+            <li>Frame it: "I didn't set out to build a routine. I just started doing one thing. Then another."</li>
+            <li>Talk about the morning as a ritual — warmup, breathwork, movement by feel, mindful coffee, reading</li>
+            <li>"Consistency isn't glamorous. It's just showing up for yourself, again and again, until it stops feeling hard."</li>
+            <li class="highlight">Then the honest turn: lately the routine has started to feel like a list of shoulds. Breathwork I should do. Yoga I should do. And somewhere in that shift, the aliveness went out of it.</li>
+            <li>"I built something that helped me — and now I'm learning that even the things that save you can become a cage if you're doing them to perform rather than to feel."</li>
+          </ul>
+        </div>
+      </div>
+      <div class="moment">
+        <div class="moment-timestamp">Part 4 · 6 min</div>
+        <div>
+          <div class="moment-title">What opened up — and the moment I finally got it</div>
+          <div class="moment-text">The beautiful part, but with new depth. The contact improv insight is the centrepiece now.</div>
+          <ul class="act-notes">
+            <li>Noticing the world: rice fields on the drive, the mango tree, the cow that wanders in. Slowness made this possible.</li>
+            <li>The beach hole. Say this slowly. Let them feel it. The childlike joy. The meditative quality.</li>
+            <li>Contact improv: the concept of the third entity. Being guided by touch, not by thinking. Not performing. Just present.</li>
+            <li class="highlight">"The moment I stopped worrying about the outcome, it immediately felt like a success. My partner and I parted ways and we both just said — thank you. That was nice. No applause needed."</li>
+            <li>Then the poem: sat down to write, immediately tried to make it clever and artsy and impressive. The authentic thing got strangled before it could breathe.</li>
+            <li class="highlight">"That's what happens when you stop performing presence and actually arrive."</li>
+          </ul>
+        </div>
+      </div>
+      <div class="moment new-moment">
+        <div class="moment-timestamp">Part 5 · 4 min · New</div>
+        <div>
+          <div class="moment-title">The performance trap — what's actually underneath</div>
+          <div class="moment-text">This is the new layer. The insight from this morning. Don't explain it too analytically — just share it like you lived it.</div>
+          <ul class="act-notes">
+            <li>The pattern: everything I love eventually becomes something I have to be good at. The podcast needs listeners. The retreat needs to work. The morning needs to be productive. Even the poems need to be clever.</li>
+            <li>I left a career full of performance pressure — metrics, compliance, results. And without realising it, rebuilt the same structure around my passions.</li>
+            <li>The jealousy: unfollowing someone because their reels sting. Wanting to be where they are. Comparing instead of creating.</li>
+            <li class="highlight">"I don't think I'm performing for anyone specific. I think I'm performing for a version of myself that doesn't exist yet — the one that has it figured out. And I'm exhausted trying to get there."</li>
+          </ul>
+        </div>
+      </div>
+      <div class="moment">
+        <div class="moment-timestamp">Part 6 · 4 min</div>
+        <div>
+          <div class="moment-title">Falling in love with this dude — slowly, imperfectly</div>
+          <div class="moment-text">The most vulnerable part. Don't make it a resolution. Make it a direction.</div>
+          <ul class="act-notes">
+            <li>What it means to be starting to like who you are — mindful, caring, present, curious</li>
+            <li>Giving yourself credit for doing something genuinely hard: starting over, staying when it was uncomfortable</li>
+            <li>"A year ago I talked to myself in a way I wouldn't let a stranger speak to me. That's changed."</li>
+            <li class="highlight">But it's not fixed. This morning happened. And that's okay too. The goal isn't to be permanently healed. It's to keep coming back to yourself — again and again — even when you drift.</li>
+            <li class="highlight">Close: "I don't have it all figured out. But I'm someone I actually want to spend time with. Most days. And that feels like enough for now."</li>
+          </ul>
+        </div>
+      </div>
     </div>
 
-    <div class="act">
-      <span class="act-label">Part 2 &middot; ~3 min</span>
-      <p class="act-title">The hard first weeks</p>
-      <p class="act-prompt">Don't skip this — the discomfort is the point.</p>
-      <ul class="act-notes">
-        <li>The loneliness that came with choosing to be alone. Feeling lost, overwhelmed, ready to leave.</li>
-        <li>The tension: I came here for me, but being with me was uncomfortable.</li>
-        <li>What kept you there. The decision to stay anyway.</li>
-        <li class="highlight">"I didn't know it yet, but staying was the whole point."</li>
-      </ul>
+    <div class="quote sage">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">I didn't set out to build a routine. I just started doing one thing. Then another. Consistency isn't glamorous. It's just showing up for yourself, again and again, until it stops feeling hard.</p>
+      <span class="quote-attr">— Flo, Episode 12</span>
     </div>
+  </div>
 
-    <div class="act">
-      <span class="act-label">Part 3 &middot; ~7 min</span>
-      <p class="act-title">The routine that helped — and what it revealed</p>
-      <p class="act-prompt">This is the heart of it. But be honest about both sides: it worked, and it's also become fragile again. Don't tell the clean version.</p>
-      <ul class="act-notes">
-        <li>Frame it: "I didn't set out to build a routine. I just started doing one thing. Then another."</li>
-        <li>Talk about the morning as a ritual — warmup, breathwork, movement by feel, mindful coffee, reading</li>
-        <li>"Consistency isn't glamorous. It's just showing up for yourself, again and again, until it stops feeling hard."</li>
-        <li class="highlight">Then the honest turn: lately the routine has started to feel like a list of shoulds. Breathwork I should do. Yoga I should do. And somewhere in that shift, the aliveness went out of it.</li>
-        <li>"I built something that helped me — and now I'm learning that even the things that save you can become a cage if you're doing them to perform rather than to feel."</li>
-      </ul>
-    </div>
+  <div class="divider"></div>
 
-    <div class="act">
-      <span class="act-label">Part 4 &middot; ~6 min</span>
-      <p class="act-title">What opened up — and the moment I finally got it</p>
-      <p class="act-prompt">The beautiful part, but with new depth. The contact improv insight is the centrepiece now.</p>
-      <ul class="act-notes">
-        <li>Noticing the world: rice fields on the drive, the mango tree, the cow that wanders in. Slowness made this possible.</li>
-        <li>The beach hole. Say this slowly. Let them feel it. The childlike joy. The meditative quality.</li>
-        <li>Contact improv: the concept of the third entity. Being guided by touch, not by thinking. Not performing. Just present.</li>
-        <li class="highlight">The moment it clicked: "The moment I stopped worrying about the outcome, it immediately felt like a success. My partner and I parted ways and we both just said — thank you. That was nice. No applause needed."</li>
-        <li>Then the poem: sat down to write, immediately tried to make it clever and artsy and impressive. The authentic thing got strangled before it could breathe. Recognising this pattern.</li>
-        <li class="highlight">"That's what happens when you stop performing presence and actually arrive. And that's also what happens when you start performing again — everything closes up."</li>
-      </ul>
+  <!-- ── ROUTINE ── -->
+  <div class="section" id="routine">
+    <div class="section-tag">
+      <div class="section-tag-dot" style="background:#5BB5B0;"></div>
+      <span class="section-tag-label" style="color:#5BB5B0;">The daily routine</span>
     </div>
-
-    <div class="act new-act">
-      <span class="act-label">Part 5 &middot; ~4 min &middot; New</span>
-      <p class="act-title">The performance trap — what's actually underneath</p>
-      <p class="act-prompt">This is the new layer. The insight from this morning. Don't explain it too analytically — just share it like you lived it.</p>
-      <ul class="act-notes">
-        <li>The pattern: everything I love eventually becomes something I have to be good at. The podcast needs listeners. The retreat needs to work. The morning needs to be productive. Even the poems need to be clever.</li>
-        <li>I left a career full of performance pressure — metrics, compliance, results. And without realising it, rebuilt the same structure around my passions.</li>
-        <li>The jealousy: unfollowing someone because their reels sting. Wanting to be where they are. Comparing instead of creating.</li>
-        <li class="highlight">"I don't think I'm performing for anyone specific. I think I'm performing for a version of myself that doesn't exist yet — the one that has it figured out. And I'm exhausted trying to get there."</li>
-        <li>This is what the phone in the morning is about. Not laziness. A nervous system that's flooded and reaching for something easy.</li>
-      </ul>
-    </div>
-
-    <div class="act">
-      <span class="act-label">Part 6 &middot; ~4 min</span>
-      <p class="act-title">Falling in love with this dude — slowly, imperfectly</p>
-      <p class="act-prompt">The most vulnerable part. Don't make it a resolution. Make it a direction.</p>
-      <ul class="act-notes">
-        <li>What it means to be starting to like who you are — mindful, caring, present, curious</li>
-        <li>Giving yourself credit for doing something genuinely hard: starting over, staying when it was uncomfortable</li>
-        <li>"A year ago I talked to myself in a way I wouldn't let a stranger speak to me. That's changed."</li>
-        <li>How you meet challenges now — the visa situation, the rental changing — taken as they come</li>
-        <li class="highlight">But it's not fixed. This morning happened. And that's okay too. The goal isn't to be permanently healed. It's to keep coming back to yourself — again and again — even when you drift.</li>
-        <li class="highlight">Close: "I don't have it all figured out. But I'm someone I actually want to spend time with. Most days. And that feels like enough for now."</li>
-      </ul>
-    </div>
-
-    <div class="pull-quote">
-      <p>"I didn't set out to build a routine. I just started doing one thing. Then another. Consistency isn't glamorous. It's just showing up for yourself, again and again, until it stops feeling hard."</p>
-      <cite>— Flo, Episode 12</cite>
-    </div>
-  </section>
-
-  <!-- ROUTINE -->
-  <section class="section" id="routine">
-    <span class="section-label">The daily routine</span>
-    <h2 class="section-title">Reference for Part 3.<br/><em>What actually helped.</em></h2>
-    <div class="section-body">
-      <p>Name each one. Let them see the shape of a day. Then be honest — some of these have started feeling like tasks. That tension is part of the story.</p>
-    </div>
+    <h2 class="section-title">Reference for Part 3. <em>What actually helped.</em></h2>
+    <p class="section-intro">Name each one. Let them see the shape of a day. Then be honest — some of these have started feeling like tasks. That tension is part of the story.</p>
 
     <div class="routine-grid">
       <div class="routine-card">
@@ -885,61 +949,100 @@
         <span class="routine-phase phase-nourish">Nourish</span>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- MOMENTS -->
-  <section class="section" id="moments">
-    <span class="section-label">Anchor moments</span>
+  <div class="divider"></div>
+
+  <!-- ── MOMENTS ── -->
+  <div class="section" id="moments">
+    <div class="section-tag">
+      <div class="section-tag-dot" style="background:#E2A860;"></div>
+      <span class="section-tag-label" style="color:#C8824A;">Anchor moments</span>
+    </div>
     <h2 class="section-title">Tell these ones <em>fully.</em></h2>
-    <div class="section-body">
-      <p>Don't rush past them. Each of these deserves a full beat — especially the two new ones.</p>
+    <p class="section-intro">Don't rush past them. Each of these deserves a full beat — especially the two new ones.</p>
+
+    <div class="theme-block">
+      <div class="theme-block-title">
+        <div class="theme-block-icon" style="background:#EAF3EE;">🌿</div>
+        The mango tree &amp; the cow
+      </div>
+      <div class="theme-block-text">The moment you noticed you were noticing. Slowness made this possible. Say it gently.</div>
     </div>
 
-    <div class="moments-grid">
-      <div class="moment-card">
-        <span class="moment-label">The mango tree &amp; the cow</span>
-        <p class="moment-text">The moment you noticed you were noticing. Slowness made this possible. Say it gently.</p>
+    <div class="theme-block">
+      <div class="theme-block-title">
+        <div class="theme-block-icon" style="background:#E8F5F0;">🤝</div>
+        Contact improv — the third entity
       </div>
-      <div class="moment-card">
-        <span class="moment-label">Contact improv — the third entity</span>
-        <p class="moment-text">Being guided by touch. Not thinking. No performance. The moment your partner and you parted ways and both just said — thank you.</p>
-      </div>
-      <div class="moment-card">
-        <span class="moment-label">The hole at the beach</span>
-        <p class="moment-text">Dig into this one. The childlike joy. The sand. Don't explain it too much — just take them there.</p>
-      </div>
-      <div class="moment-card new-moment">
-        <span class="moment-label">+ The poem you couldn't write</span>
-        <p class="moment-text">You sat down to write and immediately tried to make it clever. The authentic thing got strangled. This is the performance trap alive in real time — and it's worth sharing.</p>
-      </div>
-      <div class="moment-card new-moment">
-        <span class="moment-label">+ This morning — the phone</span>
-        <p class="moment-text">Woke up. Two hours on Instagram. Felt the weight. This is not failure. This is honesty. And honesty is the whole point of this podcast.</p>
-      </div>
-      <div class="moment-card">
-        <span class="moment-label">The visa situation</span>
-        <p class="moment-text">Plans changed. Rental changed. The old version of you would have spiralled. This one took it as it came. That's the proof — even if some mornings feel like regression.</p>
-      </div>
+      <div class="theme-block-text">Being guided by touch. Not thinking. No performance. <strong>The moment your partner and you parted ways and both just said — thank you.</strong> My partner and I parted ways and we both just said — thank you. That was nice. No applause needed.</div>
     </div>
-  </section>
 
-  <!-- TONE + CTA -->
-  <section class="section" id="signoff">
-    <span class="section-label">Before you record</span>
+    <div class="theme-block">
+      <div class="theme-block-title">
+        <div class="theme-block-icon" style="background:#FDF2E0;">🏖</div>
+        The hole at the beach
+      </div>
+      <div class="theme-block-text">Dig into this one. The childlike joy. The sand. Don't explain it too much — <strong>just take them there.</strong></div>
+    </div>
+
+    <div class="theme-block new-theme">
+      <div class="theme-block-title">
+        <div class="theme-block-icon" style="background:rgba(200,162,74,0.1);">✍️</div>
+        + The poem you couldn't write
+      </div>
+      <div class="theme-block-text">You sat down to write and immediately tried to make it clever. The authentic thing got strangled. <strong>This is the performance trap alive in real time</strong> — and it's worth sharing.</div>
+    </div>
+
+    <div class="theme-block new-theme">
+      <div class="theme-block-title">
+        <div class="theme-block-icon" style="background:rgba(200,162,74,0.1);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+        + This morning — the phone
+      </div>
+      <div class="theme-block-text">Woke up. Two hours on Instagram. Felt the weight. <strong>This is not failure. This is honesty.</strong> And honesty is the whole point of this podcast.</div>
+    </div>
+
+    <div class="theme-block">
+      <div class="theme-block-title">
+        <div class="theme-block-icon" style="background:#E8F5F0;">🛂</div>
+        The visa situation
+      </div>
+      <div class="theme-block-text">Plans changed. Rental changed. The old version of you would have spiralled. <strong>This one took it as it came.</strong> That's the proof — even if some mornings feel like regression.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── SIGNOFF ── -->
+  <div class="section" id="signoff">
+    <div class="section-tag">
+      <div class="section-tag-dot" style="background:#888;"></div>
+      <span class="section-tag-label" style="color:#888;">Before you record</span>
+    </div>
     <h2 class="section-title">Remember while recording.</h2>
+    <p class="section-intro">This episode has warmth in it — but also honesty that wasn't in the original brief. You're not reporting on a transformation. You're reflecting on a process that's still happening.</p>
 
-    <div class="insight">
-      <p class="insight-title">Tone note</p>
-      <div class="insight-body">
-        <p>This episode has warmth in it — but also honesty that wasn't in the original brief. You're not reporting on a transformation. You're reflecting on a process that's still happening.</p>
-        <p>The beach hole deserves a smile. The poem story deserves a pause. The "this morning" stuff deserves vulnerability, not shame. You've got ~25 min. Let it breathe. The messy parts are what make it real.</p>
+    <div class="theme-block">
+      <div class="theme-block-title">
+        <div class="theme-block-icon" style="background:#E8F5F0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3A9A96" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        Tone note
+      </div>
+      <div class="theme-block-text">
+        The beach hole deserves a smile. The poem story deserves a pause. The "this morning" stuff deserves vulnerability, not shame. You've got ~25 min. <strong>Let it breathe. The messy parts are what make it real.</strong>
       </div>
     </div>
 
-    <div class="insight" style="margin-top: 24px;">
-      <p class="insight-title">Before the sign-off — invite them in</p>
-      <div class="insight-body">
-        <p>This episode will resonate with anyone who's ever turned something they love into something they have to be good at. Give them something to sit with.</p>
+    <div class="theme-block">
+      <div class="theme-block-title">
+        <div class="theme-block-icon" style="background:#FDF2E0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        Before the sign-off — invite them in
+      </div>
+      <div class="theme-block-text">
+        This episode will resonate with anyone who's ever turned something they love into something they have to be good at. Give them something to sit with.
         <ul class="insight-list">
           <li>Ask: <em>"When did you last do something with zero performance pressure? Not for the outcome. Just because it felt good in your body?"</em></li>
           <li>Ask: <em>"What have you turned into a should? And what would it feel like to just... do it because you wanted to?"</em></li>
@@ -947,42 +1050,39 @@
         </ul>
       </div>
     </div>
+  </div>
 
-    <div class="closing-block">
-      <span class="closing-label">Your sign-off — Grow with the Flo</span>
-      <p class="closing-body">"Follow your intuition, do everything with love, and just see where it takes you."</p>
-      <p class="closing-note">For this episode, this line is still the whole story. But say it knowing that some days you forget it entirely. You followed your gut to Hội An, stayed when it was uncomfortable, loved yourself through the hard part — and some mornings you still wake up and lose two hours to a screen. That's not a contradiction. That's the ongoing practice of being alive.</p>
-    </div>
-  </section>
-
-</main>
-
-<!-- SIGNOFF -->
-<div class="signoff-band">
-  <p class="signoff-brand">Grow with the <span>Flo</span></p>
-  <p class="signoff-tagline">Episode companion &middot; The Hội An Chapter &middot; Q1 Reflection</p>
-  <p class="signoff-quote">"Follow your intuition. Do everything with love.<br/>And just see where it takes you."</p>
 </div>
 
-<!-- FOOTER GRID -->
-<div class="footer-grid">
-  <div class="footer-col">
-    <h4>Listen to the episode</h4>
-    <a href="https://open.spotify.com/episode/5Kd0gEXtM2uVZo7dLhlr86" target="_blank">Spotify</a>
-    <a href="https://podcasts.apple.com/us/podcast/grow-with-the-flo/id1795716394" target="_blank">Apple Podcasts</a>
-  </div>
-  <div class="footer-col">
-    <h4>Grow with the Flo</h4>
-    <p>Real conversations about grief, identity, connection, and what it means to live a life that actually feels like yours.</p>
-    <a href="https://www.instagram.com/grow.with_the.flo/" target="_blank">Instagram</a>
-    <a href="mailto:growwiththeflo.podcast@gmail.com">growwiththeflo.podcast@gmail.com</a>
+<!-- CLOSING -->
+<div class="closing">
+  <div class="closing-bg"></div>
+  <div class="closing-wrap">
+    <div class="closing-label">Your sign-off · Grow with the Flo</div>
+    <blockquote class="closing-title">"Follow your intuition, do everything with love, and just see where it takes you."</blockquote>
+    <p class="closing-note">For this episode, this line is still the whole story. But say it knowing that some days you forget it entirely. You followed your gut to Hội An, stayed when it was uncomfortable, loved yourself through the hard part — and some mornings you still wake up and lose two hours to a screen. That's not a contradiction. That's the ongoing practice of being alive.</p>
+    <div class="closing-attr">— Episode 12 · The Hội An Chapter · Grow with the Flo</div>
   </div>
 </div>
 
-<!-- FOOTER BAR -->
+<!-- FOOTER -->
 <footer>
-  <span>&copy; 2026 Florian Hohenleitner. All rights reserved.</span>
-  <span>Grow with the Flo &middot; The Hội An Chapter</span>
+  <div class="footer-brand">Grow with the <strong>Flo</strong></div>
+  <div class="footer-note">Episode companion · The Hội An Chapter · Q1 Reflection</div>
+  <div class="footer-links-group">
+    <div class="footer-links-label">Listen</div>
+    <div class="footer-links">
+      <a href="https://open.spotify.com/episode/5Kd0gEXtM2uVZo7dLhlr86" target="_blank" rel="noopener noreferrer">Spotify</a>
+      <a href="https://podcasts.apple.com/us/podcast/grow-with-the-flo/id1795716394" target="_blank" rel="noopener noreferrer">Apple Podcasts</a>
+    </div>
+  </div>
+  <div class="footer-links-group">
+    <div class="footer-links-label">Grow with the Flo</div>
+    <div class="footer-links">
+      <a href="https://www.florianhohenleitner.com" target="_blank" rel="noopener noreferrer">Website</a>
+      <a href="https://www.instagram.com/grow.with_the.flo/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+  </div>
 </footer>
 
 </body>
