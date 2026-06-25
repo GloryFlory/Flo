@@ -1974,3 +1974,408 @@ export const MODULE5_QUIZ: QuizQuestion[] = [
     correct: 2,
   },
 ];
+
+// ── Module 6: Deployment ─────────────────────────────────────────────────────
+
+export const DEPLOYMENT_CONTENT: Subsection[] = [
+  {
+    heading: 'What deployment actually means',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Writing code and shipping code are two different things. Deployment is the process of taking code that works on your machine and making it work for everyone, reliably, all the time.',
+      },
+      {
+        type: 'p',
+        text: 'When you run `npm run dev` locally, Node.js starts a server on your laptop. That server only exists while your laptop is on, only responds to requests from your own machine, and has no domain name. Nobody else can reach it.',
+      },
+      {
+        type: 'p',
+        text: 'Deployment moves your application onto infrastructure that runs 24/7, has a public IP address and domain name, can handle requests from anywhere in the world, and keeps running when you close your laptop.',
+      },
+      {
+        type: 'p',
+        text: 'The deployment process for a Next.js site involves three steps in sequence:',
+      },
+      {
+        type: 'ul',
+        items: [
+          '**Build** — your source code (TypeScript, JSX, Tailwind classes) is compiled into optimised output the browser can understand. TypeScript is stripped and checked. JSX is compiled to JavaScript. CSS is generated from Tailwind classes. The output is a folder of plain HTML, CSS, and JavaScript files plus server functions.',
+          '**Upload** — the built output is transferred to the hosting provider\'s servers.',
+          '**Serve** — the hosting provider\'s infrastructure responds to incoming requests, serving the right files and running server-side functions when needed.',
+        ],
+      },
+      {
+        type: 'p',
+        text: 'When you push to GitHub and Vercel picks it up, all three steps happen automatically — triggered by your push, running on Vercel\'s servers, completing in roughly 30 seconds for a typical Next.js site.',
+      },
+      {
+        type: 'analogy',
+        text: '**The analogy:** Writing code is writing a recipe. Deployment is opening the restaurant — finding premises, setting up the kitchen, hiring staff, opening the doors. The recipe doesn\'t feed anyone until the restaurant is running.',
+      },
+    ],
+  },
+  {
+    heading: 'CDNs — why someone in Japan gets a fast response',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Without a CDN, your site lives on one server in one location. A visitor from Tokyo makes a request that travels to that server (say, in Virginia), gets a response, and that response travels back. This round trip adds latency — potentially hundreds of milliseconds — just from physical distance.',
+      },
+      {
+        type: 'p',
+        text: 'A CDN solves this by caching copies of your content across dozens or hundreds of servers globally — called **edge nodes** or **Points of Presence (PoPs)**. When a visitor in Tokyo requests your site, the CDN routes them to the nearest edge node. The response travels milliseconds, not hundreds of milliseconds.',
+      },
+      {
+        type: 'p',
+        text: 'For static content — HTML files, images, CSS, JavaScript bundles — CDN caching is straightforward. The file is the same for everyone, so the edge node just serves its cached copy.',
+      },
+      {
+        type: 'p',
+        text: 'For dynamic content — pages that require server computation, database queries, or user-specific data — CDNs are more complex. Vercel handles this through its **Edge Network**, which can run lightweight server functions at the edge rather than routing requests back to a central server.',
+      },
+      {
+        type: 'p',
+        text: 'Vercel, Netlify, and Cloudflare all operate global CDNs. When you deploy to any of them, your static assets are automatically distributed globally. This is one of the primary reasons these managed platforms are valuable — you get global infrastructure without configuring anything.',
+      },
+    ],
+  },
+  {
+    heading: 'Cold starts — the hidden performance cost',
+    blocks: [
+      {
+        type: 'p',
+        text: '**Serverless functions** are a model where instead of a server running constantly waiting for requests, functions spin up on demand when a request arrives and shut down afterward. The advantage: you only pay for actual usage, and the infrastructure scales automatically.',
+      },
+      {
+        type: 'p',
+        text: 'The disadvantage: **cold starts**. When a serverless function hasn\'t been called for a while, the provider shuts it down to save resources. The next request that arrives has to wait for the function to start up again — loading the runtime, initialising your code, establishing database connections. This startup time is a cold start, typically 200ms to 2 seconds depending on how much code your function loads.',
+      },
+      {
+        type: 'p',
+        text: 'For a user clicking a button and waiting for a response, a 1-second cold start is noticeable. For an API endpoint that powers your booking form, it\'s a real UX problem.',
+      },
+      {
+        type: 'p',
+        text: '**How cold starts affect you:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Your Next.js API routes on Vercel are serverless functions',
+          'If nobody calls your `/api/bookings` endpoint for 15 minutes, the next person to book gets a cold start delay',
+          'Low-traffic applications — which includes most indie projects — experience cold starts regularly',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**Mitigations:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Vercel Pro offers options to keep functions warm',
+          'Edge functions (Vercel\'s lightweight serverless, running closer to users) have near-zero cold starts because they run a simpler runtime',
+          'Cloudflare Workers are famous for essentially zero cold starts due to their architecture',
+        ],
+      },
+    ],
+  },
+  {
+    heading: 'Vercel — the Next.js native platform',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Vercel built Next.js. That relationship matters: every Next.js feature is designed with Vercel\'s infrastructure in mind, and Vercel\'s infrastructure is optimised for Next.js. When Next.js releases a new rendering strategy or optimisation, Vercel supports it immediately.',
+      },
+      {
+        type: 'p',
+        text: '**Automatic deployments** — connect your GitHub repo once. Every push to your main branch deploys to production. Every push to any other branch gets a preview URL — share it with a client or collaborator, they see the real site, you don\'t have to deploy to production to get feedback.',
+      },
+      {
+        type: 'p',
+        text: '**Environment Variables** — stored securely in Vercel\'s dashboard, injected into your build and runtime. Your `.env.local` file stays on your machine; production secrets live in Vercel.',
+      },
+      {
+        type: 'p',
+        text: '**Vercel\'s pricing:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          '**Hobby (free)** — personal projects, generous limits, preview deployments, custom domains. Technically no commercial use, though rarely enforced for small projects.',
+          '**Pro ($20/month per member)** — commercial use, higher limits, better cold start handling, password-protected preview deployments, more analytics.',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**Vercel\'s strengths:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Best-in-class Next.js support — features work as documented, no configuration surprises',
+          'Preview deployments are genuinely excellent for iteration and feedback',
+          'Zero configuration for most Next.js features',
+          'Fast build times and excellent developer experience',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**Vercel\'s weaknesses:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Can become expensive at scale — bandwidth and function invocation costs add up',
+          'Hobby plan technically prohibits commercial use',
+          'Serverless cold starts on the free tier',
+          'Vendor relationship with Next.js creates some lock-in concern',
+        ],
+      },
+    ],
+  },
+  {
+    heading: 'Netlify — the original JAMstack platform',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Netlify launched in 2014, before Vercel existed, and essentially invented the modern "push to deploy" workflow that Vercel later built on. The term **JAMstack** (JavaScript, APIs, Markup) originated largely from Netlify\'s ecosystem.',
+      },
+      {
+        type: 'p',
+        text: 'Netlify and Vercel are genuinely similar in their core offering — connect GitHub, push code, get a deployed site with a global CDN. Netlify adds some unique features: built-in form handling (add a `netlify` attribute to your HTML form and submissions appear in your dashboard), a basic auth service, and built-in split testing.',
+      },
+      {
+        type: 'p',
+        text: 'For Next.js specifically, Vercel wins. Next.js is Vercel\'s product and certain features — Image Optimisation, Incremental Static Regeneration, Server Actions — work more reliably on Vercel. For other frameworks — Astro, SvelteKit, Nuxt, plain static sites — Netlify is an equally strong choice and sometimes preferred. Netlify is framework-agnostic by design.',
+      },
+      {
+        type: 'analogy',
+        text: '**Who uses Netlify:** Teams not using Next.js, agencies managing many client sites, developers who prefer Netlify\'s feature set or have existing Netlify infrastructure.',
+      },
+    ],
+  },
+  {
+    heading: 'Cloudflare — the infrastructure giant',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Cloudflare is a different beast from Vercel and Netlify. It started as a security and CDN company — protecting sites from DDoS attacks and accelerating content delivery — and has expanded into a full developer platform. Cloudflare operates one of the largest networks in the world, with servers in over 300 cities.',
+      },
+      {
+        type: 'p',
+        text: '**Cloudflare Pages** — static site hosting with deployment from GitHub, similar to Vercel and Netlify. Extremely generous free tier: unlimited sites, unlimited bandwidth, unlimited requests.',
+      },
+      {
+        type: 'p',
+        text: '**Cloudflare Workers** — serverless functions that run at Cloudflare\'s edge. Workers use a different runtime model (V8 isolates rather than Node.js containers) that has essentially zero cold starts. A Worker responds in milliseconds even after being idle. This is a genuine technical advantage for latency-sensitive applications.',
+      },
+      {
+        type: 'p',
+        text: '**Cloudflare\'s strengths:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Most generous free tier — truly unlimited bandwidth',
+          'Near-zero cold starts on Workers',
+          'Enormous global network — lowest latency of any option here',
+          'R2 storage is extremely cost-effective (no egress fees)',
+          'One platform for DNS, CDN, security, compute, and storage',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**Cloudflare\'s weaknesses:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Workers runtime is not Node.js — not all npm packages work, Next.js support is experimental',
+          'Steeper learning curve — Cloudflare\'s ecosystem has its own conventions',
+          'Less polished developer experience than Vercel for Next.js specifically',
+        ],
+      },
+      {
+        type: 'analogy',
+        text: '**Who uses Cloudflare for deployment:** Developers who prioritise performance and cost at scale, teams building edge-first applications, anyone who wants zero cold starts, and projects that outgrow Vercel\'s pricing.',
+      },
+    ],
+  },
+  {
+    heading: 'VPS — the self-hosted option',
+    blocks: [
+      {
+        type: 'p',
+        text: 'A VPS (Virtual Private Server) is a virtual machine you rent from a provider — DigitalOcean, Hetzner, Linode, AWS EC2. You get root access to a Linux server and complete control over everything running on it.',
+      },
+      {
+        type: 'p',
+        text: 'This is the opposite of managed platforms like Vercel. Nothing is automatic. You install Node.js, configure a web server (Nginx is common), set up SSL certificates, manage deployments, monitor uptime, handle security updates, configure firewalls, and set up backups. All of it, yourself.',
+      },
+      {
+        type: 'p',
+        text: '**Why anyone chooses a VPS:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          '**Cost at scale** — a $6/month Hetzner VPS can handle significant traffic. Once you\'re paying $50–100/month on Vercel, a VPS becomes dramatically cheaper.',
+          '**Control** — you can run anything. Long-running processes, background jobs, cron tasks, WebSocket servers — things that don\'t fit the serverless model.',
+          '**No vendor lock-in** — your code runs on Linux with Node.js. Move it anywhere.',
+          '**Data sovereignty** — choose exactly which country your server is in.',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**VPS providers worth knowing:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          '**Hetzner** (Germany) — cheapest serious option, excellent for European hosting, GDPR-friendly',
+          '**DigitalOcean** — clean interface, good documentation, slightly more expensive than Hetzner',
+          '**Fly.io** — modern platform that bridges VPS and managed, deploys Docker containers globally',
+          '**Railway** — managed platform built on VPS-style infrastructure, easier than raw VPS',
+        ],
+      },
+      {
+        type: 'p',
+        text: 'The real switching cost when migrating platforms is exactly what you\'d expect: recreate all environment variables, update DNS to point your domain to the new host, test everything works, and update any webhooks (Stripe, Supabase) pointing to your old URL. For a simple site, this is an afternoon. For a complex application with many integrations, it\'s a careful day of work.',
+      },
+    ],
+  },
+  {
+    heading: 'The verdict — and what you should actually use',
+    blocks: [
+      {
+        type: 'table',
+        headers: ['', 'Vercel', 'Netlify', 'Cloudflare', 'VPS'],
+        rows: [
+          ['Best for',        'Next.js apps',        'Framework-agnostic sites', 'Edge performance, scale', 'Full control, cost at scale'],
+          ['Next.js support', 'Native (built it)',   'Good',                    'Experimental',           'Manual setup'],
+          ['Free tier',       'Generous',            'Generous',                'Very generous',          'None (pay per server)'],
+          ['Cold starts',     'Yes (serverless)',    'Yes (serverless)',         'Near zero (Workers)',    'No (always running)'],
+          ['Configuration',   'Near zero',           'Near zero',               'Low',                    'High'],
+          ['Pricing at scale','Can get expensive',   'Similar to Vercel',       'Very cheap',             'Cheapest'],
+          ['Vendor lock-in',  'Medium',              'Low',                     'Low',                    'None'],
+        ],
+      },
+      {
+        type: 'p',
+        text: '**What you should use:** Vercel, which you\'re already using. Correct choice for Next.js.',
+      },
+      {
+        type: 'p',
+        text: '**When to reconsider:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'If your Vercel bill exceeds $50/month, look at Cloudflare Pages or a VPS',
+          'If you build something that isn\'t Next.js, Netlify or Cloudflare Pages are equally valid',
+          'If you need long-running processes or WebSocket servers, a VPS or Fly.io becomes necessary',
+          'If GDPR data residency matters for a specific project, Hetzner in Germany gives you full control',
+        ],
+      },
+      {
+        type: 'analogy',
+        text: '**The insight worth keeping:** Vercel, Netlify, and Cloudflare Pages have commoditised static hosting and basic serverless. The free tiers are genuinely generous enough that cost isn\'t a reason to choose between them for early-stage projects. The real differentiators are Next.js compatibility (Vercel wins), cold start performance (Cloudflare wins), and free tier generosity (Cloudflare wins). For your current projects, none of these differences matter enough to switch. The switching cost — environment variables, DNS, webhook updates — is real, and outweighs marginal platform differences until you hit scale.',
+      },
+    ],
+  },
+];
+
+// ── Module 6 Quiz ────────────────────────────────────────────────────────────
+
+export const MODULE6_QUIZ: QuizQuestion[] = [
+  {
+    id: 'm6q1',
+    question: 'What is the "build step" in deployment and when does it happen?',
+    options: [
+      'It happens every time a visitor loads the page',
+      'It happens when you run npm run dev locally',
+      'It happens once when you deploy — compiling TypeScript, JSX, and Tailwind into optimised output the browser can understand',
+      'It happens continuously on Vercel\'s servers while your site is live',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm6q2',
+    question: 'What is a CDN and what problem does it solve?',
+    options: [
+      'A type of database optimised for content storage',
+      'A security system that blocks malicious requests',
+      'A network of servers distributed globally that cache your content, so visitors are served from the nearest location rather than one central server',
+      'A build tool that compresses your JavaScript files',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm6q3',
+    question: 'What is a cold start?',
+    options: [
+      'When Vercel pauses your project due to inactivity',
+      'A failed deployment that requires a manual restart',
+      'The delay when a serverless function that has been idle has to spin up again before it can respond to a request',
+      'When your local dev server starts for the first time',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm6q4',
+    question: 'Why does Vercel have a native advantage for Next.js over Netlify and Cloudflare?',
+    options: [
+      'Vercel has faster servers than other platforms',
+      'Vercel is cheaper for Next.js projects specifically',
+      'Vercel built Next.js — every Next.js feature is designed with Vercel\'s infrastructure in mind and is supported immediately',
+      'Vercel is the only platform that supports server-side rendering',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm6q5',
+    question: "What is Cloudflare Workers' key technical advantage over Vercel's serverless functions?",
+    options: [
+      'Workers use Node.js which is faster than Vercel\'s runtime',
+      'Workers are free while Vercel charges per function invocation',
+      'Workers use V8 isolates rather than Node.js containers, giving near-zero cold starts even after being idle',
+      "Workers automatically integrate with Cloudflare's DDoS protection",
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm6q6',
+    question: 'You push code to GitHub. What is the correct sequence of events on Vercel?',
+    options: [
+      'Vercel serves the old version until you manually trigger a deploy',
+      'Vercel detects the push, runs the build step, and deploys the output to its global CDN — live in roughly 30 seconds',
+      'GitHub notifies your users, then Vercel builds, then you approve the deployment',
+      'Vercel pulls the code, users see a maintenance page, then the new version goes live',
+    ],
+    correct: 1,
+  },
+  {
+    id: 'm6q7',
+    question: 'What is the real switching cost when moving from Vercel to another platform?',
+    options: [
+      'Rewriting your Next.js code for the new platform',
+      'Paying an exit fee to Vercel',
+      'Recreating environment variables, updating DNS, and updating any webhooks pointing to your old URLs',
+      'Migrating your database to the new platform\'s database system',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm6q8',
+    question: 'At what point does it make financial sense to consider moving from Vercel to a VPS?',
+    options: [
+      'Immediately — a VPS is always cheaper',
+      'When you have more than 1,000 users',
+      'Never — managed platforms are always worth the convenience premium',
+      'When your Vercel bill exceeds roughly $50/month — at that point a VPS can handle similar traffic at a fraction of the cost',
+    ],
+    correct: 3,
+  },
+];

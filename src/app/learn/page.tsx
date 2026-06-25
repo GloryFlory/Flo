@@ -15,6 +15,8 @@ import {
   MODULE4_QUIZ,
   BAAS_CONTENT,
   MODULE5_QUIZ,
+  DEPLOYMENT_CONTENT,
+  MODULE6_QUIZ,
 } from './content';
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -84,6 +86,8 @@ const MODULES: ModuleData[] = [
         key: 'deployment',
         title: 'How do I ship it?',
         description: 'Deployment: Vercel vs Netlify vs Cloudflare vs VPS — cost, control, and cold starts.',
+        content: DEPLOYMENT_CONTENT,
+        quiz: MODULE6_QUIZ,
       },
       {
         key: 'ai-models',
