@@ -11,6 +11,8 @@ import {
   MODULE2_QUIZ,
   FRAMEWORKS_CONTENT,
   MODULE3_QUIZ,
+  DATABASES_CONTENT,
+  MODULE4_QUIZ,
 } from './content';
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -66,6 +68,8 @@ const MODULES: ModuleData[] = [
         key: 'databases',
         title: 'Where do I store data?',
         description: 'Databases: Postgres vs MySQL vs MongoDB vs SQLite — the tradeoffs that actually matter.',
+        content: DATABASES_CONTENT,
+        quiz: MODULE4_QUIZ,
       },
       {
         key: 'baas',

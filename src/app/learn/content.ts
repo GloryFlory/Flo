@@ -1202,3 +1202,424 @@ export const MODULE3_QUIZ: QuizQuestion[] = [
     correct: 2,
   },
 ];
+
+// ── Module 4: Databases ──────────────────────────────────────────────────────
+
+export const DATABASES_CONTENT: Subsection[] = [
+  {
+    heading: 'What a database actually is',
+    blocks: [
+      {
+        type: 'p',
+        text: 'A database is a system for storing, organising, and retrieving data efficiently. The key word is efficiently. You could store all your data in a text file. For ten users, that works fine. For ten thousand users, searching that file for a specific record becomes slow. For a million users, it becomes unusable.',
+      },
+      {
+        type: 'p',
+        text: 'Databases solve this with two things: **structure** (data is organised in a predictable way so the system knows where to look) and **indexing** (the database maintains a map of where things are, like the index at the back of a book, so lookups are fast rather than scanning everything).',
+      },
+      {
+        type: 'p',
+        text: 'Databases also handle **concurrent access** — multiple users reading and writing at the same time without corrupting each other\'s data. If two people book the last retreat spot simultaneously, the database ensures only one succeeds. Your application code can\'t reliably do this alone.',
+      },
+      {
+        type: 'p',
+        text: 'Every time someone visits a page on your site that shows dynamic content — a user profile, a list of events, a booking confirmation — your application is making a query to a database, getting data back, and rendering it. The database is the memory of your application.',
+      },
+      {
+        type: 'analogy',
+        text: '**The analogy:** A database is a filing cabinet designed by an engineer rather than an office worker. Every drawer is labelled precisely, every folder follows a strict format, there\'s an index of everything stored, and a lock system ensures two people can\'t modify the same folder simultaneously.',
+      },
+    ],
+  },
+  {
+    heading: 'Relational databases — tables, rows, and relationships',
+    blocks: [
+      {
+        type: 'p',
+        text: 'A relational database stores data in **tables**. Each table represents one type of thing — users, bookings, events, payments. Each table has **columns** (the fields — name, email, date) and **rows** (individual records — one row per user, one row per booking).',
+      },
+      {
+        type: 'p',
+        text: 'Here\'s what makes it relational: tables can **reference each other** using keys. Imagine your Connection Retreat database:',
+      },
+      {
+        type: 'table',
+        headers: ['id', 'name', 'email'],
+        rows: [
+          ['1', 'Flo', 'flo@example.com'],
+          ['2', 'Maria', 'maria@example.com'],
+        ],
+      },
+      {
+        type: 'table',
+        headers: ['id', 'user_id', 'retreat_id', 'date'],
+        rows: [
+          ['1', '1', '3', '2026-10-07'],
+          ['2', '2', '3', '2026-10-07'],
+        ],
+      },
+      {
+        type: 'p',
+        text: 'The `user_id` column in the bookings table references the `id` column in the users table. This is a **foreign key** — a pointer from one table to another. When you query "show me all bookings and who made them," the database follows that pointer and joins the data together.',
+      },
+      {
+        type: 'p',
+        text: 'This is a **JOIN** — combining data from multiple tables based on their relationships. "Give me all bookings where the user\'s email is flo@example.com" requires joining the bookings table to the users table.',
+      },
+      {
+        type: 'p',
+        text: 'The alternative — storing all user information inside every booking row — would mean duplicating data everywhere. If Maria changes her email, you\'d have to update every booking she ever made. With relationships, you update one row in the users table and every booking automatically reflects it.',
+      },
+      {
+        type: 'p',
+        text: '**SQL** (Structured Query Language) is the language used to talk to relational databases. It\'s not a programming language like JavaScript — it\'s a query language specifically for asking databases questions. `SELECT * FROM users WHERE email = \'flo@example.com\'` — select everything from the users table where the email matches. Supabase translates your JavaScript function calls into SQL behind the scenes.',
+      },
+    ],
+  },
+  {
+    heading: 'Postgres — the gold standard',
+    blocks: [
+      {
+        type: 'p',
+        text: 'PostgreSQL (almost always called Postgres) was first released in 1996 and is widely considered the most advanced open-source relational database in the world. Supabase, Neon, Railway, and most modern hosting platforms default to Postgres.',
+      },
+      {
+        type: 'p',
+        text: 'Postgres is a **full-featured relational database** — it supports everything SQL offers plus significant extensions: JSON storage (you can store unstructured data inside a Postgres column), full-text search, geospatial queries (finding things near a location), custom data types, and complex indexing strategies.',
+      },
+      {
+        type: 'p',
+        text: '**Postgres\'s strengths:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Extremely reliable and battle-tested over nearly 30 years',
+          'Highly standards-compliant SQL — code transfers easily to other systems',
+          'JSON support means you can store flexible data alongside structured data',
+          'Excellent performance at scale',
+          'Open source with no vendor lock-in',
+          'Supabase, your current database, runs on Postgres',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**Postgres\'s weaknesses:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'More complex to self-host and tune than MySQL',
+          'Slightly more verbose syntax than MySQL in some cases',
+          'Historically slower than MySQL for simple read-heavy workloads (the gap has narrowed significantly)',
+        ],
+      },
+      {
+        type: 'analogy',
+        text: '**Who uses Postgres:** Instagram, Reddit, Spotify, most modern startups. It\'s the default choice for new projects in 2026. You\'re already using it via Supabase.',
+      },
+    ],
+  },
+  {
+    heading: 'MySQL — the old reliable',
+    blocks: [
+      {
+        type: 'p',
+        text: 'MySQL was released in 1995 — a year before Postgres — and for a long time was the most popular database in the world. It powers WordPress, which runs roughly 40% of the web. Facebook built its early infrastructure on MySQL. It\'s owned by Oracle.',
+      },
+      {
+        type: 'p',
+        text: 'MySQL and Postgres are both relational databases using SQL. For most applications, they\'re interchangeable — the queries look nearly identical. The differences are in advanced features, performance characteristics, and philosophy.',
+      },
+      {
+        type: 'p',
+        text: '**MySQL\'s strengths:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Extremely widely used — most shared hosting supports MySQL, huge amount of documentation',
+          'Slightly faster than Postgres for simple read-heavy workloads',
+          'WordPress and most PHP applications default to MySQL',
+          'Mature and stable',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**MySQL\'s weaknesses:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Fewer advanced features than Postgres — limited JSON support, weaker full-text search',
+          'Oracle ownership creates some open-source purity concerns',
+          'Less standards-compliant SQL — some queries written for MySQL need adjustment for Postgres',
+          'The developer community has largely shifted preference to Postgres for new projects',
+        ],
+      },
+      {
+        type: 'analogy',
+        text: '**Who uses MySQL:** WordPress sites, legacy PHP applications, teams with existing MySQL infrastructure. For new projects in 2026, most developers choose Postgres.',
+      },
+      {
+        type: 'p',
+        text: '**MariaDB** is worth a brief mention — it\'s a community fork of MySQL created when Oracle acquired it, designed to stay fully open-source. Functionally nearly identical to MySQL.',
+      },
+    ],
+  },
+  {
+    heading: 'SQLite — the database that lives in a file',
+    blocks: [
+      {
+        type: 'p',
+        text: 'SQLite is unlike any other database on this list. There is no server. There is no installation. The entire database — all your data, all your tables, all your indexes — lives in a single file on your computer or server.',
+      },
+      {
+        type: 'p',
+        text: 'You import a SQLite library into your application, point it at a file, and start querying. That\'s it.',
+      },
+      {
+        type: 'p',
+        text: 'SQLite is the most deployed database in the world by a massive margin — not because developers choose it for web apps, but because it\'s embedded everywhere: every iPhone, every Android phone, every Chrome browser, every desktop application that needs local storage uses SQLite internally. It\'s in billions of devices.',
+      },
+      {
+        type: 'p',
+        text: '**SQLite\'s strengths:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Zero setup — just a file',
+          'Extremely fast for read-heavy workloads on a single machine',
+          'Perfect for local development, testing, and prototyping',
+          'Excellent for mobile apps and desktop apps',
+          'Self-contained — backup by copying one file',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**SQLite\'s weaknesses:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'No concurrent writes — only one process can write at a time, which causes problems at scale',
+          'Lives on one machine — no built-in replication or cloud hosting',
+          'Not suitable for applications with many simultaneous users writing data',
+        ],
+      },
+      {
+        type: 'analogy',
+        text: '**Who uses SQLite:** Mobile apps, desktop apps, local development, small tools that don\'t need multi-user write access. Also increasingly interesting for small web apps via services like Turso, which hosts SQLite in the cloud with replication. Not the right choice for a multi-user web application like The Connection Retreat.',
+      },
+    ],
+  },
+  {
+    heading: 'NoSQL — when tables aren\'t the answer',
+    blocks: [
+      {
+        type: 'p',
+        text: '"NoSQL" doesn\'t mean "no SQL" exactly — it means "not only SQL." It\'s a broad category of databases that don\'t use the relational table model.',
+      },
+      {
+        type: 'p',
+        text: 'Relational databases are excellent when your data has a consistent, predictable structure. Every user has an id, name, email, and created_at. Every booking has a user_id, retreat_id, and date. Clean tables, clear relationships.',
+      },
+      {
+        type: 'p',
+        text: 'But some data is inherently flexible. A product in an e-commerce store might have colour and size. Another might have weight and dimensions. A third might have digital download links. If you put this in a relational table, you either have columns that are empty for most rows, or you end up with a complex structure that\'s hard to query.',
+      },
+      {
+        type: 'p',
+        text: 'NoSQL databases solve this by storing data as **documents** — flexible JSON-like objects where each record can have different fields. **MongoDB** is the most popular. Instead of tables and rows, it has **collections and documents**:',
+      },
+      {
+        type: 'code',
+        language: 'json',
+        text: `{
+  "_id": "abc123",
+  "name": "Flo",
+  "email": "flo@example.com",
+  "retreats_attended": ["MAC 2024", "MAC 2025"],
+  "preferences": {
+    "diet": "vegetarian",
+    "room": "shared"
+  }
+}`,
+      },
+      {
+        type: 'p',
+        text: 'That nested structure — an array of retreats, an object of preferences — would require multiple tables and joins in a relational database. In MongoDB it\'s one document.',
+      },
+      {
+        type: 'p',
+        text: '**MongoDB\'s strengths:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Flexible schema — documents in the same collection can have different fields',
+          'Natural fit for hierarchical or nested data',
+          'Scales horizontally very well — designed for massive distributed systems',
+          'JSON-like documents feel natural for JavaScript developers',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**MongoDB\'s weaknesses:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'No joins — querying across collections is more complex than SQL joins',
+          'Flexible schema is also a weakness — no enforced structure means inconsistent data sneaks in',
+          'Transactions are more complex than in Postgres',
+          'The developer community has become more skeptical of MongoDB — many teams that started with it have migrated back to Postgres',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**Other NoSQL types worth knowing:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          '**Key-value stores** (Redis, DynamoDB) — store simple key:value pairs, extremely fast, used for caching and sessions',
+          '**Column stores** (Cassandra) — optimised for writing enormous amounts of time-series data',
+          '**Graph databases** (Neo4j) — store relationships between entities, used for social networks and recommendation engines',
+        ],
+      },
+    ],
+  },
+  {
+    heading: 'The verdict — and what you should actually use',
+    blocks: [
+      {
+        type: 'table',
+        headers: ['', 'Postgres', 'MySQL', 'SQLite', 'MongoDB'],
+        rows: [
+          ['Type',             'Relational',     'Relational',     'Relational',      'Document (NoSQL)'],
+          ['Setup',            'Server required', 'Server required', 'Just a file',    'Server required'],
+          ['Best for',         'Most web apps',  'WordPress, legacy', 'Local dev, mobile', 'Flexible/nested data'],
+          ['Concurrent users', 'Excellent',      'Excellent',      'Poor',            'Excellent'],
+          ['SQL',              'Full support',   'Full support',   'Full support',    'No SQL'],
+          ['Trend',            'Growing',        'Stable/declining', 'Growing (edge)', 'Declining (new projects)'],
+        ],
+      },
+      {
+        type: 'p',
+        text: '**What you should use:** Postgres via Supabase, which you\'re already doing. The choice is correct.',
+      },
+      {
+        type: 'p',
+        text: 'For your specific projects:',
+      },
+      {
+        type: 'ul',
+        items: [
+          '**The Connection Retreat** — Postgres. User accounts, bookings, payments. Relational data with clear structure and relationships.',
+          '**FlowGrid** — Postgres. Events, schedules, users. All relational.',
+          '**/learn progress tracking** — localStorage for now, Postgres via Supabase when you want progress to persist across devices.',
+          '**Local prototyping** — SQLite is worth knowing for quickly testing ideas without setting up a full database.',
+        ],
+      },
+      {
+        type: 'analogy',
+        text: '**The insight worth keeping:** The relational vs NoSQL debate was fierce in the 2010s — MongoDB was positioned as the modern replacement for old-fashioned SQL databases. That narrative has largely collapsed. Postgres added excellent JSON support, closing the flexibility gap. MongoDB\'s lack of enforced structure turned out to cause more problems than it solved for most applications. For the vast majority of web applications, a relational database — specifically Postgres — is the right choice. NoSQL databases solve specific problems at specific scales. You\'re unlikely to need them until you\'re operating at a scale most independent developers never reach.',
+      },
+    ],
+  },
+];
+
+// ── Module 4 Quiz ────────────────────────────────────────────────────────────
+
+export const MODULE4_QUIZ: QuizQuestion[] = [
+  {
+    id: 'm4q1',
+    question: 'What problem does a database solve that a simple text file cannot?',
+    options: [
+      'Text files don\'t support JavaScript',
+      'Efficient structured storage with fast lookups, concurrent access, and data integrity at scale',
+      'Text files can only store words, not numbers',
+      'Databases provide automatic backups that text files don\'t',
+    ],
+    correct: 1,
+  },
+  {
+    id: 'm4q2',
+    question: 'In a relational database, what is a foreign key?',
+    options: [
+      'A security key that encrypts sensitive columns',
+      'An API key used to access the database remotely',
+      'A column in one table that references the id of a row in another table, creating a relationship',
+      'A backup key stored separately from the main database',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm4q3',
+    question: 'You have a users table and a bookings table. A booking needs to know which user made it. What\'s the correct approach?',
+    options: [
+      'Copy all user data into every booking row',
+      'Store bookings inside the users table',
+      'Add a user_id column to the bookings table that references the users table id',
+      'Create a separate database for bookings',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm4q4',
+    question: 'What makes SQLite fundamentally different from Postgres and MySQL?',
+    options: [
+      'SQLite uses a different query language',
+      'SQLite only works on mobile devices',
+      'SQLite doesn\'t support tables or rows',
+      'SQLite has no server — the entire database lives in a single file on your machine',
+    ],
+    correct: 3,
+  },
+  {
+    id: 'm4q5',
+    question: 'What is the core difference between a relational database and a NoSQL document database like MongoDB?',
+    options: [
+      'NoSQL databases are always faster than relational databases',
+      'Relational databases store data in structured tables with enforced schemas; document databases store flexible JSON-like objects where each record can have different fields',
+      'NoSQL databases don\'t require any setup',
+      'Relational databases can only be used for small amounts of data',
+    ],
+    correct: 1,
+  },
+  {
+    id: 'm4q6',
+    question: "You're building The Connection Retreat booking system. Users, bookings, retreats, and payments all relate to each other. Which database type is most appropriate?",
+    options: [
+      'MongoDB — more flexible for complex data',
+      'SQLite — simplest to set up',
+      'Postgres — relational data with clear structure and relationships between entities',
+      'A key-value store like Redis',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm4q7',
+    question: 'What language do you use to query a relational database?',
+    options: [
+      'JavaScript',
+      'Python',
+      'JSON',
+      'SQL — Structured Query Language, specifically designed for querying relational databases',
+    ],
+    correct: 3,
+  },
+  {
+    id: 'm4q8',
+    question: "Why has MongoDB fallen out of favour for many new projects compared to the 2010s?",
+    options: [
+      'MongoDB became too expensive',
+      'MongoDB stopped supporting JavaScript',
+      'Postgres added strong JSON support, closing the flexibility gap, while MongoDB\'s lack of enforced schema caused data consistency problems',
+      'MongoDB was acquired by Oracle and became closed-source',
+    ],
+    correct: 2,
+  },
+];
