@@ -1623,3 +1623,354 @@ export const MODULE4_QUIZ: QuizQuestion[] = [
     correct: 2,
   },
 ];
+
+// ── Module 5: BaaS ───────────────────────────────────────────────────────────
+
+export const BAAS_CONTENT: Subsection[] = [
+  {
+    heading: 'Frontend vs Backend — the distinction that matters',
+    blocks: [
+      {
+        type: 'p',
+        text: '**Frontend** is everything that runs in the visitor\'s browser. Your React components, your CSS, your navigation, your forms, your animations. The user can see it, interact with it, and — if they open browser developer tools — inspect it. Frontend code is inherently public. Anyone can view your source.',
+      },
+      {
+        type: 'p',
+        text: '**Backend** is everything that runs on a server, invisible to the user. The database, the business logic, the authentication system, the payment processing, the email sending. When someone books a retreat on your site, the frontend shows them the form and collects their input. The backend validates that input, checks if spots are available, charges their card, writes the booking to the database, and triggers a confirmation email. None of that happens in the browser.',
+      },
+      {
+        type: 'p',
+        text: 'This separation matters for security. Your database credentials, your payment API keys, your secret business logic — none of this can live in frontend code, because frontend code is public. It all lives on the backend, where users can\'t reach it.',
+      },
+      {
+        type: 'p',
+        text: 'The frontend and backend communicate via an **API** (Application Programming Interface) — a set of defined endpoints your frontend can call. `POST /api/bookings` means "create a new booking." The backend receives that request, does its work, and responds.',
+      },
+      {
+        type: 'analogy',
+        text: '**The analogy:** A restaurant. The frontend is the dining room — what customers see, the menu, the ambience, the waiter taking orders. The backend is the kitchen — where the actual work happens, invisible to diners, running on rules customers never see.',
+      },
+    ],
+  },
+  {
+    heading: 'What you\'d need to build without BaaS',
+    blocks: [
+      {
+        type: 'p',
+        text: 'A typical web application needs these backend components:',
+      },
+      {
+        type: 'p',
+        text: '**Authentication** — user signup, login, logout, password reset, session management, token refresh, OAuth (Google/Apple login). Done properly, this is 2–4 weeks of work. Done improperly, it\'s a security liability. Password hashing, brute force protection, secure token storage, CSRF prevention — each one is a rabbit hole.',
+      },
+      {
+        type: 'p',
+        text: '**Database** — setting up a Postgres instance, configuring access controls, writing migration scripts, managing backups, monitoring performance, scaling when traffic grows.',
+      },
+      {
+        type: 'p',
+        text: '**Storage** — somewhere to put user-uploaded files. Images, documents, videos. An S3 bucket or equivalent, with access controls so users can only see their own files.',
+      },
+      {
+        type: 'p',
+        text: '**API layer** — writing the actual server code that handles requests. Every endpoint your frontend calls — create booking, update profile, fetch events — needs to be written, tested, secured, and maintained.',
+      },
+      {
+        type: 'p',
+        text: '**Email** — sending confirmation emails, password resets, notifications. Integrating with an email service, handling bounces and unsubscribes.',
+      },
+      {
+        type: 'p',
+        text: '**Hosting** — a server somewhere that runs all of this code 24/7, with monitoring, automatic restarts if it crashes, and enough capacity to handle traffic spikes.',
+      },
+      {
+        type: 'p',
+        text: 'For a solo developer building their first product, assembling all of this from scratch before writing a single line of business logic is demoralising and slow. Most products fail before they launch because the infrastructure took too long.',
+      },
+      {
+        type: 'analogy',
+        text: '**BaaS — Backend as a Service** — solves this by pre-packaging these components into a managed service. You get authentication, database, storage, and APIs out of the box, hosted and maintained by someone else. You connect your frontend and start building features immediately.',
+      },
+    ],
+  },
+  {
+    heading: 'Supabase — open source, Postgres-first',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Supabase launched in 2020 with a clear positioning: the open-source Firebase alternative built on Postgres. It\'s the backend you\'re already using.',
+      },
+      {
+        type: 'p',
+        text: '**Database** — a full Postgres instance per project. Every Supabase project is a real, complete Postgres database. You can connect to it with any Postgres client, write raw SQL, use database functions, set up triggers. It\'s not a simplified abstraction — it\'s the real thing.',
+      },
+      {
+        type: 'p',
+        text: '**Authentication** — email/password, magic links, OAuth (Google, GitHub, Apple, and more), phone auth via OTP. The `supabase.auth.signUp()` and `supabase.auth.signIn()` calls you make from your frontend handle the entire auth flow. Sessions are managed automatically.',
+      },
+      {
+        type: 'p',
+        text: '**Row Level Security (RLS)** — Postgres\'s built-in access control system, exposed through Supabase. You write rules directly in the database: "users can only read their own bookings." This means even if someone calls your API directly, they can only access data the rules permit. Security enforced at the database level, not just the application level.',
+      },
+      {
+        type: 'p',
+        text: '**Realtime** — subscribe to database changes and push them to connected clients instantly. If two users are looking at the same retreat page and one books the last spot, the other sees the availability update without refreshing.',
+      },
+      {
+        type: 'p',
+        text: '**Supabase\'s strengths:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Real Postgres — not a simplified abstraction, full database power',
+          'Open source — you can self-host if you outgrow the managed service or want to avoid vendor lock-in',
+          'Excellent JavaScript SDK — the supabase-js client is well-designed and well-documented',
+          'Row Level Security is genuinely powerful once understood',
+          'Strong community and fast-improving product',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**Supabase\'s weaknesses:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Two project limit on free tier',
+          'Large learning surface — dashboard has dozens of options',
+          'RLS can be confusing and hard to debug',
+          'Project pausing on inactive free tier projects',
+          'Backups require Pro plan',
+        ],
+      },
+    ],
+  },
+  {
+    heading: 'Firebase — Google\'s BaaS',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Firebase started as a realtime database startup in 2011 and was acquired by Google in 2014. It\'s been Google\'s primary BaaS offering since then and powers millions of apps — particularly mobile apps.',
+      },
+      {
+        type: 'p',
+        text: '**Firestore** — Firebase\'s primary database is not relational. It\'s a NoSQL document database. Data is stored in collections of documents — flexible JSON objects rather than rows in tables. No SQL, no joins, no schemas.',
+      },
+      {
+        type: 'p',
+        text: '**Authentication** — similar to Supabase, supporting email/password, Google, Apple, Facebook, phone, and more. Firebase Auth is one of the most mature auth solutions available and works seamlessly across web and mobile.',
+      },
+      {
+        type: 'p',
+        text: 'The most important difference from Supabase is the database model. Firebase uses NoSQL; Supabase uses Postgres. Firebase\'s NoSQL approach makes early development fast — no schema design required, just start storing documents. But as applications grow, the lack of structure and the inability to do SQL joins becomes a genuine constraint. Many teams that started with Firebase have migrated to Postgres as their products matured.',
+      },
+      {
+        type: 'p',
+        text: '**Firebase\'s strengths:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Mature, battle-tested — been around since 2014',
+          'Exceptional mobile SDK — React Native and Flutter support is excellent',
+          'Realtime by default — Firestore\'s live listeners are powerful',
+          'Google backing — reliability and scale are not concerns',
+          'Generous free tier with no project limit',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**Firebase\'s weaknesses:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'NoSQL — no SQL queries, no joins, data modelling becomes complex at scale',
+          'Vendor lock-in — deeply Google, difficult to self-host or migrate away',
+          'Pricing can become expensive at scale — Firestore charges per read/write operation',
+          'The developer community has become more critical of it as Supabase has matured',
+        ],
+      },
+    ],
+  },
+  {
+    heading: 'Appwrite — the self-hosted alternative',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Appwrite launched in 2019 as an open-source BaaS that you run on your own infrastructure. It covers the same ground as Supabase and Firebase — authentication, database, storage, functions — but its primary differentiator is that you host it yourself.',
+      },
+      {
+        type: 'p',
+        text: 'Appwrite covers authentication with multiple providers, a document-model database, file storage, serverless functions, and realtime. Appwrite Cloud launched in 2023, offering a managed hosted version — so self-hosting is an option, not a requirement.',
+      },
+      {
+        type: 'p',
+        text: '**The self-hosting advantage:** If data sovereignty matters — regulated industries, GDPR-sensitive applications, or simply not wanting your data on someone else\'s servers — running Appwrite on your own VPS gives you complete control. Your data never leaves infrastructure you own.',
+      },
+      {
+        type: 'p',
+        text: '**Appwrite\'s strengths:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Full self-hosting option — complete data control',
+          'Open source with active community',
+          'Good multi-platform SDK support (web, mobile, Flutter, server-side)',
+          'No project limits when self-hosted',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**Appwrite\'s weaknesses:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Self-hosting requires DevOps knowledge — server setup, maintenance, updates, backups are your responsibility',
+          'Smaller community than Supabase or Firebase',
+          'Document database rather than Postgres — same tradeoffs as Firebase',
+          'Appwrite Cloud is newer and less proven than Supabase or Firebase managed offerings',
+        ],
+      },
+      {
+        type: 'analogy',
+        text: '**Who uses Appwrite:** Developers and teams with data sovereignty requirements, those who want full control over their infrastructure, or those philosophically committed to fully self-hosted open-source software.',
+      },
+    ],
+  },
+  {
+    heading: 'The verdict — and what you should actually use',
+    blocks: [
+      {
+        type: 'table',
+        headers: ['', 'Supabase', 'Firebase', 'Appwrite'],
+        rows: [
+          ['Database type',      'Postgres (relational)', 'Firestore (NoSQL)',       'Document (NoSQL)'],
+          ['Open source',        'Yes',                   'No',                     'Yes'],
+          ['Self-hostable',      'Yes',                   'No',                     'Yes (primary model)'],
+          ['Free tier projects', '2',                     'Unlimited',              'Unlimited (self-hosted)'],
+          ['Backed by',          'VC startup',            'Google',                 'VC startup'],
+          ['Best for',           'Web apps, SQL',         'Mobile, Google ecosystem', 'Data sovereignty'],
+          ['Vendor lock-in',     'Low',                   'High',                   'Low'],
+          ['Maturity',           'Medium (2020)',          'High (2014)',             'Medium (2019)'],
+        ],
+      },
+      {
+        type: 'p',
+        text: '**What you should use:** Supabase, which you\'re already using. The choice is correct for your situation.',
+      },
+      {
+        type: 'p',
+        text: 'Here\'s why specifically: you\'re building web-first applications. Your data is relational — users, bookings, events, progress tracking all have clear relationships between tables. Postgres gives you SQL, which is a genuinely transferable skill. And Supabase\'s open-source nature means if you ever outgrow the managed service, your Postgres database goes with you — no rewriting your data model.',
+      },
+      {
+        type: 'p',
+        text: '**On the two-project limit:** Be ruthless about what deserves a database. Dead experiments don\'t need live Supabase projects — delete them. One Supabase project per domain (one for florianhohenleitner.com covering all personal site features, one for FlowGrid) is a reasonable structure.',
+      },
+      {
+        type: 'p',
+        text: '**On the complexity:** RLS policies feel confusing until they click, and then they feel elegant. The dashboard vastness is real — bookmark the three sections you actually use (Table Editor, Authentication, SQL Editor) and ignore the rest until you need it.',
+      },
+      {
+        type: 'analogy',
+        text: '**The insight worth keeping:** The BaaS market is still maturing. Supabase in 2026 is significantly better than Supabase in 2022. Firebase peaked and is declining for new web projects. The trend is clearly toward Postgres-based solutions over NoSQL BaaS — the flexibility of NoSQL turned out to create more problems than it solved for most teams. You\'re on the right side of that trend.',
+      },
+    ],
+  },
+];
+
+// ── Module 5 Quiz ────────────────────────────────────────────────────────────
+
+export const MODULE5_QUIZ: QuizQuestion[] = [
+  {
+    id: 'm5q1',
+    question: 'What is the core difference between frontend and backend?',
+    options: [
+      'Frontend is the mobile version; backend is the desktop version',
+      'Frontend runs in the visitor\'s browser and is visible; backend runs on a server and handles data, logic, and security invisibly',
+      'Frontend handles databases; backend handles UI',
+      'Frontend is built with JavaScript; backend requires a different language',
+    ],
+    correct: 1,
+  },
+  {
+    id: 'm5q2',
+    question: "Why can't you store your database credentials or API keys in frontend code?",
+    options: [
+      'Frontend code runs too slowly to use credentials',
+      'Frontend code runs in the browser and is publicly visible — anyone can inspect it and steal your credentials',
+      'Credentials don\'t work in JavaScript',
+      'Frontend code can\'t make network requests',
+    ],
+    correct: 1,
+  },
+  {
+    id: 'm5q3',
+    question: 'What does BaaS stand for and what problem does it solve?',
+    options: [
+      'Browser as a Service — hosting websites in the cloud',
+      'Backend as a Service — pre-packaging authentication, database, storage, and APIs so developers don\'t have to build these from scratch',
+      'Build and Ship — automating deployment pipelines',
+      'Base and Scale — infrastructure that grows with your app',
+    ],
+    correct: 1,
+  },
+  {
+    id: 'm5q4',
+    question: 'What is the most fundamental difference between Supabase and Firebase?',
+    options: [
+      'Supabase is free; Firebase costs money',
+      'Firebase is open source; Supabase is proprietary',
+      'Supabase uses Postgres (relational SQL); Firebase uses Firestore (NoSQL documents)',
+      'Supabase only works for web apps; Firebase only works for mobile',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm5q5',
+    question: 'What is Row Level Security (RLS) in Supabase?',
+    options: [
+      'A way to encrypt individual database rows',
+      'A pricing feature that limits how many rows you can store on the free tier',
+      'Rules written in the database that control which users can read or write which rows — security enforced at the database level',
+      'A backup system that stores row-level snapshots',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm5q6',
+    question: "Why have many teams migrated away from Firebase to Postgres-based solutions as their products grew?",
+    options: [
+      'Firebase became too expensive for small teams',
+      'Google shut down Firebase\'s free tier',
+      "Firebase's NoSQL model lacks SQL joins and enforced structure, making complex data relationships hard to manage at scale",
+      'Firebase stopped supporting web applications',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm5q7',
+    question: "What is Appwrite's primary differentiator from Supabase and Firebase?",
+    options: [
+      "It's faster than both alternatives",
+      'It uses Postgres like Supabase but with better mobile support',
+      "It's designed to be self-hosted on your own infrastructure, giving complete data control",
+      "It's the only BaaS with a free tier",
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm5q8',
+    question: "You're building a booking system for The Connection Retreat. Users, bookings, and retreats all relate to each other. Which BaaS is the best fit and why?",
+    options: [
+      "Firebase — it's the most mature option",
+      'Appwrite — self-hosting gives you GDPR compliance',
+      "Supabase — Postgres handles relational data well, RLS secures user data, and you're already using it",
+      'Build your own backend — BaaS is too limiting for booking systems',
+    ],
+    correct: 2,
+  },
+];

@@ -13,6 +13,8 @@ import {
   MODULE3_QUIZ,
   DATABASES_CONTENT,
   MODULE4_QUIZ,
+  BAAS_CONTENT,
+  MODULE5_QUIZ,
 } from './content';
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -75,6 +77,8 @@ const MODULES: ModuleData[] = [
         key: 'baas',
         title: 'Who manages my backend?',
         description: 'BaaS: Supabase vs Firebase vs Appwrite — what you get out of the box and what you give up.',
+        content: BAAS_CONTENT,
+        quiz: MODULE5_QUIZ,
       },
       {
         key: 'deployment',
