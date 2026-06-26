@@ -2379,3 +2379,337 @@ export const MODULE6_QUIZ: QuizQuestion[] = [
     correct: 3,
   },
 ];
+
+// ── Module 7: Payments ───────────────────────────────────────────────────────
+
+export const PAYMENTS_CONTENT: Subsection[] = [
+  {
+    heading: "Why you can't collect card details yourself",
+    blocks: [
+      {
+        type: 'p',
+        text: 'When a customer pays online, their card details — number, expiry, CVV — are among the most sensitive data that exists. Every entity that touches this data becomes subject to **PCI DSS** (Payment Card Industry Data Security Standard), a set of security requirements maintained by Visa, Mastercard, and the other card networks.',
+      },
+      {
+        type: 'p',
+        text: 'Full PCI DSS compliance for a merchant handling raw card data requires annual audits, penetration testing, network segmentation, encryption at rest and in transit, strict access controls, and incident response plans. For a small operator it\'s simply not feasible.',
+      },
+      {
+        type: 'p',
+        text: 'Payment processors like Stripe solve this with an **iframe or JavaScript widget** that renders the card input fields directly from Stripe\'s servers, inside your page. The card data never touches your server — it goes directly from the customer\'s browser to Stripe. Stripe tokenises it (replaces the raw card number with a meaningless token) and gives your server that token. Your server never sees the card number. Your PCI scope drops dramatically.',
+      },
+      {
+        type: 'p',
+        text: 'Beyond PCI, collecting card data yourself means taking on **fraud liability**. Stripe has fraud detection (Stripe Radar) built in, machine-learning models trained on billions of transactions. Building equivalent fraud detection from scratch is a years-long engineering effort.',
+      },
+      {
+        type: 'p',
+        text: 'The full payment flow — precisely:',
+      },
+      {
+        type: 'ol',
+        items: [
+          'Customer clicks Pay — Stripe\'s JavaScript widget renders the card fields',
+          'Customer enters card details — widget sends them directly to Stripe\'s servers (your server never sees them)',
+          'Stripe returns a **payment intent** with a client secret — a reference to an intended charge',
+          'Your frontend confirms the payment intent — Stripe attempts the charge',
+          'Stripe runs fraud checks (Radar), verifies funds, contacts the issuing bank',
+          'Issuing bank approves or declines — Stripe receives the result',
+          'Stripe sends a **webhook** to your backend — a POST request to your `/api/webhooks/stripe` endpoint',
+          'Your backend receives the webhook, verifies it\'s genuinely from Stripe, updates your database',
+          'Funds settle to your Stripe balance — typically 2 business days',
+        ],
+      },
+      {
+        type: 'analogy',
+        text: '**The webhook step is critical.** You don\'t trust the frontend to tell you a payment succeeded — a malicious user could fake that. You trust only Stripe\'s signed webhook hitting your backend.',
+      },
+    ],
+  },
+  {
+    heading: 'One-time payments vs subscriptions',
+    blocks: [
+      {
+        type: 'p',
+        text: '**One-time payments** are straightforward. Customer pays, Stripe charges once, done. A ticket, a one-time retreat booking, a single purchase. The Payment Intent flow handles this.',
+      },
+      {
+        type: 'p',
+        text: '**Subscriptions** involve several additional concepts:',
+      },
+      {
+        type: 'ul',
+        items: [
+          '**Customer object** — Stripe stores a Customer record with the payment method attached. This is how Stripe can charge the customer next month without them re-entering their card.',
+          '**Subscription object** — defines the billing schedule (monthly, annual), the price, the trial period if any, and the current status (active, past_due, cancelled).',
+          '**Invoice** — each billing cycle Stripe generates an invoice, attempts to charge the stored payment method, and sends you a webhook with the result.',
+          '**Dunning** — the process of recovering failed subscription payments. Stripe handles this automatically: retry logic, automatic emails to the customer asking them to update their card, configurable escalation.',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**Webhooks you need to handle for subscriptions:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          '`customer.subscription.created` — provision access',
+          '`invoice.payment_succeeded` — confirm continued access',
+          '`invoice.payment_failed` — flag the account, begin dunning',
+          '`customer.subscription.deleted` — revoke access',
+        ],
+      },
+      {
+        type: 'p',
+        text: 'Missing the `invoice.payment_failed` webhook means users whose cards declined keep accessing your product for free. Getting dunning right is worth thousands of pounds a year for subscription businesses — most failed payments are recoverable.',
+      },
+    ],
+  },
+  {
+    heading: 'VAT and tax — the problem nobody warns you about',
+    blocks: [
+      {
+        type: 'p',
+        text: 'When you sell a digital product (SaaS subscription, digital download, online course) to a customer in the EU, you are required to charge and remit VAT at the rate applicable in the customer\'s country. Germany is 19%. France is 20%. Hungary is 27%. Each country is different.',
+      },
+      {
+        type: 'p',
+        text: 'For a customer in the US, you may be required to charge sales tax depending on the state and whether you\'ve established **nexus** there — a legal connection that creates a tax obligation. Many US states require you to collect sales tax once you exceed a revenue or transaction threshold in that state.',
+      },
+      {
+        type: 'p',
+        text: 'If you sell FlowGrid subscriptions globally via Stripe alone, you are legally responsible for registering for VAT in every EU country where you have customers, charging the correct rate for each country, filing VAT returns in each country, and remitting the collected VAT to each country\'s tax authority. For a solo operator, this is genuinely unmanageable.',
+      },
+      {
+        type: 'p',
+        text: '**Stripe Tax** — Stripe\'s answer to this. An add-on that automatically calculates and collects the correct tax for each transaction based on the customer\'s location. It does not, however, file your tax returns or remit the tax on your behalf. You still receive the collected tax in your Stripe balance and must remit it yourself, which still requires registering in each jurisdiction.',
+      },
+      {
+        type: 'analogy',
+        text: 'This is where Paddle and Lemon Squeezy fundamentally differ from Stripe — and why they exist.',
+      },
+    ],
+  },
+  {
+    heading: 'Paddle — the Merchant of Record model',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Paddle was founded in 2012 and operates as a **Merchant of Record (MoR)**. When you sell through Paddle, **Paddle is the legal seller**, not you. The customer\'s receipt shows Paddle. Paddle collects the payment, handles all tax compliance globally, files the VAT returns, remits the tax to each jurisdiction, and then pays you the net amount. You never touch the tax complexity.',
+      },
+      {
+        type: 'p',
+        text: 'With Stripe, you are the merchant — you are legally selling to the customer and responsible for all compliance. With Paddle, you are a software vendor and Paddle is your reseller. This is a fundamentally different legal relationship.',
+      },
+      {
+        type: 'p',
+        text: '**Paddle\'s pricing:** 5% + $0.50 per transaction, compared to Stripe\'s ~1.4–2.9% + fixed fee. Paddle is significantly more expensive per transaction. The premium is the tax compliance service.',
+      },
+      {
+        type: 'p',
+        text: '**Paddle\'s strengths:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Zero tax compliance burden — genuinely the biggest selling point',
+          'Merchant of Record protection — legal liability sits with Paddle, not you',
+          'Global by default — sell anywhere from day one',
+          'Chargeback protection — Paddle absorbs chargeback risk, not you',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**Paddle\'s weaknesses:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Higher fees than Stripe',
+          'Less flexible — Paddle\'s checkout is more opinionated',
+          'Smaller developer ecosystem — fewer libraries, tutorials, integrations',
+          'Less control over the payment experience',
+        ],
+      },
+      {
+        type: 'analogy',
+        text: '**Who uses Paddle:** Solo developers and small teams selling SaaS globally who want to avoid the tax compliance nightmare. Very common in the indie developer community. If you launched FlowGrid as a paid product selling to retreat organizers worldwide, Paddle would handle the tax complexity that would otherwise require an accountant.',
+      },
+    ],
+  },
+  {
+    heading: 'Lemon Squeezy — the indie-friendly MoR',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Lemon Squeezy launched in 2021 as a more developer-friendly, modern alternative to Paddle. It also operates as a Merchant of Record — same fundamental model, global tax compliance included.',
+      },
+      {
+        type: 'p',
+        text: 'In 2024, Lemon Squeezy was acquired by Stripe. The long-term implications are still unfolding — it may mean deeper integration with Stripe\'s infrastructure, or it may mean Lemon Squeezy eventually becomes Stripe\'s MoR offering.',
+      },
+      {
+        type: 'p',
+        text: 'The differentiation from Paddle is in execution: Lemon Squeezy\'s checkout and dashboard are notably well-designed, and the onboarding and setup is faster and less complex. Pricing is similar: 5% + 50¢ per transaction.',
+      },
+      {
+        type: 'p',
+        text: '**Lemon Squeezy\'s strengths:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Clean, modern interface — best designed of the three options',
+          'Fast setup — can be selling in hours',
+          'Same MoR tax compliance as Paddle',
+          'Popular in the indie developer community',
+          'Stripe acquisition may bring better infrastructure over time',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**Lemon Squeezy\'s weaknesses:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Youngest of the three — less proven at scale',
+          'Stripe acquisition creates uncertainty about long-term direction',
+          'Fewer integrations than Stripe or Paddle',
+          'Less customisable checkout than Stripe',
+        ],
+      },
+      {
+        type: 'analogy',
+        text: '**Who uses Lemon Squeezy:** Indie developers launching their first paid product, solo founders who want the fastest path to selling globally without tax headaches, developers who prioritise design and simplicity.',
+      },
+    ],
+  },
+  {
+    heading: 'The verdict — and what you should actually use',
+    blocks: [
+      {
+        type: 'table',
+        headers: ['', 'Stripe', 'Paddle', 'Lemon Squeezy'],
+        rows: [
+          ['Model',              'Payment processor',   'Merchant of Record',      'Merchant of Record'],
+          ['Tax compliance',     'You handle it',       'Paddle handles everything', 'LS handles everything'],
+          ['Fees',               '~1.4–2.9% + fixed',  '5% + $0.50',              '5% + $0.50'],
+          ['Flexibility',        'Maximum',             'Medium',                  'Lower'],
+          ['Setup complexity',   'Medium-high',         'Medium',                  'Low'],
+          ['Ecosystem',          'Massive',             'Medium',                  'Small but growing'],
+          ['Chargeback liability', 'You',               'Paddle',                  'Lemon Squeezy'],
+        ],
+      },
+      {
+        type: 'p',
+        text: '**For MAC tickets:** Stick with WeTravel. They handle payment infrastructure and event ticketing in one. Building your own Stripe integration for ticket sales is more work than the problem justifies at MAC\'s current scale.',
+      },
+      {
+        type: 'p',
+        text: '**For FlowGrid if you monetise it:** Lemon Squeezy or Paddle. You\'d be selling to retreat organizers globally. The MoR model means you never worry about VAT registration in Austria, Germany, or the UK. The higher fees (5% vs Stripe\'s ~2%) are worth it to avoid the compliance burden entirely as a solo operator. Lemon Squeezy\'s simpler setup makes it the better starting point.',
+      },
+      {
+        type: 'p',
+        text: '**For The Connection Retreat direct bookings:** Stripe is appropriate if you\'re selling only in a few countries where you can manage tax manually. Paddle or Lemon Squeezy if you\'re selling globally from day one.',
+      },
+      {
+        type: 'analogy',
+        text: '**The insight worth keeping:** The Stripe vs Paddle vs Lemon Squeezy decision is primarily a tax compliance decision, not a technical one. Stripe is technically superior and cheaper per transaction. But tax compliance for global digital product sales is a real legal obligation that most solo developers discover too late — after they\'ve been selling for a year and suddenly have VAT registration requirements in six countries. The MoR model exists specifically to solve this problem. Your compliance background means you already understand why this matters more than most developers realise.',
+      },
+    ],
+  },
+];
+
+// ── Module 7 Quiz ────────────────────────────────────────────────────────────
+
+export const MODULE7_QUIZ: QuizQuestion[] = [
+  {
+    id: 'm7q1',
+    question: "Why can't you collect card details on your own server and charge them directly?",
+    options: [
+      'Card details can only be processed by banks, not websites',
+      'Handling raw card data requires PCI DSS compliance — annual audits, security infrastructure, and liability that is not feasible for small operators',
+      'JavaScript cannot send card data securely',
+      'Visa and Mastercard only allow payments through licensed processors',
+    ],
+    correct: 1,
+  },
+  {
+    id: 'm7q2',
+    question: 'What is a webhook in the context of Stripe payments?',
+    options: [
+      'A live chat widget that notifies you of payments',
+      'A JavaScript event that fires when the customer clicks Pay',
+      'A POST request Stripe sends to your backend when a payment event occurs — the correct way to know a payment succeeded',
+      'A Stripe dashboard notification you check manually',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm7q3',
+    question: 'Why should you never trust your frontend to confirm a payment succeeded?',
+    options: [
+      "Frontends can't make API calls to Stripe",
+      'A malicious user could fake a success signal from the frontend — only a signed webhook from Stripe\'s servers can be trusted',
+      "Stripe doesn't send payment results to the frontend",
+      'Frontend code runs too slowly to process payment confirmations',
+    ],
+    correct: 1,
+  },
+  {
+    id: 'm7q4',
+    question: "What is the core difference between Stripe and Paddle's business model?",
+    options: [
+      'Stripe is American; Paddle is British',
+      'Stripe charges higher fees than Paddle',
+      'Stripe is a payment processor — you are the legal seller responsible for tax compliance. Paddle is a Merchant of Record — Paddle is the legal seller and handles all tax compliance on your behalf',
+      'Stripe only handles one-time payments; Paddle handles subscriptions',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm7q5',
+    question: 'You launch a FlowGrid subscription selling to retreat organizers in 30 countries. Why is Stripe alone potentially problematic?',
+    options: [
+      "Stripe doesn't support subscriptions in all countries",
+      'You become legally responsible for VAT registration, collection, and remittance in every country where you have customers — a significant compliance burden for a solo operator',
+      "Stripe's fees are too high for international transactions",
+      "Stripe doesn't support the currencies used in some countries",
+    ],
+    correct: 1,
+  },
+  {
+    id: 'm7q6',
+    question: 'What is a Merchant of Record?',
+    options: [
+      'A company that records payment disputes on your behalf',
+      'A Stripe feature that tracks your highest-value customers',
+      'The legal entity that sells to the customer — taking on tax compliance liability, chargeback risk, and regulatory responsibility',
+      'A payment processor that specialises in recurring billing',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm7q7',
+    question: 'What happens during subscription dunning?',
+    options: [
+      'The customer is sent a physical invoice by post',
+      'The subscription is immediately cancelled on payment failure',
+      "Stripe retries failed payments on a configured schedule and sends automated emails asking customers to update their payment method",
+      "Stripe freezes the customer's account until they pay",
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm7q8',
+    question: 'For a solo developer launching their first paid SaaS product selling globally, which option offers the fastest path to compliance?',
+    options: [
+      'Stripe — most flexible and cheapest fees',
+      'Building your own payment system — no third-party dependency',
+      'Lemon Squeezy or Paddle — Merchant of Record model handles global tax compliance automatically, letting you sell worldwide without registering for VAT in each country',
+      'Stripe Tax — automatically files your returns in every country',
+    ],
+    correct: 2,
+  },
+];

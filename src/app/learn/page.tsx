@@ -17,6 +17,8 @@ import {
   MODULE5_QUIZ,
   DEPLOYMENT_CONTENT,
   MODULE6_QUIZ,
+  PAYMENTS_CONTENT,
+  MODULE7_QUIZ,
 } from './content';
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -67,6 +69,8 @@ const MODULES: ModuleData[] = [
         key: 'payments',
         title: 'How do I handle payments?',
         description: 'Stripe vs Paddle vs Lemon Squeezy — fees, tax handling, and what each one costs you.',
+        content: PAYMENTS_CONTENT,
+        quiz: MODULE7_QUIZ,
       },
       {
         key: 'databases',
