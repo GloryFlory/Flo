@@ -93,7 +93,7 @@ export default function MariaPage() {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] as const }}
           className="relative z-10"
         >
-          <p className="text-white/30 text-xs tracking-[0.4em] uppercase mb-6">Only for you</p>
+          <p className="text-white/30 text-xs tracking-[0.4em] uppercase mb-6">June 30 · Happy Birthday</p>
           <div className="overflow-hidden mb-6">
             <motion.h1
               className="text-5xl sm:text-7xl font-light tracking-tight"
@@ -110,8 +110,8 @@ export default function MariaPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
           >
-            A little corner of the internet I built for you.
-            A place for memories, surprises, and everything in between.
+            Another year of you in this world — and I get to love you through all of it.
+            Happiest birthday, my Fluffy. Here&apos;s to everything we&apos;ve built, and everything still ahead.
           </motion.p>
         </motion.div>
 
