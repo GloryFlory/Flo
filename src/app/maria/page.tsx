@@ -44,7 +44,11 @@ const memories = [
   { date: 'January 2026', title: 'Hospital week', description: 'You got sick and spent a week in the hospital. I became a nurse and an AI-assisted expert in antibiotics. We got through it.' },
   { date: 'February 2026', title: 'Different paths, again', description: 'You went to India. I went to Bali and Vietnam.' },
   { date: 'May 2026', title: 'Vipassana, together-apart', description: 'You did a Vipassana retreat — and inspired me to do one at the same time.' },
-  { date: 'June 8, 2026', title: 'Kuala Lumpur', description: 'Reunited after four months apart — the longest we\'ve ever been. The next chapter starts here.' },
+  { date: 'June 8, 2026', title: 'Surprise at the airport', description: 'Reunited after four months apart — the longest we\'ve ever been. The next chapter starts here.' },
+  { date: 'June 8–11, 2026', title: 'KL — the skyline, the pool, the mornings', description: 'Acro in the pool. A rooftop with an almost-perfect view of the Petronas Towers. Steamy nights and mornings that reminded us both why the waiting was always worth it.' },
+  { date: 'June 11–18, 2026', title: 'Canggu — one night became five', description: 'We couldn\'t leave. So we didn\'t. Dance nights at a spontaneous festival we stumbled into. Acro together. Bali doing what Bali does.' },
+  { date: 'June 18, 2026', title: 'Sumba — the sunset, the beach, the hard conversations', description: 'Our first evening here: a sunset that made everything feel possible. A day trip to a beautiful beach — the dream of skinny dipping still alive. Lunch at Arya with views that asked nothing of us.\n\nAnd then the harder part. Something had shifted during the four months apart. We both felt it. Tough conversations. The recognition that we had each grown — not always in the same direction, not always comfortably. We named it. Sat in it. Tried to work through it together.\n\nThat is also a form of love.' },
+  { date: 'June 29, 2026', title: 'Still here — still us', description: 'It\'s not easy right now. But even in the difficulty, I know what this has been. Three and a half years of something that was never conventional, never simple, and always — always — chosen.\n\nYou have been a co-creator of almost everything that matters in this chapter of my life. The MAC. The movement world I live in. The version of me that dances, teaches, travels, and feels deeply.\n\nWhatever comes next — that\'s real. That counts. You count.' },
 ];
 
 const surprises = [
@@ -174,7 +178,9 @@ export default function MariaPage() {
                     <div className="absolute -left-10 top-1 w-3 h-3 rounded-full bg-rose-400/60 border border-rose-400/30" />
                     <p className="text-white/25 text-xs tracking-widest uppercase mb-1">{memory.date}</p>
                     <h3 className="text-white text-lg font-light mb-1">{memory.title}</h3>
-                    <p className="text-white/50 text-sm leading-relaxed">{memory.description}</p>
+                    {memory.description.split('\n\n').map((para, pi) => (
+                      <p key={pi} className="text-white/50 text-sm leading-relaxed mb-2 last:mb-0">{para}</p>
+                    ))}
                   </div>
                 </AnimatedSection>
               ))}
