@@ -40,10 +40,13 @@ export default function MariaLoginPage() {
       >
         <PawPrint />
         <h1 className="text-white text-2xl font-light tracking-widest uppercase mb-2">
-          For Maria
+          Happy Birthday
         </h1>
-        <p className="text-white/40 text-sm mb-10 tracking-wide">
-          This place is yours. You know the word.
+        <p className="text-white/40 text-sm mb-2 tracking-wide">
+          Another year of you in this world — and I get to love you through all of it.
+        </p>
+        <p className="text-white/25 text-sm mb-10 tracking-wide">
+          You know the word, Fluffy.
         </p>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
