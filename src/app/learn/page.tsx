@@ -19,6 +19,8 @@ import {
   MODULE6_QUIZ,
   PAYMENTS_CONTENT,
   MODULE7_QUIZ,
+  AI_MODELS_CONTENT,
+  MODULE8_QUIZ,
 } from './content';
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -97,6 +99,8 @@ const MODULES: ModuleData[] = [
         key: 'ai-models',
         title: 'How do I add AI?',
         description: 'Anthropic vs OpenAI vs open source models — capability, cost, and what to use when.',
+        content: AI_MODELS_CONTENT,
+        quiz: MODULE8_QUIZ,
       },
     ],
   },

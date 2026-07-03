@@ -2713,3 +2713,344 @@ export const MODULE7_QUIZ: QuizQuestion[] = [
     correct: 2,
   },
 ];
+
+// ── Module 8: AI Models ──────────────────────────────────────────────────────
+
+export const AI_MODELS_CONTENT: Subsection[] = [
+  {
+    heading: 'What an API actually is — precisely',
+    blocks: [
+      {
+        type: 'p',
+        text: 'An API (Application Programming Interface) is a contract between two pieces of software. It defines: what requests you can make, what format those requests must be in, and what format the responses will come back in. The system behind the API can be anything — a database, a payment processor, a weather service, an AI model. You don\'t need to know how it works internally. You just need to know the contract.',
+      },
+      {
+        type: 'p',
+        text: 'The Anthropic API\'s contract is simple: send a POST request to `https://api.anthropic.com/v1/messages` with a JSON body containing your model choice, a system prompt, a conversation history, and a max token limit. Include your API key in the headers for authentication. Receive back a JSON object containing the model\'s response text, the number of input tokens used, the number of output tokens generated, and the stop reason.',
+      },
+      {
+        type: 'p',
+        text: 'Everything else — the neural network, the GPU clusters, the inference optimisation, the safety systems — is invisible to you. You send text in, you get text back. The API hides all complexity behind a defined interface.',
+      },
+      {
+        type: 'p',
+        text: 'This is the same concept whether you\'re calling Stripe (send card token, get charge result), Supabase (send query, get rows), or Anthropic (send prompt, get completion). APIs are how modern software is assembled from composable services rather than built entirely from scratch.',
+      },
+      {
+        type: 'analogy',
+        text: '**Why APIs cost money:** Unlike a database query that reads a file, an AI API response requires running billions of mathematical operations on specialised hardware (GPUs). Each response is computationally expensive. That cost is passed to you per token.',
+      },
+    ],
+  },
+  {
+    heading: 'What actually happens when you call the Anthropic API',
+    blocks: [
+      {
+        type: 'p',
+        text: '**Tokenisation** — your input text is converted into tokens. A token is roughly 3–4 characters or about 0.75 words. "Hello world" is approximately 2 tokens. A 1,000-word system prompt is roughly 1,300 tokens. This matters because you pay per token and models have a maximum context window measured in tokens.',
+      },
+      {
+        type: 'p',
+        text: '**Inference** — your tokenised input is fed into Claude, a large neural network with billions of parameters. The model processes your entire input — system prompt, conversation history, current message — through many layers of computation, producing a probability distribution over the next token. The highest-probability token is selected, appended to the context, and the process repeats for each token of the response. This is why responses stream in word by word — the model genuinely generates one token at a time.',
+      },
+      {
+        type: 'p',
+        text: '**Context window** — every model has a maximum context window measured in tokens. Claude\'s current models support up to 200,000 tokens — roughly 150,000 words, or a small novel. Everything in your conversation — system prompt, all previous messages, the current message — must fit within this window. Long conversations get expensive because every message includes the full history.',
+      },
+      {
+        type: 'p',
+        text: '**The cost structure:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'You pay for **input tokens** (everything you send — system prompt + conversation history + current message)',
+          'You pay for **output tokens** (the model\'s response)',
+          'Input tokens are cheaper than output tokens — generating is more expensive than reading',
+          'Costs are per million tokens, typically $3–15 per million input and $15–75 per million output depending on the model',
+        ],
+      },
+      {
+        type: 'analogy',
+        text: 'For your Ikigai tool: if your system prompt is 500 tokens and a user exchange averages 800 tokens in and 400 tokens out, each interaction costs roughly $0.01–0.02 at current pricing. Low traffic means negligible cost. High traffic means real cost.',
+      },
+    ],
+  },
+  {
+    heading: 'System prompts — what they actually do',
+    blocks: [
+      {
+        type: 'p',
+        text: 'A language model receives a single stream of text as input. That stream is divided into sections with different roles: **system** (instructions and context), **user** (what the human said), and **assistant** (what the model previously said). The model is trained to treat content in the system role as authoritative framing that governs how it should respond to everything in the user role.',
+      },
+      {
+        type: 'p',
+        text: 'The system prompt is not magic. It\'s text, just like everything else. But its position — before any user message — and its role designation train the model to treat it as the rules of engagement.',
+      },
+      {
+        type: 'p',
+        text: '**What a system prompt can do:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          '**Persona** — "You are a helpful retreat facilitator named Aria." The model adopts this identity consistently.',
+          '**Scope** — "You only discuss topics related to acroyoga. Decline all other requests politely."',
+          '**Format** — "Always respond in JSON with the following structure: {insight: string, question: string}." Forces structured output your code can parse reliably.',
+          '**Tone and style** — "Respond warmly but concisely. No bullet points. Maximum 3 sentences per response."',
+          '**Context injection** — "The user\'s name is {name} and they\'re interested in {interest}." You can interpolate variables dynamically, personalising behaviour per user.',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**What a system prompt cannot reliably do:** guarantee the model never deviates. System prompts are strong guidance, not hard constraints. A sufficiently persistent user can often get models to behave outside their instructions — this is called prompt injection. For user-facing products, never rely solely on the system prompt for security. Enforce constraints in your application code too.',
+      },
+    ],
+  },
+  {
+    heading: 'Anthropic vs OpenAI — the real differences',
+    blocks: [
+      {
+        type: 'p',
+        text: 'OpenAI was founded in 2015 as a non-profit research lab, restructured into a capped-profit company in 2019, and took a $1 billion investment from Microsoft. Microsoft has integrated OpenAI deeply into its products — Copilot in Windows, Office, GitHub. Anthropic was founded in 2021 by Dario Amodei, Daniela Amodei, and several other former OpenAI researchers who left over disagreements about safety priorities. Anthropic has taken investment from Google and Amazon.',
+      },
+      {
+        type: 'p',
+        text: 'OpenAI\'s flagship models are the GPT series (GPT-4o currently) and the o-series reasoning models (o1, o3). GPT-4o is fast and multimodal — text, images, and audio natively. The o-series models use chain-of-thought reasoning, pausing to "think" before responding, which improves performance on complex logical and mathematical problems at the cost of speed.',
+      },
+      {
+        type: 'p',
+        text: 'Anthropic\'s flagship models are the Claude series. Claude is generally considered stronger at writing, nuanced reasoning, and following complex instructions. The 200,000 token context window is larger than most OpenAI models. Claude\'s Constitutional AI training makes it more resistant to harmful outputs without being excessively restrictive.',
+      },
+      {
+        type: 'p',
+        text: '**Practical differences for your use cases:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Long document processing (full retreat planning guide, podcast transcript) — Claude\'s larger context window is a genuine advantage',
+          'Code generation — both are strong; Claude generally preferred for complex multi-file projects, OpenAI\'s o-series for algorithmic problem-solving',
+          'Structured output (JSON responses for your Ikigai tool) — both handle this well; Claude\'s instruction-following is slightly more reliable for complex formatting',
+          'Cost — roughly comparable across equivalent model tiers; Claude Haiku is extremely cheap for high-volume, simple tasks',
+        ],
+      },
+      {
+        type: 'analogy',
+        text: '**The honest assessment:** For most applications, the difference between Claude and GPT-4o is smaller than the marketing suggests. Both are capable of everything you\'re likely to build. The deciding factors are context window size, specific capability benchmarks for your use case, pricing at your expected volume, and personal preference from experimentation.',
+      },
+    ],
+  },
+  {
+    heading: 'Open source models — owning the car',
+    blocks: [
+      {
+        type: 'p',
+        text: 'The model weights — the billions of numerical parameters that define the model\'s behaviour — are publicly released. Anyone can download them, run them on their own hardware, fine-tune them, modify them, and deploy them commercially without paying per token.',
+      },
+      {
+        type: 'p',
+        text: '**The major open source models:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          '**Llama** (Meta) — the most widely used open source model family. Llama 3.1 405B is competitive with GPT-4 on many benchmarks. Meta\'s free release has dramatically accelerated open source AI development.',
+          '**Mistral** (France) — smaller, faster models that punch above their weight. Mistral 7B runs on consumer hardware. Strong performance relative to parameter count.',
+          '**Gemma** (Google) — designed to run on limited hardware including phones.',
+          '**Qwen** (Alibaba) — strong multilingual models with competitive performance.',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**Running open source models yourself:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          '**Locally** — tools like Ollama let you run models like Llama on your own laptop. A modern MacBook with M-series chip handles 7–13 billion parameter models reasonably well. Useful for development and testing without API costs.',
+          '**Self-hosted on a VPS** — rent a GPU server (RunPod, Lambda Labs, vast.ai), install the model, run an inference server. Pay for GPU time rather than per token. Cost-effective at high volume; complex to set up.',
+          '**Managed open source hosting** — services like Together AI, Groq, and Fireworks AI run open source models for you and charge per token, typically cheaper than Anthropic with a wider model selection.',
+        ],
+      },
+      {
+        type: 'table',
+        headers: ['', 'Anthropic/OpenAI', 'Open Source (managed)', 'Open Source (self-hosted)'],
+        rows: [
+          ['Setup',           'Minutes',           'Minutes',          'Days–weeks'],
+          ['Cost (low volume)', 'Low',             'Low',              'High (GPU rental)'],
+          ['Cost (high volume)', 'High',           'Medium',           'Lowest'],
+          ['Performance',     'State of the art',  'Varies',           'Varies'],
+          ['Data privacy',    'Sent to provider',  'Sent to provider', 'Fully private'],
+          ['Maintenance',     'None',              'None',             'High'],
+          ['Fine-tuning',     'System prompts only', 'Limited',        'Full'],
+        ],
+      },
+      {
+        type: 'analogy',
+        text: '**Data privacy** is the most important open source advantage for certain use cases. If your application processes sensitive personal data — medical information, financial details, confidential business data — sending it to Anthropic or OpenAI\'s servers may be a compliance concern. Running your own model means data never leaves your infrastructure.',
+      },
+    ],
+  },
+  {
+    heading: 'Choosing the right model for the right task',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Not all AI tasks are equal. Using the largest, most capable model for every task is like using a sledgehammer to hang a picture frame.',
+      },
+      {
+        type: 'p',
+        text: '**Model tiers and when to use each:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          '**Large frontier models** (Claude Sonnet, GPT-4o) — complex reasoning, nuanced writing, multi-step problem solving, code generation. Slower and more expensive. Use when quality is critical.',
+          '**Small fast models** (Claude Haiku, GPT-4o mini) — simple classification, straightforward summarisation, high-volume tasks where speed and cost matter. Often 10–20x cheaper than frontier models.',
+          '**Reasoning models** (Claude\'s extended thinking, OpenAI o3) — mathematical problems, logical puzzles, complex multi-step planning. Significantly slower and expensive. Use only when the problem genuinely requires it.',
+          '**Embedding models** — convert text into numerical vectors for semantic search and similarity matching. Not for generating responses — for building search systems that find conceptually similar content.',
+        ],
+      },
+      {
+        type: 'p',
+        text: '**Practical model selection for your projects:**',
+      },
+      {
+        type: 'ul',
+        items: [
+          'The Ikigai tool — Claude Haiku. It\'s following a structured prompt and generating a formatted response. You\'d cut API costs by 80% with no noticeable quality difference.',
+          'A podcast transcript summariser — Claude Sonnet. Long input, nuanced summary, quality matters.',
+          'A retreat FAQ chatbot — Claude Haiku. Simple Q&A from a fixed knowledge base. Fast and cheap.',
+          'Code generation (Claude Code) — frontier models. You want the best available.',
+        ],
+      },
+    ],
+  },
+  {
+    heading: 'The verdict — and what you should actually use',
+    blocks: [
+      {
+        type: 'table',
+        headers: ['', 'Anthropic (Claude)', 'OpenAI (GPT)', 'Open Source (managed)', 'Open Source (self-hosted)'],
+        rows: [
+          ['Setup',           'Minutes',         'Minutes',      'Minutes',    'Days–weeks'],
+          ['Context window',  '200k tokens',     '128k tokens',  'Varies',     'Varies'],
+          ['Best at',         'Writing, long docs', 'Reasoning, multimodal', 'Cost at volume', 'Control, fine-tuning'],
+          ['Data privacy',    'Sent to Anthropic', 'Sent to OpenAI', 'Sent to provider', 'Fully private'],
+          ['Cost',            'Medium',          'Medium',       'Lower',      'Lowest at scale'],
+          ['Maintenance',     'None',            'None',         'None',       'High'],
+        ],
+      },
+      {
+        type: 'p',
+        text: '**What you should use:** Anthropic API for your current projects. You\'re already integrated, Claude\'s context window and instruction-following suit your use cases, and the cost at your current volume is negligible.',
+      },
+      {
+        type: 'p',
+        text: '**When to reconsider:** If you build a high-volume product (thousands of daily API calls), evaluate open source models via managed providers like Together AI or Groq — the cost difference becomes significant. If you need to process genuinely sensitive personal data, self-hosted open source is worth the complexity cost.',
+      },
+      {
+        type: 'p',
+        text: '**The contextual AI assistant for /learn** — Claude Haiku via the Anthropic API. Fast, cheap, can answer questions about whatever section the user is reading if you inject the section content into the system prompt as context. The pattern: user asks question → your API route constructs a system prompt containing the current section\'s content → sends to Haiku → streams response back to the UI. About 30 lines of code.',
+      },
+      {
+        type: 'analogy',
+        text: '**The insight worth keeping:** The AI API landscape is moving faster than any other layer in this stack. Model capabilities that required GPT-4 in 2023 are handled by Haiku in 2026. Prices have dropped 90% in two years. Open source models have gone from toys to genuinely competitive. The specific models you use will change. The pattern — system prompt, context injection, structured output — stays the same. Learn the pattern, not just the current best model.',
+      },
+    ],
+  },
+];
+
+// ── Module 8 Quiz ────────────────────────────────────────────────────────────
+
+export const MODULE8_QUIZ: QuizQuestion[] = [
+  {
+    id: 'm8q1',
+    question: 'What is a token in the context of AI language models?',
+    options: [
+      'A security credential used to authenticate API requests',
+      'A unit of currency used to pay for API usage',
+      'The basic unit of text that models process — roughly 3–4 characters or 0.75 words — used to measure both input and output',
+      'A cached version of a previous response stored for reuse',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm8q2',
+    question: 'Why do AI API responses stream in word by word rather than appearing all at once?',
+    options: [
+      'Streaming is a design choice to make responses feel more natural',
+      'The API sends responses in chunks to reduce server load',
+      'The model genuinely generates one token at a time — each token informed by everything before it — so the response is built incrementally',
+      'Streaming allows the model to correct mistakes mid-response',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm8q3',
+    question: 'What is a context window?',
+    options: [
+      'The visible portion of the chat interface the user sees',
+      'The time window during which an API key remains valid',
+      'The maximum amount of text (measured in tokens) a model can process in a single request — everything must fit within this limit',
+      'The number of API requests allowed per minute',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm8q4',
+    question: 'What does a system prompt do mechanically?',
+    options: [
+      'It encrypts the conversation for security',
+      'It tells the model which GPU cluster to use for inference',
+      'It establishes authoritative framing in the system role before any user messages — the model is trained to interpret all user input within this context',
+      'It caches common responses to reduce API costs',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm8q5',
+    question: 'What is the primary practical advantage of open source models over hosted APIs like Anthropic?',
+    options: [
+      'Open source models are always more capable than hosted APIs',
+      'Open source models have no usage limits',
+      'Data privacy — processing sensitive data on your own infrastructure means it never leaves your control',
+      'Open source models respond faster than hosted APIs',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm8q6',
+    question: "You're building a high-volume FAQ chatbot for The Connection Retreat that answers simple questions. Which model tier makes the most sense?",
+    options: [
+      'A frontier model like Claude Sonnet — quality matters for customer-facing tools',
+      'A reasoning model — FAQ responses require careful logical planning',
+      'A small fast model like Claude Haiku — simple Q&A doesn\'t require deep reasoning, and cost and speed matter at volume',
+      'A self-hosted open source model — always cheaper than hosted APIs',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm8q7',
+    question: 'What is fine-tuning an open source model?',
+    options: [
+      'Adjusting the system prompt to improve response quality',
+      'Compressing the model to run faster on limited hardware',
+      'Training the model further on your own domain-specific data, making it specialised for your particular use case',
+      'Selecting the optimal temperature and parameter settings for your application',
+    ],
+    correct: 2,
+  },
+  {
+    id: 'm8q8',
+    question: 'The Ikigai tool currently uses Claude Sonnet. What would be the impact of switching it to Claude Haiku?',
+    options: [
+      "The tool would stop working — Haiku doesn't support structured output",
+      "Response quality would drop significantly — Haiku can't follow complex instructions",
+      'API costs would drop roughly 80% with minimal quality difference — the task is structured prompt-following, not complex reasoning',
+      'The context window would be too small for the Ikigai system prompt',
+    ],
+    correct: 2,
+  },
+];
