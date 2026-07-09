@@ -40,6 +40,11 @@ export const briefRegistry: Record<string, BriefMeta> = {
     description: 'He lost his wife. This is what came after. Daniel Wang on grief, love, addiction and finding your way back.',
     episodeUrl: 'https://www.youtube.com/watch?v=jIG0lskGV6s',
   },
+  'vipassana-behind-episode': {
+    title: 'Behind the Episode — Ten Days of Silence',
+    description: 'What actually happens inside a 10-day Vipassana silent retreat — pain, impermanence, and what it means to finish the hardest thing you\'ve ever done.',
+    episodeUrl: 'https://www.youtube.com/watch?v=sjPqiaOVWxQ&t=30s',
+  },
 };
 
 // Episode model — groups one or more briefs under a single podcast episode
@@ -110,6 +115,18 @@ export const episodes: Episode[] = [
     briefs: [
       { slug: 'daniel-wang-behind-episode', label: 'Behind the Episode' },
       { slug: 'daniel-wang', label: 'Original Brief' },
+    ],
+  },
+  {
+    slug: 'vipassana',
+    title: 'Ten Days of Silence — What Vipassana Actually Taught Me',
+    description: 'A solo reflection on completing a 10-day Vipassana silent retreat in Vietnam — pain, impermanence, and what it means to finish the hardest thing you\'ve ever done.',
+    spotifyUrl: 'https://podcasters.spotify.com/pod/show/growwiththeflo/episodes/Ten-Days-of-Silence--What-Vipassana-Actually-Taught-Me-e3lqajk',
+    youtubeUrl: 'https://www.youtube.com/watch?v=sjPqiaOVWxQ&t=30s',
+    podcastSlugs: ['episode-14-ten-days-of-silence-what-vipassana-actually-taught-me'],
+    primaryBriefSlug: 'vipassana-behind-episode',
+    briefs: [
+      { slug: 'vipassana-behind-episode', label: 'Behind the Episode' },
     ],
   },
 ];
