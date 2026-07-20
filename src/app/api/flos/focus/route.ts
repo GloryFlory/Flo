@@ -33,7 +33,7 @@ export async function POST() {
   const projectSummaries = projects.map(p => {
     const projectTasks = (tasks ?? [])
       .filter(t => t.project_id === p.id)
-      .map(t => `    [${t.priority}] ${t.text}`)
+      .map(t => `    [id: ${t.id}] [${t.priority}] ${t.text}`)
       .join('\n');
     return `## ${p.name} (${p.status_label})
 Goal: ${p.goal ?? 'Not set'}
@@ -58,6 +58,7 @@ Your job: pick exactly 3 tasks Flo should focus on TODAY. Prioritise based on:
 Respond in this exact JSON format (no markdown, no explanation, just the JSON):
 [
   {
+    "taskId": "the id from [id: ...] for this task, copied exactly",
     "taskText": "exact task text from the list above",
     "project": "project name",
     "reasoning": "one sentence — why this today, specifically"
@@ -73,7 +74,7 @@ Respond in this exact JSON format (no markdown, no explanation, just the JSON):
 
   const raw = message.content[0].type === 'text' ? message.content[0].text.trim() : '[]';
 
-  let focusItems: { taskText: string; project: string; reasoning: string }[];
+  let focusItems: { taskId?: string; taskText: string; project: string; reasoning: string }[];
   try {
     // Strip markdown code fences if present
     const clean = raw.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '');
@@ -82,10 +83,11 @@ Respond in this exact JSON format (no markdown, no explanation, just the JSON):
     return NextResponse.json({ error: 'Failed to parse AI response', raw }, { status: 500 });
   }
 
-  // Map back to include task IDs where we can match them
-  const taskMap = new Map((tasks ?? []).map(t => [t.text, t.id]));
+  // Match back to real task IDs — prefer the id Claude echoed back, fall back to exact text match
+  const idSet   = new Set((tasks ?? []).map(t => t.id));
+  const textMap = new Map((tasks ?? []).map(t => [t.text, t.id]));
   const result = focusItems.map((item, i) => ({
-    id: taskMap.get(item.taskText) ?? `ai-${i}`,
+    id: (item.taskId && idSet.has(item.taskId)) ? item.taskId : textMap.get(item.taskText) ?? `ai-${i}`,
     text: item.taskText,
     project: item.project,
     reasoning: item.reasoning,

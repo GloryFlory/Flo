@@ -256,6 +256,13 @@ export default function FLOsPage() {
 
   function removeFocusItem(id: string) {
     setFocusItems(prev => prev.filter(f => f.id !== id));
+    if (!id.startsWith('ai-')) {
+      fetch(`/api/flos/tasks/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'done' }),
+      });
+    }
   }
 
   async function submitCapture(e: React.FormEvent) {
