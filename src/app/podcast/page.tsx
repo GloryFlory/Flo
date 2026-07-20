@@ -43,6 +43,38 @@ export default function PodcastPage() {
 
   const latestEpisode = episodes[0];
 
+  const PlatformLinks = ({ large = false }: { large?: boolean }) => (
+    <>
+      <a
+        href="https://open.spotify.com/show/3vRG8eplIkpnBBAUPpih2N"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`flex items-center justify-center bg-white border-2 border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm ${large ? 'flex-1 p-5' : 'p-4'}`}
+        title="Listen on Spotify"
+      >
+        <img src="/spotify-icon.png" alt="Spotify" className={large ? 'w-9 h-9' : 'w-8 h-8'} />
+      </a>
+      <a
+        href="https://podcasts.apple.com/us/podcast/grow-with-the-flo/id1795716394"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`flex items-center justify-center bg-white border-2 border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm ${large ? 'flex-1 p-5' : 'p-4'}`}
+        title="Listen on Apple Podcasts"
+      >
+        <img src="/apple-icon.png" alt="Apple Podcasts" className={large ? 'w-9 h-9' : 'w-8 h-8'} />
+      </a>
+      <a
+        href="https://www.youtube.com/@GrowWithTheFloPodcast"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`flex items-center justify-center bg-white border-2 border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm ${large ? 'flex-1 p-5' : 'p-4'}`}
+        title="Watch on YouTube"
+      >
+        <img src="/youtube-black.png" alt="YouTube" className={large ? 'w-9 h-9' : 'w-8 h-8'} />
+      </a>
+    </>
+  );
+
   return (
     <main className="min-h-screen bg-sand">
       <section className="section py-16 sm:py-24 lg:py-32">
@@ -50,10 +82,15 @@ export default function PodcastPage() {
           {/* Podcast Header with Logo and Description */}
           <div className="mb-12 sm:mb-16">
             {/* Title */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mb-8 sm:mb-12 text-center text-ink">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mb-6 sm:mb-12 text-center text-ink">
               Grow with the Flo
             </h1>
-            
+
+            {/* Platform links, mobile only — top of page, two taps to a player */}
+            <div className="flex gap-3 mb-8 md:hidden max-w-md mx-auto">
+              <PlatformLinks large />
+            </div>
+
             {/* Logo and Description - Mobile Optimized */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center max-w-5xl mx-auto">
               <div className="flex justify-center order-2 md:order-1">
@@ -63,46 +100,20 @@ export default function PodcastPage() {
                   className="w-64 sm:w-72 lg:w-80 h-auto shadow-xl rounded-2xl"
                 />
               </div>
-              
+
               <div className="space-y-4 sm:space-y-6 order-1 md:order-2">
                 <p className="text-base sm:text-lg lg:text-xl text-ink/80 leading-relaxed">
                   Real conversations about anxiety, identity, connection, and what it means to live a life that actually feels like yours. No highlight reel. Just the process.
                 </p>
-                
-                {/* Platform Links - Logo Only */}
-                <div className="flex gap-4 pt-4">
-                  <a
-                    href="https://open.spotify.com/show/3vRG8eplIkpnBBAUPpih2N"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center bg-white border-2 border-gray-200 p-4 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm"
-                    title="Listen on Spotify"
-                  >
-                    <img src="/spotify-icon.png" alt="Spotify" className="w-8 h-8" />
-                  </a>
-                  <a
-                    href="https://podcasts.apple.com/us/podcast/grow-with-the-flo/id1795716394"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center bg-white border-2 border-gray-200 p-4 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm"
-                    title="Listen on Apple Podcasts"
-                  >
-                    <img src="/apple-icon.png" alt="Apple Podcasts" className="w-8 h-8" />
-                  </a>
-                  <a
-                    href="https://www.youtube.com/@GrowWithTheFloPodcast"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center bg-white border-2 border-gray-200 p-4 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm"
-                    title="Watch on YouTube"
-                  >
-                    <img src="/youtube-black.png" alt="YouTube" className="w-8 h-8" />
-                  </a>
+
+                {/* Platform Links - desktop/tablet position, hidden on mobile (shown above instead) */}
+                <div className="hidden md:flex gap-4 pt-4">
+                  <PlatformLinks />
                 </div>
               </div>
             </div>
           </div>
-          
+
           {/* Search Bar */}
           <SearchBar 
             onSearch={setSearchQuery}

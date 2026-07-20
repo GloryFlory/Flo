@@ -86,51 +86,31 @@ export default function HomePage() {
       <div className="relative z-50 w-full flex justify-center -mt-24 sm:-mt-32 lg:-mt-48 px-4">
         <AnimatedOnLoad className="bg-white rounded-xl shadow-lg px-6 sm:px-10 py-6 sm:py-8 lg:py-10 max-w-3xl w-full" delay={1.0}>
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-heading font-bold mb-4 sm:mb-6 text-center">
-            About Flo
+            I'm Flo
           </h2>
           <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-8">
-            {/* Photos stacked vertically */}
-            <div className="flex-shrink-0 flex flex-col gap-3 w-full sm:w-40 lg:w-48">
+            <div className="flex-shrink-0 w-full sm:w-40 lg:w-48">
               <img
                 src="/profile.jpeg"
                 alt="Florian"
                 className="w-full aspect-square rounded-lg object-cover border-4 border-brand shadow-lg"
-              />
-              <img
-                src="/profile2.jpeg"
-                alt="Florian"
-                className="w-full aspect-square rounded-lg object-cover shadow-md"
-              />
-              <img
-                src="/profile3.jpg"
-                alt="Florian"
-                className="w-full aspect-square rounded-lg object-cover shadow-md"
               />
             </div>
             <div className="text-center sm:text-left">
               <p className="text-ink text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed font-medium">
                 Former compliance director. Yoga teacher. Podcast host. Retreat organiser. Nomad.
               </p>
+              <p className="text-ink text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed">
+                I left a career that looked good from the outside, lost my identity with it, and spent the years since travelling, training, building, failing — and slowly falling back in love with myself.
+              </p>
               <p className="text-ink/70 text-sm sm:text-base mb-4 leading-relaxed italic">
                 Honest conversations about growth, connection, and figuring it out as you go.
-              </p>
-              <p className="text-ink text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed">
-                I'm not a guru. I don't have it figured out.
-              </p>
-              <p className="text-ink text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed">
-                I'm someone who left a career that looked good from the outside, lost his identity with it, and spent the last year and a half travelling, training, building, failing, and slowly falling back in love with himself — imperfectly, and mostly in Vietnam.
-              </p>
-              <p className="text-ink text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed">
-                I organise events and retreats that help people connect — with each other and with themselves. I host a podcast where I share what's actually going on. And I'm working on something I've been building toward my whole life: a retreat that brings together movement, breathwork, and the kind of human connection that actually changes something.
-              </p>
-              <p className="text-ink text-sm sm:text-base mb-4 leading-relaxed">
-                If any of that resonates — you're in the right place.
               </p>
               <a
                 href="/about"
                 className="inline-block bg-brand text-white font-bold rounded px-4 sm:px-6 py-2 text-sm sm:text-base shadow hover:bg-brand/90 transition"
               >
-                Read More
+                Read my story <span className="arrow">&rarr;</span>
               </a>
             </div>
           </div>
@@ -143,29 +123,32 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
               <p className="text-xs font-semibold tracking-[0.22em] uppercase text-brand mb-4">
-                Web, Brand & Tools
+                Web, Booking & Tools
               </p>
               <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-5 text-ink leading-tight">
                 I also build for<br className="hidden sm:block" /> retreat organizers.
               </h2>
               <p className="text-ink/70 leading-relaxed mb-4">
-                Websites, event scheduling tools, brand identities, custom booking flows. One person — design, code, and copy — so nothing gets lost between three different freelancers.
+                Websites, event scheduling tools, custom booking flows. One person — design, code, and copy — so nothing gets lost between three different freelancers.
               </p>
               <p className="text-ink/70 leading-relaxed mb-8">
                 I organize events myself. I know what breaks at 11pm before day one.
               </p>
+              <p className="text-ink/50 text-sm mb-6">
+                Every project is scoped individually.
+              </p>
               <a
-                href="/work"
+                href="mailto:hello@florianhohenleitner.com"
                 className="inline-block bg-brand text-white font-bold rounded px-6 py-3 text-sm shadow hover:bg-brand/90 transition"
               >
-                See the work <span className="arrow">&rarr;</span>
+                Get a quote <span className="arrow">&rarr;</span>
               </a>
             </div>
             <div className="flex flex-col gap-3">
               {[
-                { label: 'Retreat Website', price: '€1,200+', note: 'Design, build, copy, schedule — all in' },
-                { label: 'Brand Identity', price: '€600+', note: 'Logo, palette, guide' },
-                { label: 'Custom Tools', price: 'Scoped', note: 'Intakes, portals, dashboards' },
+                { label: 'Retreat Website', note: 'Design, build, copy, schedule — all in' },
+                { label: 'Booking & Launch Setup', note: 'Ticketing, email sequences, schedule' },
+                { label: 'Custom Tools', note: 'Intakes, portals, dashboards' },
               ].map((item) => (
                 <a
                   key={item.label}
@@ -173,8 +156,7 @@ export default function HomePage() {
                   className="bg-white border border-ink/8 rounded-lg p-4 hover:border-brand/30 hover:shadow-sm transition-all group"
                 >
                   <p className="text-[10px] font-semibold tracking-widest uppercase text-ink/40 mb-2">{item.label}</p>
-                  <p className="font-heading font-bold text-xl text-ink mb-1 group-hover:text-brand transition-colors">{item.price}</p>
-                  <p className="text-xs text-ink/50 leading-snug">{item.note}</p>
+                  <p className="text-sm text-ink/70 leading-snug group-hover:text-brand transition-colors">{item.note}</p>
                 </a>
               ))}
             </div>

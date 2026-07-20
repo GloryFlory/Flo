@@ -72,7 +72,7 @@ export default async function GermanHomePage() {
       {/* Hero section */}
       <section className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black/80 overflow-hidden py-16 sm:py-20 px-4">
         <img
-          src="/header.jpg"
+          src="/homepage-hero-2.png"
           alt="Header"
           className="absolute inset-0 w-full h-full object-cover object-top opacity-60 pointer-events-none"
           style={{ zIndex: 0 }}

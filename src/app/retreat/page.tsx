@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
-import MailingListForm from '../../components/MailingListForm';
+import RetreatInterestForm from '../../components/RetreatInterestForm';
 
 export const metadata: Metadata = {
   title: 'The Connection Retreat — Florian Hohenleitner',
@@ -75,13 +75,22 @@ export default function RetreatPage() {
         </div>
       </section>
 
+      {/* Quote — section divider */}
+      <section className="py-16 sm:py-20 bg-ink">
+        <div className="max-w-3xl mx-auto px-6 sm:px-10 text-center">
+          <p className="font-heading font-bold text-2xl sm:text-4xl text-white leading-snug">
+            &ldquo;Something in you already knows.&rdquo;
+          </p>
+        </div>
+      </section>
+
       {/* What it is */}
       <section className="py-20 bg-sand/30">
         <div className="max-w-5xl mx-auto px-6 sm:px-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="relative h-72 md:h-full min-h-[320px] rounded-2xl overflow-hidden shadow-lg">
             <Image
-              src="https://images.unsplash.com/photo-1695795910724-e7ab3af4239e?q=80&w=1200&auto=format&fit=crop"
-              alt="Group practicing yoga on a beach"
+              src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1200&auto=format&fit=crop"
+              alt="Friends with arms around each other watching the sunset together"
               fill
               className="object-cover"
             />
@@ -152,8 +161,8 @@ export default function RetreatPage() {
           </div>
           <div className="relative h-72 md:h-full min-h-[320px] rounded-2xl overflow-hidden shadow-lg">
             <Image
-              src="https://images.unsplash.com/photo-1608405059861-b21a68ae76a2?q=80&w=1200&auto=format&fit=crop"
-              alt="Group movement practice outdoors"
+              src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?q=80&w=1200&auto=format&fit=crop"
+              alt="A group's hands resting together on a fallen tree branch in a forest"
               fill
               className="object-cover"
             />
@@ -192,7 +201,7 @@ export default function RetreatPage() {
             <p className="text-ink/60 text-sm sm:text-base mb-8">
               No spam. Just a heads-up when dates, location, and details are confirmed.
             </p>
-            <MailingListForm />
+            <RetreatInterestForm />
           </div>
         </div>
       </section>

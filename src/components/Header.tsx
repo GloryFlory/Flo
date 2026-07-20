@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLocale } from '../../lib/i18n/hooks';
 
@@ -9,6 +10,10 @@ type TranslationKey = 'home' | 'podcast' | 'behindTheEpisode' | 'retreat' | 'abo
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { currentLocale } = useLocale();
+  const pathname = usePathname();
+
+  // /connect is a self-contained Linktree-style page with its own header — skip site chrome.
+  if (pathname?.startsWith('/connect')) return null;
 
   // Translation helper function
   const t = (key: TranslationKey) => {
@@ -18,7 +23,7 @@ export default function Header() {
         podcast: 'Podcast',
         behindTheEpisode: 'Behind the Episode',
         retreat: 'Retreat',
-        about: 'My story',
+        about: 'My Story',
         work: 'Work with me',
       },
       de: {

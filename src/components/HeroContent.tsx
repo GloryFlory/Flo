@@ -12,16 +12,6 @@ const container: Variants = {
   },
 };
 
-// The headline slides up from behind a clip boundary — the "line reveal"
-// used on high-end sites. Wrap the element in overflow-hidden to see the effect.
-const lineReveal: Variants = {
-  hidden: { y: '110%' },
-  show: {
-    y: 0,
-    transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] as const },
-  },
-};
-
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 16 },
   show: {
@@ -39,15 +29,9 @@ export default function HeroContent() {
       initial="hidden"
       animate="show"
     >
-      {/* overflow-hidden is what makes the line reveal work */}
-      <div className="overflow-hidden mb-8 px-4">
-        <motion.h1
-          className="text-white font-heading font-extrabold text-center text-3xl sm:text-4xl md:text-6xl lg:text-7xl leading-none drop-shadow-lg"
-          variants={lineReveal}
-        >
-          I'm Flo.
-        </motion.h1>
-      </div>
+      {/* Visually hidden — the background logo carries the headline visually,
+          this keeps a real <h1> for SEO and screen readers. */}
+      <h1 className="sr-only">Florian Hohenleitner — websites and tools for retreat organizers</h1>
       <motion.a
         href="/podcast"
         className="bg-brand text-white font-bold rounded px-6 sm:px-8 py-3 text-sm sm:text-base lg:text-lg mb-8 sm:mb-10 shadow hover:bg-brand/90 transition-colors mx-4"

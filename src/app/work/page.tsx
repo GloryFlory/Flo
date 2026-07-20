@@ -2,9 +2,9 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Work with Flo — Web, Brand & Tools for Retreat Organizers',
+  title: 'Work with Flo — Web, Booking & Tools for Retreat Organizers',
   description:
-    'I build websites, booking flows, event tools, and brand identities for retreat organizers. As someone who organizes retreats myself, I understand the problems from the inside.',
+    'I build websites, booking flows, and event tools for retreat organizers. As someone who organizes retreats myself, I understand the problems from the inside.',
 };
 
 const services = [
@@ -26,28 +26,25 @@ const services = [
       'Teacher profiles & session pages',
       'Delivered in 2–3 weeks',
     ],
-    price: '€1,200+',
-    priceNote: 'Design, build, copy, schedule. Ready in 2–3 weeks.',
+    deliveryNote: 'Design, build, copy, schedule. Ready in 2–3 weeks.',
   },
   {
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-        <circle cx="16" cy="10" r="5" stroke="currentColor" strokeWidth="1.4" />
-        <path d="M5 27c0-6.075 4.925-11 11-11s11 4.925 11 11" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-        <path d="M22 12.5l1.5 1.5 3.5-3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M4 13a3 3 0 000 6v4h24v-4a3 3 0 000-6V9H4v4z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+        <path d="M13 9v14" stroke="currentColor" strokeWidth="1.4" strokeDasharray="2.5 2.5" />
       </svg>
     ),
-    title: 'Brand Identity',
-    body: 'A complete visual identity your team can use — built for events that need to look consistent across web, print, and social.',
+    title: 'Booking & Launch Setup',
+    body: 'The website gets you found — this gets you booked. Everything that turns visitors into confirmed attendees, set up and running before you open registration.',
     includes: [
-      'Logo suite (primary + variants)',
-      'Color palette & typography',
-      'Brand guide document',
-      'Social media templates',
-      'Ready to hand to any designer or printer',
+      'Ticketing & payment flow setup (WeTravel, Stripe)',
+      'Email marketing setup & campaigns (early bird sequences, past-attendee reactivation via MailerLite)',
+      'Waitlist & inquiry capture',
+      'Event schedule setup',
+      'Launch timeline support',
     ],
-    price: '€600+',
-    priceNote: 'Logo, palette, type, brand guide.',
+    deliveryNote: 'Ticketing, email sequences, and schedule — ready before you open registration.',
   },
   {
     icon: (
@@ -66,8 +63,7 @@ const services = [
       'Community portals or dashboards',
       'Scoped per project — ask what\'s feasible',
     ],
-    price: 'Scoped',
-    priceNote: 'Tell me what you need. I\'ll tell you what\'s realistic.',
+    deliveryNote: 'Tell me what you need. I\'ll tell you what\'s realistic.',
   },
 ];
 
@@ -80,10 +76,10 @@ const projects = [
     href: 'https://tryflowgrid.com',
   },
   {
-    tag: 'Event Website · Brand Identity',
+    tag: 'Event Website · Launch Campaign',
     title: 'Mediterranean Acro Convention',
     desc: 'Complete brand system and event website for one of Europe\'s longest-running acroyoga conventions in Malta — which I also organize. Logo suite, color palette, typography, voice guide, and web presence built to scale across multiple editions.',
-    pills: ['Brand Guide', 'Web Design', 'Event Identity'],
+    pills: ['Email Marketing', 'Web Design', 'Event Identity'],
     href: 'https://www.acrointhesun.com',
   },
   {
@@ -125,14 +121,14 @@ export default function WorkPage() {
       {/* HERO */}
       <section className="max-w-4xl mx-auto px-4 pt-16 pb-20 sm:pt-24 sm:pb-28">
         <p className="text-xs font-semibold tracking-[0.22em] uppercase text-brand mb-6">
-          Web, Brand &amp; Tools for Retreat Organizers
+          Web, Booking &amp; Tools for Retreat Organizers
         </p>
         <h1 className="font-heading font-bold text-4xl sm:text-6xl lg:text-7xl leading-[1.08] text-ink mb-8">
           Your retreat deserves<br />
           a home <em className="not-italic text-brand">online.</em>
         </h1>
         <p className="text-ink/70 text-lg sm:text-xl leading-relaxed max-w-xl mb-10">
-          I build websites, booking flows, event tools, and brand identities for retreat organizers.
+          I build websites, booking flows, and event tools for retreat organizers.
           As someone who organizes retreats myself, I understand the problems from the inside — and I build accordingly.
         </p>
         <div className="flex flex-wrap gap-4 items-center">
@@ -187,15 +183,27 @@ export default function WorkPage() {
           ))}
         </div>
 
-        {/* Pricing */}
-        <div className="mt-8 bg-white border border-ink/8 rounded-xl p-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {services.map((s) => (
-            <div key={s.title} className="border-l-2 border-accent pl-4">
-              <p className="text-xs font-semibold tracking-[0.15em] uppercase text-ink/40 mb-2 min-h-[2.5rem]">{s.title}</p>
-              <p className="font-heading font-bold text-2xl text-ink mb-2">{s.price}</p>
-              <p className="text-xs text-ink/50 leading-relaxed">{s.priceNote}</p>
-            </div>
-          ))}
+        {/* Delivery notes + single CTA — every project is scoped and quoted individually */}
+        <div className="mt-8 bg-white border border-ink/8 rounded-xl p-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+            {services.map((s) => (
+              <div key={s.title} className="border-l-2 border-accent pl-4">
+                <p className="text-xs font-semibold tracking-[0.15em] uppercase text-ink/40 mb-2 min-h-[2.5rem]">{s.title}</p>
+                <p className="text-sm text-ink/60 leading-relaxed">{s.deliveryNote}</p>
+              </div>
+            ))}
+          </div>
+          <div className="border-t border-ink/8 pt-8 text-center">
+            <p className="text-ink/60 text-sm leading-relaxed mb-5 max-w-md mx-auto">
+              Every project is scoped individually — send me a few details and I&apos;ll tell you honestly what it takes.
+            </p>
+            <a
+              href="mailto:hello@florianhohenleitner.com"
+              className="inline-block bg-brand text-white font-bold rounded px-6 py-3 text-sm shadow hover:bg-brand/90 transition"
+            >
+              Get a quote
+            </a>
+          </div>
         </div>
       </section>
 

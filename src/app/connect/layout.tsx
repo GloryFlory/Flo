@@ -1,0 +1,33 @@
+import { Montserrat, Lora } from 'next/font/google';
+import { Metadata } from 'next';
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['800', '900'],
+  variable: '--font-montserrat',
+  display: 'swap',
+});
+
+const lora = Lora({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  style: ['normal', 'italic'],
+  variable: '--font-lora',
+  display: 'swap',
+});
+
+export const metadata: Metadata = {
+  title: 'Connect with Flo',
+  description: 'Podcast, retreat, work, and everything else — all in one place.',
+  alternates: {
+    canonical: '/connect',
+  },
+};
+
+export default function ConnectLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className={`${montserrat.variable} ${lora.variable}`}>
+      {children}
+    </div>
+  );
+}

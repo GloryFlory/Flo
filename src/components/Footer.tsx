@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import BuyMeCoffeeButton from './BuyMeCoffeeButton';
 import { useLocale } from '../../lib/i18n/hooks';
 
@@ -7,6 +8,10 @@ type TranslationKey = 'home' | 'podcast' | 'behindTheEpisode' | 'retreat' | 'abo
 
 export default function Footer() {
   const { currentLocale } = useLocale();
+  const pathname = usePathname();
+
+  // /connect is a self-contained Linktree-style page with its own footer area — skip site chrome.
+  if (pathname?.startsWith('/connect')) return null;
   
   // Translation helper function
   const t = (key: TranslationKey) => {
@@ -16,7 +21,7 @@ export default function Footer() {
         podcast: 'Podcast',
         behindTheEpisode: 'Behind the Episode',
         retreat: 'Retreat',
-        about: 'My story',
+        about: 'My Story',
         quickLinks: 'Quick Links',
         connect: 'Connect',
         email: 'Email',
@@ -140,7 +145,8 @@ export default function Footer() {
 
         <div className="border-t border-white/20 mt-8 pt-8 text-center">
           <p className="text-white/60">
-            &copy; {new Date().getFullYear()} Florian Hohenleitner. {t('rightsReserved')}
+            &copy; {new Date().getFullYear()} Florian Hohenleitner. {t('rightsReserved')}{' '}
+            <a href="/privacy" className="underline hover:text-white transition-colors">Privacy</a>
           </p>
         </div>
       </div>
